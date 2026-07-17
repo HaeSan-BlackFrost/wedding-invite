@@ -369,43 +369,44 @@ body {
 }
 
 .hanok-svg {
-  width: min(92vw, 860px);
-  height: auto;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   display: block;
 }
 
-.hanok-svg .draw {
-  stroke: var(--ink);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
-}
-.hanok-svg .draw.faint { stroke: var(--wash-deep); stroke-width: 1.3; opacity: 0.75; }
-.hanok-svg .draw.roof  { stroke: var(--gold); stroke-width: 2.6; }
-.hanok-svg .draw.gold  { stroke: var(--gold); stroke-width: 1.6; }
-.hanok-svg .draw.snowline { stroke: #FFFFFF; stroke-width: 4; opacity: 0.95; }
-.hanok-svg .draw.snowline.thin { stroke-width: 3; opacity: 0.85; }
 .hanok-svg .flicker { animation: windowFlicker 5s ease-in-out infinite; }
 @keyframes windowFlicker {
   0%, 100% { filter: brightness(1); }
-  40% { filter: brightness(1.18); }
-  60% { filter: brightness(0.94); }
+  40% { filter: brightness(1.12); }
+  60% { filter: brightness(0.96); }
+}
+
+/* stepping into the light */
+.hanok-wash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 75% 65% at 50% 48%, #FBEBC8 0%, #F6E3B8 40%, var(--paper) 100%);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .scene-caption {
-  margin-top: 1.5rem;
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%;
+  transform: translateY(-40%);
   text-align: center;
-  font-size: 1.05rem;
-  color: var(--ink-soft);
+  font-size: clamp(1.15rem, 3vw, 1.6rem);
+  color: var(--ink);
   opacity: 0;
-  transform: translateY(14px);
   transition: opacity 0.8s ease, transform 0.8s ease;
   letter-spacing: 0.06em;
+  padding: 0 1.5rem;
 }
-.scene-caption em { font-size: 0.9rem; color: var(--gold); }
-.scene-caption.visible { opacity: 1; transform: none; }
+.scene-caption em { display: inline-block; margin-top: 0.5rem; font-size: 0.72em; color: var(--gold); }
+.scene-caption.visible { opacity: 1; transform: translateY(-50%); }
 
 /* ═══════════ SECTIONS ═══════════ */
 .section { padding: 6.5rem 1.5rem; position: relative; }
@@ -912,11 +913,13 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .reveal, .scene-caption { opacity: 1 !important; transform: none !important; transition: none; }
-  .hanok-svg .draw { stroke-dashoffset: 0 !important; }
-  .hanok-svg .fade { opacity: 1 !important; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none; }
+  .scene-caption { opacity: 1 !important; transform: translateY(-50%) !important; position: static; transform: none !important; margin-top: 1rem; transition: none; }
   .hanok-scene { height: auto; padding: 4rem 0; }
   .hanok-sticky { position: static; height: auto; }
+  .hanok-svg { position: static; width: min(92vw, 860px); height: auto; margin: 0 auto; }
+  .hanok-wash { display: none; }
+  #sceneCouple { opacity: 1 !important; transform: none !important; }
   .hero-inner { animation: none; }
   .moon, .seal, .lantern, .lantern-body, .crane, .mist,
   .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,

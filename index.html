@@ -94,10 +94,10 @@
   </div>
 </header>
 
-<!-- ═══════════ HANOK SCROLL SCENE ═══════════ -->
-<section class="hanok-scene" id="hanokScene" aria-label="A hanok house drawing itself as you scroll">
+<!-- ═══════════ HANOK JOURNEY — approach, the doors open, step inside ═══════════ -->
+<section class="hanok-scene" id="hanokScene" aria-label="Approaching a hanok house; its doors open as you scroll">
   <div class="hanok-sticky">
-    <svg class="hanok-svg" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg class="hanok-svg" id="hanokSvg" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
       <defs>
         <filter id="glowSoft" x="-60%" y="-60%" width="220%" height="220%">
           <feGaussianBlur stdDeviation="7"/>
@@ -106,91 +106,125 @@
           <stop offset="0%" stop-color="#F0D49B" stop-opacity="0.85"/>
           <stop offset="100%" stop-color="#F0D49B" stop-opacity="0"/>
         </radialGradient>
+        <radialGradient id="interiorGrad" cx="50%" cy="42%" r="75%">
+          <stop offset="0%" stop-color="#FBEBC8"/>
+          <stop offset="55%" stop-color="#EBC183"/>
+          <stop offset="100%" stop-color="#A9784A"/>
+        </radialGradient>
+        <linearGradient id="skyHint" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F3E9D5" stop-opacity="0.65"/>
+          <stop offset="100%" stop-color="#F3E9D5" stop-opacity="0"/>
+        </linearGradient>
       </defs>
-      <!-- moon -->
-      <circle class="draw gold" data-draw="0,0.18" cx="735" cy="118" r="42"/>
-      <circle class="fade" data-fade="0.8,0.95" cx="735" cy="118" r="42" fill="var(--gold)" opacity="0" fill-opacity="0.16" stroke="none"/>
-      <circle class="fade" data-fade="0.85,1" cx="735" cy="118" r="58" fill="url(#windowGlow)" opacity="0" stroke="none"/>
-      <!-- clouds -->
-      <path class="draw faint" data-draw="0.02,0.2" d="M 88 196 q 26 -20 52 0 q 26 20 52 0"/>
-      <path class="draw faint" data-draw="0.05,0.22" d="M 620 78 q 22 -16 44 0 q 22 16 44 0"/>
-      <!-- mountains -->
-      <path class="draw faint" data-draw="0,0.2" d="M 20 470 Q 150 356 300 470"/>
-      <path class="draw faint" data-draw="0.03,0.22" d="M 545 470 Q 700 336 880 470"/>
-      <!-- ground -->
-      <path class="draw" data-draw="0.05,0.2" d="M 150 470 H 750"/>
-      <!-- stone platform -->
-      <path class="draw" data-draw="0.12,0.3" d="M 230 470 V 440 H 670 V 470"/>
-      <path class="draw faint" data-draw="0.16,0.32" d="M 250 455 H 650"/>
-      <!-- columns -->
-      <path class="draw" data-draw="0.24,0.4" d="M 280 440 V 335"/>
-      <path class="draw" data-draw="0.26,0.42" d="M 393 440 V 335"/>
-      <path class="draw" data-draw="0.28,0.44" d="M 507 440 V 335"/>
-      <path class="draw" data-draw="0.3,0.46" d="M 620 440 V 335"/>
-      <!-- beams -->
-      <path class="draw" data-draw="0.32,0.48" d="M 262 335 H 638"/>
-      <path class="draw faint" data-draw="0.34,0.5" d="M 248 321 H 652"/>
-      <!-- roof -->
-      <path class="draw roof" data-draw="0.4,0.58" d="M 180 318 Q 450 368 720 318"/>
-      <path class="draw faint" data-draw="0.44,0.6" d="M 205 322 Q 450 360 695 322"/>
-      <path class="draw roof" data-draw="0.48,0.62" d="M 180 318 C 235 275 285 250 330 240"/>
-      <path class="draw roof" data-draw="0.48,0.62" d="M 720 318 C 665 275 615 250 570 240"/>
-      <path class="draw roof" data-draw="0.54,0.66" d="M 330 240 Q 450 231 570 240"/>
-      <!-- ridge-end curls -->
-      <path class="draw" data-draw="0.6,0.7" d="M 330 240 q -8 -4 -6 -14"/>
-      <path class="draw" data-draw="0.6,0.7" d="M 570 240 q 8 -4 6 -14"/>
-      <!-- roof wash -->
-      <path class="fade" data-fade="0.66,0.82" opacity="0"
-        d="M 180 318 Q 450 368 720 318 C 665 275 615 250 570 240 Q 450 231 330 240 C 285 250 235 275 180 318 Z"
-        fill="var(--celadon)" fill-opacity="0.08" stroke="none"/>
-      <!-- window glow behind lattice bays -->
-      <g class="fade flicker" data-fade="0.72,0.88" opacity="0" stroke="none">
-        <rect x="290" y="348" width="93" height="96" fill="url(#windowGlow)"/>
-        <rect x="404" y="348" width="93" height="96" fill="url(#windowGlow)"/>
-        <rect x="517" y="348" width="93" height="96" fill="url(#windowGlow)"/>
-      </g>
-      <!-- lattice doors: three bays -->
-      <g class="draw faint" data-draw="0.58,0.74">
-        <path d="M 296 352 H 377 V 440 H 296 Z M 323 352 V 440 M 350 352 V 440 M 296 381 H 377 M 296 410 H 377"/>
-      </g>
-      <g class="draw faint" data-draw="0.61,0.77">
-        <path d="M 410 352 H 491 V 440 H 410 Z M 437 352 V 440 M 464 352 V 440 M 410 381 H 491 M 410 410 H 491"/>
-      </g>
-      <g class="draw faint" data-draw="0.64,0.8">
-        <path d="M 523 352 H 604 V 440 H 523 Z M 550 352 V 440 M 577 352 V 440 M 523 381 H 604 M 523 410 H 604"/>
-      </g>
-      <!-- lanterns -->
-      <g class="fade lantern-glow" data-fade="0.74,0.88" opacity="0">
-        <circle cx="208" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.25" filter="url(#glowSoft)" stroke="none"/>
-        <path d="M 208 326 V 352" stroke="var(--mist)" stroke-width="1.4"/>
-        <ellipse cx="208" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
-        <path d="M 200 358 H 216 M 200 390 H 216" stroke="var(--gold)" stroke-width="1.6"/>
-        <path d="M 208 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
-      </g>
-      <g class="fade lantern-glow" data-fade="0.78,0.92" opacity="0">
-        <circle cx="692" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.25" filter="url(#glowSoft)" stroke="none"/>
-        <path d="M 692 326 V 352" stroke="var(--mist)" stroke-width="1.4"/>
-        <ellipse cx="692" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
-        <path d="M 684 358 H 700 M 684 390 H 700" stroke="var(--gold)" stroke-width="1.6"/>
-        <path d="M 692 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
-      </g>
-      <!-- snow settling on the roof -->
-      <path class="draw snowline" data-draw="0.84,0.97" d="M 186 315 Q 450 363 714 315"/>
-      <path class="draw snowline thin" data-draw="0.88,1" d="M 334 237 Q 450 228 566 237"/>
-      <!-- the couple, walking home -->
-      <g class="fade couple" data-fade="0.9,1" opacity="0" fill="var(--ink)" stroke="none">
-        <circle cx="176" cy="423" r="6.5"/>
-        <path d="M 169 448 Q 176 429 183 448 L 184 470 H 168 Z"/>
-        <circle cx="196" cy="427" r="6"/>
-        <path d="M 190 450 Q 196 434 202 450 L 207 470 H 186 Z"/>
-        <path d="M 183 452 L 190 452" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
-      </g>
-      <!-- double happiness seal -->
-      <g class="fade seal-mark" data-fade="0.88,1" opacity="0">
-        <rect x="768" y="486" width="58" height="58" rx="9" fill="var(--vermilion)"/>
-        <text x="797" y="529" text-anchor="middle" font-size="36" fill="#F0D49B" font-family="'Noto Serif SC', serif">囍</text>
+
+      <g id="cam">
+        <!-- sky + moon -->
+        <rect x="-200" y="-100" width="1300" height="320" fill="url(#skyHint)"/>
+        <circle cx="735" cy="112" r="56" fill="var(--gold-bright)" opacity="0.18"/>
+        <circle cx="735" cy="112" r="40" fill="#F2DFAE" stroke="var(--gold)" stroke-width="1.6"/>
+        <path d="M 88 196 q 26 -20 52 0 q 26 20 52 0" stroke="var(--wash-deep)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <path d="M 620 74 q 22 -16 44 0 q 22 16 44 0" stroke="var(--wash-deep)" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+
+        <!-- mountains + ground -->
+        <path d="M -60 470 Q 140 340 340 470 Z" fill="var(--wash)" opacity="0.5"/>
+        <path d="M 520 470 Q 700 330 900 470 Z" fill="var(--wash)" opacity="0.4"/>
+        <path d="M 100 470 H 800" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- stone platform + steps -->
+        <rect x="230" y="440" width="440" height="30" fill="#E9E0CE" stroke="var(--ink)" stroke-width="2"/>
+        <path d="M 250 455 H 650" stroke="var(--ink)" stroke-width="1" opacity="0.35"/>
+        <rect x="418" y="462" width="64" height="8" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
+        <rect x="424" y="455" width="52" height="7" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
+        <rect x="430" y="448" width="40" height="7" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
+
+        <!-- interior, revealed when the doors open -->
+        <rect x="397" y="352" width="106" height="88" fill="url(#interiorGrad)"/>
+        <g id="interiorScene">
+          <path d="M 450 352 V 362" stroke="#6B4A33" stroke-width="1.2"/>
+          <rect x="443" y="362" width="14" height="18" rx="2" fill="var(--vermilion)"/>
+          <text x="450" y="375.5" text-anchor="middle" font-size="10" fill="#F6DFA8" font-family="'Noto Serif SC', serif">囍</text>
+          <rect x="428" y="414" width="44" height="6" rx="2" fill="#6B4A33"/>
+          <rect x="432" y="420" width="3" height="10" fill="#6B4A33"/>
+          <rect x="465" y="420" width="3" height="10" fill="#6B4A33"/>
+          <circle cx="442" cy="411" r="2.8" fill="#F6DFA8" stroke="#6B4A33" stroke-width="0.9"/>
+          <circle cx="458" cy="411" r="2.8" fill="#F6DFA8" stroke="#6B4A33" stroke-width="0.9"/>
+        </g>
+
+        <!-- wall band above openings -->
+        <rect x="262" y="335" width="376" height="17" fill="#EFE7D6" stroke="var(--ink)" stroke-width="1.2"/>
+
+        <!-- side bays: glowing lattice windows -->
+        <g class="flicker">
+          <rect x="284" y="352" width="105" height="88" fill="#F3ECDD" stroke="var(--ink)" stroke-width="1.4"/>
+          <rect x="290" y="348" width="93" height="96" fill="url(#windowGlow)" opacity="0.75"/>
+          <g stroke="#6B4A33" stroke-width="1.6">
+            <rect x="296" y="360" width="81" height="72" fill="#F7F1E4" fill-opacity="0.92"/>
+            <path d="M 323 360 V 432 M 350 360 V 432 M 296 384 H 377 M 296 408 H 377"/>
+          </g>
+          <rect x="511" y="352" width="105" height="88" fill="#F3ECDD" stroke="var(--ink)" stroke-width="1.4"/>
+          <rect x="517" y="348" width="93" height="96" fill="url(#windowGlow)" opacity="0.75"/>
+          <g stroke="#6B4A33" stroke-width="1.6">
+            <rect x="523" y="360" width="81" height="72" fill="#F7F1E4" fill-opacity="0.92"/>
+            <path d="M 550 360 V 432 M 577 360 V 432 M 523 384 H 604 M 523 408 H 604"/>
+          </g>
+        </g>
+
+        <!-- sliding doors (JS slides them apart) -->
+        <g id="doorL">
+          <rect x="397" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
+          <path d="M 415 352 V 440 M 433 352 V 440 M 397 381 H 450 M 397 410 H 450" stroke="#6B4A33" stroke-width="1.4"/>
+        </g>
+        <g id="doorR">
+          <rect x="450" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
+          <path d="M 467 352 V 440 M 485 352 V 440 M 450 381 H 503 M 450 410 H 503" stroke="#6B4A33" stroke-width="1.4"/>
+        </g>
+
+        <!-- columns + beam -->
+        <rect x="276" y="335" width="8" height="105" fill="#6B4A33"/>
+        <rect x="389" y="335" width="8" height="105" fill="#6B4A33"/>
+        <rect x="503" y="335" width="8" height="105" fill="#6B4A33"/>
+        <rect x="616" y="335" width="8" height="105" fill="#6B4A33"/>
+        <rect x="262" y="321" width="376" height="14" fill="#6B4A33"/>
+        <path d="M 262 333 H 638" stroke="var(--gold)" stroke-width="1.6" opacity="0.8"/>
+
+        <!-- roof -->
+        <path d="M 180 318 Q 450 368 720 318 C 665 275 615 250 570 240 Q 450 231 330 240 C 285 250 235 275 180 318 Z"
+          fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M 205 324 Q 450 362 695 324" stroke="#3B454F" stroke-width="2" opacity="0.7"/>
+        <path d="M 180 318 Q 450 368 720 318" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 330 240 q -8 -4 -6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 570 240 q 8 -4 6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 186 313 Q 450 361 714 313" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+        <path d="M 334 236 Q 450 227 566 236" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+
+        <!-- the couple, walking up to the steps (JS moves them; drawn in front) -->
+        <g id="sceneCouple" opacity="0" fill="var(--ink)" stroke="none" transform="translate(-150 0)">
+          <circle cx="420" cy="423" r="6.5"/>
+          <path d="M 413 448 Q 420 429 427 448 L 428 470 H 412 Z"/>
+          <circle cx="440" cy="427" r="6"/>
+          <path d="M 434 450 Q 440 434 446 450 L 451 470 H 430 Z"/>
+          <path d="M 427 452 L 434 452" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        </g>
+
+        <!-- eave lanterns -->
+        <g>
+          <circle cx="208" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
+          <path d="M 208 326 V 352" stroke="var(--ink)" stroke-width="1.4"/>
+          <ellipse cx="208" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
+          <path d="M 200 358 H 216 M 200 390 H 216" stroke="var(--gold)" stroke-width="1.6"/>
+          <path d="M 208 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
+        </g>
+        <g>
+          <circle cx="692" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
+          <path d="M 692 326 V 352" stroke="var(--ink)" stroke-width="1.4"/>
+          <ellipse cx="692" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
+          <path d="M 684 358 H 700 M 684 390 H 700" stroke="var(--gold)" stroke-width="1.6"/>
+          <path d="M 692 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
+        </g>
       </g>
     </svg>
+
+    <div class="hanok-wash" id="hanokWash" aria-hidden="true"></div>
     <p class="scene-caption fade-caption">
       <span lang="ko">우리의 새 집으로 초대합니다</span><br>
       <em>Welcome to our new home</em>

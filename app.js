@@ -138,47 +138,60 @@ const revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-/* ── Hanok scroll-draw scene ── */
+/* ── Hanok journey: approach → doors open → step into the light ── */
 const scene = document.getElementById("hanokScene");
-const drawEls = [...document.querySelectorAll(".hanok-svg [data-draw]")];
-const fadeEls = [...document.querySelectorAll(".hanok-svg [data-fade]")];
+const hanokSvg = document.getElementById("hanokSvg");
+const cam = document.getElementById("cam");
+const doorL = document.getElementById("doorL");
+const doorR = document.getElementById("doorR");
+const sceneCouple = document.getElementById("sceneCouple");
+const hanokWash = document.getElementById("hanokWash");
 const caption = document.querySelector(".scene-caption");
 
-// Normalise: give every drawn path a pathLength of 1 so dash math is uniform.
-drawEls.forEach((el) => {
-  const targets = el.tagName === "g" ? el.querySelectorAll("path") : [el];
-  targets.forEach((p) => p.setAttribute("pathLength", "1"));
-});
-
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
+const ease = (t) => { t = clamp01(t); return t * t * (3 - 2 * t); };
 
-function staged(progress, el) {
-  const [start, end] = (el.dataset.draw || el.dataset.fade).split(",").map(Number);
-  return clamp01((progress - start) / (end - start));
+// portrait phones: contain the scene instead of cropping it
+function fitScene() {
+  if (!hanokSvg) return;
+  const portrait = window.innerHeight > window.innerWidth * 1.1;
+  hanokSvg.setAttribute("preserveAspectRatio", portrait ? "xMidYMid meet" : "xMidYMid slice");
 }
+fitScene();
 
 let ticking = false;
 function renderScene() {
   ticking = false;
-  if (!scene) return;
+  if (!scene || !cam) return;
   const rect = scene.getBoundingClientRect();
   const vh = window.innerHeight;
   const total = rect.height - vh;
-  const progress = clamp01(-rect.top / total);
+  const p = clamp01(-rect.top / total);
 
-  for (const el of drawEls) {
-    const local = staged(progress, el);
-    const offset = String(1 - local);
-    if (el.tagName === "g") {
-      el.querySelectorAll("path").forEach((p) => (p.style.strokeDashoffset = offset));
-    } else {
-      el.style.strokeDashoffset = offset;
-    }
-  }
-  for (const el of fadeEls) {
-    el.style.opacity = String(staged(progress, el));
-  }
-  if (caption) caption.classList.toggle("visible", progress > 0.86);
+  // 1 · the walk — the couple crosses toward the steps
+  const walk = ease((p - 0.06) / 0.4);
+  const coupleOpacity =
+    clamp01((p - 0.06) / 0.07) * (1 - clamp01((p - 0.52) / 0.1));
+  sceneCouple.setAttribute("transform", "translate(" + (-150 + walk * 150) + " 0)");
+  sceneCouple.style.opacity = String(coupleOpacity);
+
+  // 2 · the approach — camera pushes in toward the doorway
+  const zt = ease((p - 0.12) / 0.68);
+  const s = 1 + zt * zt * 5.8;                       // up to ~6.8×
+  const fy = 300 + ease((p - 0.2) / 0.5) * 96;       // drift focus down to the door
+  cam.setAttribute(
+    "transform",
+    "translate(450 " + fy + ") scale(" + s + ") translate(-450 " + -fy + ")"
+  );
+
+  // 3 · the doors slide open
+  const d = ease((p - 0.55) / 0.23) * 46;
+  doorL.setAttribute("transform", "translate(" + -d + " 0)");
+  doorR.setAttribute("transform", "translate(" + d + " 0)");
+
+  // 4 · stepping into the light
+  hanokWash.style.opacity = String(ease((p - 0.84) / 0.14));
+  if (caption) caption.classList.toggle("visible", p > 0.9);
 }
 
 function onScroll() {
@@ -191,7 +204,7 @@ function onScroll() {
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (!reducedMotion) {
   window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll, { passive: true });
+  window.addEventListener("resize", () => { fitScene(); onScroll(); }, { passive: true });
   renderScene();
 }
 
