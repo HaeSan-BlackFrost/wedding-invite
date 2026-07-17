@@ -107,10 +107,12 @@
         <g id="doorL">
           <rect x="397" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
           <path d="M 415 352 V 440 M 433 352 V 440 M 397 381 H 450 M 397 410 H 450" stroke="#6B4A33" stroke-width="1.4"/>
+          <circle cx="443" cy="397" r="2.4" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
         </g>
         <g id="doorR">
           <rect x="450" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
           <path d="M 467 352 V 440 M 485 352 V 440 M 450 381 H 503 M 450 410 H 503" stroke="#6B4A33" stroke-width="1.4"/>
+          <circle cx="457" cy="397" r="2.4" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
         </g>
 
         <!-- columns + beam -->
@@ -125,6 +127,13 @@
         <path d="M 180 318 Q 450 368 720 318 C 665 275 615 250 570 240 Q 450 231 330 240 C 285 250 235 275 180 318 Z"
           fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
         <path d="M 205 324 Q 450 362 695 324" stroke="#3B454F" stroke-width="2" opacity="0.7"/>
+        <g stroke="#39434D" stroke-width="1.3" opacity="0.35" fill="none">
+          <path d="M 450 233 L 450 341"/>
+          <path d="M 395 236 Q 390 290 372 334"/>
+          <path d="M 505 236 Q 510 290 528 334"/>
+          <path d="M 340 242 Q 325 288 292 326"/>
+          <path d="M 560 242 Q 575 288 608 326"/>
+        </g>
         <path d="M 180 318 Q 450 368 720 318" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
         <path d="M 330 240 q -8 -4 -6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
         <path d="M 570 240 q 8 -4 6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
@@ -132,20 +141,32 @@
         <path d="M 334 236 Q 450 227 566 236" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
 
         <!-- the couple, walking up to the steps (JS moves them; drawn in front) -->
-        <g id="sceneCouple" opacity="0" fill="var(--ink)" stroke="none" transform="translate(-150 0)">
-          <circle cx="420" cy="423" r="6.5"/>
-          <path d="M 413 448 Q 420 429 427 448 L 428 470 H 412 Z"/>
-          <circle cx="440" cy="427" r="6"/>
-          <path d="M 434 450 Q 440 434 446 450 L 451 470 H 430 Z"/>
-          <path d="M 427 452 L 434 452" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        <g id="sceneCouple" opacity="0" transform="translate(-150 0)">
+          <!-- him · changshan robe -->
+          <ellipse cx="420" cy="470" rx="13" ry="2.4" fill="var(--ink)" opacity="0.14"/>
+          <path d="M 409 470 L 409 446 Q 409 433 415 429 Q 420 426 425 429 Q 431 433 431 446 L 431 470 Z" fill="#4E5A66"/>
+          <path d="M 409 441 L 402 456 L 409 459 Z" fill="#4E5A66"/>
+          <path d="M 431 441 L 438 456 L 431 459 Z" fill="#4E5A66"/>
+          <path d="M 420 430 L 415 438 M 420 430 L 425 438" stroke="var(--gold-bright)" stroke-width="1" opacity="0.85" fill="none"/>
+          <circle cx="420" cy="420" r="6.2" fill="var(--ink)"/>
+          <!-- her · hanbok, chima and jeogori -->
+          <ellipse cx="444" cy="470" rx="14" ry="2.4" fill="var(--ink)" opacity="0.14"/>
+          <path d="M 434 448 Q 431 463 427 470 L 461 470 Q 457 463 454 448 Z" fill="#C6503A"/>
+          <path d="M 435 449 Q 434 436 444 432 Q 454 436 453 449 Z" fill="#F3E9D5"/>
+          <path d="M 435 441 L 429 450 L 436 452 Z" fill="#F3E9D5"/>
+          <path d="M 453 441 L 459 450 L 452 452 Z" fill="#F3E9D5"/>
+          <path d="M 443 437 l -1.5 7" stroke="#C6503A" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+          <circle cx="444" cy="424" r="5.6" fill="var(--ink)"/>
+          <circle cx="444" cy="416.5" r="2.4" fill="var(--ink)"/>
         </g>
 
         <!-- 현판 · the name plaque above the doors -->
         <g id="plaque">
-          <rect x="348" y="295" width="204" height="48" rx="3" fill="#3A2E22" stroke="var(--gold)" stroke-width="2.2"/>
-          <rect x="353" y="300" width="194" height="38" rx="2" fill="none" stroke="var(--gold)" stroke-width="0.9" opacity="0.65"/>
-          <text x="450" y="317" text-anchor="middle" font-size="13.5" fill="var(--gold-bright)" font-family="'Cormorant Garamond', Georgia, serif" letter-spacing="0.4">Tan Hae San &amp; Kristal Wong</text>
-          <text x="450" y="332" text-anchor="middle" font-size="7.5" fill="#CBA96A" font-family="'Cormorant Garamond', Georgia, serif" letter-spacing="1.4">20 FEBRUARY 2027 · RAFFLES SENTOSA</text>
+          <path d="M 338 248 L 352 280 M 562 248 L 548 280" stroke="#3A2E22" stroke-width="2.2"/>
+          <rect x="310" y="278" width="280" height="66" rx="5" fill="#352A1E" stroke="var(--gold)" stroke-width="3"/>
+          <rect x="318" y="286" width="264" height="50" rx="3" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.6"/>
+          <text x="450" y="312" text-anchor="middle" font-size="18" font-weight="500" fill="var(--gold-bright)" font-family="'Cormorant Garamond', Georgia, serif" letter-spacing="0.2">Tan Hae San &amp; Kristal Wong</text>
+          <text x="450" y="330.5" text-anchor="middle" font-size="9.5" fill="#CBA96A" font-family="'Cormorant Garamond', Georgia, serif" letter-spacing="1.6">20 FEBRUARY 2027 · RAFFLES SENTOSA</text>
         </g>
 
         <!-- eave lanterns -->

@@ -148,6 +148,7 @@ const sceneCouple = document.getElementById("sceneCouple");
 const hanokWash = document.getElementById("hanokWash");
 const caption = document.querySelector(".scene-caption");
 const openingHero = document.getElementById("openingHero");
+const plaque = document.getElementById("plaque");
 const openingCta = document.getElementById("openingCta");
 const scrollHint = document.getElementById("scrollHint");
 const plumBranch = document.querySelector(".hanok-sticky .plum");
@@ -194,9 +195,14 @@ function renderScene() {
   // 2 · the approach — camera pushes in toward the doorway.
   // (450, fy) is the content point held at the viewport centre (450, 300).
   // frame the whole house (names live on its plaque now)
+  const portrait = isPortrait();
   const vw = window.innerWidth;
   const sliceScale = Math.max(vw / 900, vh / 600);
-  const s0 = Math.min((vh / sliceScale) / 360, (vw / sliceScale) / (isPortrait() ? 330 : 470));
+  const s0 = Math.min((vh / sliceScale) / 360, (vw / sliceScale) / (portrait ? 580 : 470));
+  // phones: the plaque leans larger so the names stay readable
+  if (plaque) {
+    plaque.setAttribute("transform", portrait ? "translate(450 311) scale(1.32) translate(-450 -311)" : "");
+  }
   const zt = ease((p - 0.2) / 0.6);
   const s = s0 + zt * zt * (6.8 - s0);
   const fy = 335 + ease((p - 0.26) / 0.48) * 61;    // house centre → door centre
@@ -223,10 +229,6 @@ function onScroll() {
 }
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-if (!reducedMotion && openingHero) {
-  // gentle entrance; WAAPI releases the style once done, unlike CSS fill modes
-  openingHero.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1400, easing: "ease-out" });
-}
 if (!reducedMotion) {
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", () => { fitScene(); onScroll(); }, { passive: true });
