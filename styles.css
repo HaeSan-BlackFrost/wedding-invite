@@ -814,6 +814,11 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   #snow { display: none; }
 }
 
+/* ── Tablet: plum branch owns the top-left corner ── */
+@media (max-width: 960px) {
+  .lantern-l { display: none; }
+}
+
 /* ── Mobile (primary audience) ── */
 @media (max-width: 560px) {
   body { font-size: 17px; }
@@ -825,7 +830,6 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .crane { width: 60px; top: 10%; }
   .hero-venue { letter-spacing: 0.2em; font-size: 0.8rem; }
   .plum { width: 44vw; top: -6px; left: -8px; }
-  .lantern-l { display: none; }              /* keep one lantern — cleaner */
   .lantern-r { right: 7%; }
   .lantern::before { height: 56px; }
   .lantern-body { width: 42px; height: 52px; font-size: 1.05rem; }
