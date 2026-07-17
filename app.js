@@ -1,0 +1,188 @@
+/* ═══════════ Hae San & Kristal — invite behaviour ═══════════ */
+
+/* ── CONFIG ─────────────────────────────────────────────────
+   Paste your Google Apps Script "Web app" URL here once deployed
+   (see README.md — takes ~3 minutes). Until then, submissions
+   show a "not connected" notice instead of silently vanishing. */
+const RSVP_ENDPOINT = "";
+
+/* ── Reveal on scroll ── */
+const revealObserver = new IntersectionObserver(
+  (entries) => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        revealObserver.unobserve(entry.target);
+      }
+    }
+  },
+  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+);
+document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
+
+/* ── Hanok scroll-draw scene ── */
+const scene = document.getElementById("hanokScene");
+const drawEls = [...document.querySelectorAll(".hanok-svg [data-draw]")];
+const fadeEls = [...document.querySelectorAll(".hanok-svg [data-fade]")];
+const caption = document.querySelector(".scene-caption");
+
+// Normalise: give every drawn path a pathLength of 1 so dash math is uniform.
+drawEls.forEach((el) => {
+  const targets = el.tagName === "g" ? el.querySelectorAll("path") : [el];
+  targets.forEach((p) => p.setAttribute("pathLength", "1"));
+});
+
+const clamp01 = (v) => Math.min(1, Math.max(0, v));
+
+function staged(progress, el) {
+  const [start, end] = (el.dataset.draw || el.dataset.fade).split(",").map(Number);
+  return clamp01((progress - start) / (end - start));
+}
+
+let ticking = false;
+function renderScene() {
+  ticking = false;
+  if (!scene) return;
+  const rect = scene.getBoundingClientRect();
+  const vh = window.innerHeight;
+  const total = rect.height - vh;
+  const progress = clamp01(-rect.top / total);
+
+  for (const el of drawEls) {
+    const local = staged(progress, el);
+    const offset = String(1 - local);
+    if (el.tagName === "g") {
+      el.querySelectorAll("path").forEach((p) => (p.style.strokeDashoffset = offset));
+    } else {
+      el.style.strokeDashoffset = offset;
+    }
+  }
+  for (const el of fadeEls) {
+    el.style.opacity = String(staged(progress, el));
+  }
+  if (caption) caption.classList.toggle("visible", progress > 0.86);
+}
+
+function onScroll() {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(renderScene);
+  }
+}
+
+const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reducedMotion) {
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll, { passive: true });
+  renderScene();
+}
+
+/* ── RSVP form: conditional logic ── */
+const form = document.getElementById("rsvpForm");
+const attendingDetails = document.getElementById("attendingDetails");
+const plusOneDetails = document.getElementById("plusOneDetails");
+const statusEl = document.getElementById("formStatus");
+const submitBtn = document.getElementById("submitBtn");
+
+form.addEventListener("change", (e) => {
+  if (e.target.name === "attending") {
+    attendingDetails.hidden = e.target.value !== "accepts";
+  }
+  if (e.target.name === "plusOne") {
+    plusOneDetails.hidden = e.target.value !== "yes";
+    const req = e.target.value === "yes";
+    document.getElementById("plusOneName").required = req;
+    document.getElementById("plusOneEmail").required = req;
+  }
+});
+
+/* ── RSVP form: validation + submit ── */
+function setStatus(msg, kind) {
+  statusEl.textContent = msg;
+  statusEl.className = "form-status" + (kind ? " " + kind : "");
+}
+
+function validate(data) {
+  const errors = [];
+  if (!data.fullName.trim()) errors.push("your full name");
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push("a valid email address");
+  if (!data.attending) errors.push("whether you are attending");
+  if (data.attending === "accepts") {
+    if (data.events.length === 0) errors.push("which parts of the day you'll join");
+    if (!data.plusOne) errors.push("whether a plus one is joining");
+    if (data.plusOne === "yes") {
+      if (!data.plusOneName.trim()) errors.push("your plus one's full name");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.plusOneEmail)) errors.push("your plus one's email");
+    }
+    if (!data.driving) errors.push("whether you'll be driving");
+  }
+  return errors;
+}
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const fd = new FormData(form);
+  const data = {
+    fullName: fd.get("fullName") || "",
+    email: fd.get("email") || "",
+    attending: fd.get("attending") || "",
+    events: fd.getAll("events"),
+    plusOne: fd.get("plusOne") || "",
+    plusOneName: fd.get("plusOneName") || "",
+    plusOneEmail: fd.get("plusOneEmail") || "",
+    driving: fd.get("driving") || "",
+    dietary: fd.get("dietary") || "",
+    message: fd.get("message") || "",
+    submittedAt: new Date().toISOString(),
+  };
+  if (data.attending === "declines") {
+    data.events = [];
+    data.plusOne = data.plusOneName = data.plusOneEmail = data.driving = data.dietary = "";
+  }
+
+  const errors = validate(data);
+  if (errors.length) {
+    setStatus("Please share " + errors[0] + ".", "err");
+    return;
+  }
+
+  if (!RSVP_ENDPOINT) {
+    setStatus("The RSVP box isn't connected yet — please check back shortly.", "err");
+    console.warn("RSVP_ENDPOINT is not configured in app.js");
+    return;
+  }
+
+  submitBtn.disabled = true;
+  setStatus("Sending…");
+
+  try {
+    const body = new URLSearchParams();
+    Object.entries(data).forEach(([k, v]) =>
+      body.append(k, Array.isArray(v) ? v.join(", ") : v)
+    );
+    await fetch(RSVP_ENDPOINT, { method: "POST", mode: "no-cors", body });
+    showSuccess(data);
+  } catch (err) {
+    submitBtn.disabled = false;
+    setStatus("Something went wrong — please try again, or write to us directly.", "err");
+  }
+});
+
+function showSuccess(data) {
+  const accepted = data.attending === "accepts";
+  form.outerHTML = `
+    <div class="form-success">
+      <div class="seal small">囍</div>
+      <h3>${accepted ? "We can't wait to celebrate with you" : "You will be missed"}</h3>
+      <p>${
+        accepted
+          ? "Your RSVP has been received. A map to Raffles Sentosa is just above — see you on 20 February 2027."
+          : "Thank you for letting us know. You'll be in our thoughts on the day."
+      }</p>
+      ${
+        accepted
+          ? '<p><a href="https://www.google.com/maps/search/?api=1&query=Raffles+Sentosa+Singapore" target="_blank" rel="noopener">Open the venue map →</a></p>'
+          : ""
+      }
+    </div>`;
+}
