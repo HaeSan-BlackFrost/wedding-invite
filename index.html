@@ -9,27 +9,76 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+KR:wght@400;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23A63A2B'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23F8F5EE' font-family='serif'>囍</text></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23B8432F'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23F0D49B' font-family='serif'>囍</text></svg>">
 </head>
 <body>
 
-<!-- ═══════════ HERO ═══════════ -->
+<!-- ambient snowfall (canvas, site-wide) -->
+<canvas id="snow" aria-hidden="true"></canvas>
+
+<!-- ═══════════ HERO — night mountainscape ═══════════ -->
 <header class="hero">
+  <div class="sky" aria-hidden="true">
+    <div class="moon"></div>
+    <div class="mist mist-1"></div>
+    <div class="mist mist-2"></div>
+
+    <svg class="mountains" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+      <path class="ridge back" d="M0 420 Q 180 300 360 380 T 720 350 T 1080 390 T 1440 340 V 560 H 0 Z"/>
+      <path class="ridge mid"  d="M0 470 Q 240 360 430 440 T 860 420 Q 1000 380 1120 430 T 1440 410 V 560 H 0 Z"/>
+      <path class="ridge front" d="M0 520 Q 200 470 420 505 T 900 495 T 1440 500 V 560 H 0 Z"/>
+      <!-- tiny hanok silhouette on the mid ridge -->
+      <g class="ridge-hanok">
+        <path d="M1150 421 q 28 -14 56 0 l -6 -3 q -22 -11 -44 0 Z"/>
+        <rect x="1162" y="421" width="32" height="12"/>
+        <rect x="1158" y="433" width="40" height="3"/>
+      </g>
+      <!-- pines on the front ridge -->
+      <g class="pines">
+        <path d="M120 520 l 10 -26 l 10 26 l -7 -2 l 7 14 h -20 l 7 -14 Z"/>
+        <path d="M158 524 l 8 -20 l 8 20 l -5 -2 l 5 11 h -16 l 5 -11 Z"/>
+        <path d="M92 526 l 7 -17 l 7 17 l -4 -1 l 4 9 h -14 l 4 -9 Z"/>
+      </g>
+    </svg>
+
+    <svg class="crane" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 34 C 20 28 32 26 46 26 C 58 12 70 6 86 3 C 78 14 69 22 59 27 L 104 23 C 90 35 72 41 54 39 C 40 47 26 49 14 45 C 9 43 6 39 6 34 Z"/>
+      <path d="M46 26 L 112 20" stroke-width="1.6" fill="none"/>
+    </svg>
+
+    <svg class="plum" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
+      <path class="branch" d="M -10 20 C 60 40 110 60 150 110 M 70 44 C 96 70 104 96 106 128 M 150 110 C 176 146 182 180 178 214" fill="none"/>
+      <g class="blossoms">
+        <circle cx="106" cy="128" r="9"/><circle cx="96" cy="118" r="6"/><circle cx="118" cy="120" r="5"/>
+        <circle cx="152" cy="112" r="7"/><circle cx="166" cy="132" r="5"/>
+        <circle cx="178" cy="214" r="8"/><circle cx="168" cy="200" r="5"/><circle cx="188" cy="202" r="5"/>
+        <circle cx="60" cy="36" r="6"/><circle cx="34" cy="26" r="5"/>
+      </g>
+      <g class="blossom-hearts">
+        <circle cx="106" cy="128" r="2.6"/><circle cx="152" cy="112" r="2.2"/><circle cx="178" cy="214" r="2.4"/><circle cx="60" cy="36" r="2"/>
+      </g>
+    </svg>
+
+    <div class="lantern lantern-l"><span class="lantern-body">福</span></div>
+    <div class="lantern lantern-r"><span class="lantern-body">囍</span></div>
+  </div>
+
   <div class="hero-inner">
     <div class="seal" aria-hidden="true">囍</div>
     <p class="hero-eyebrow">Together with their families</p>
     <h1 class="hero-names">
-      <span>Tan Hae San</span>
+      <span class="name-line">Tan Hae San</span>
       <span class="amp">&amp;</span>
-      <span>Kristal Wong</span>
+      <span class="name-line">Kristal Wong</span>
     </h1>
     <p class="hero-hanja" lang="ko">두 사람이 하나가 됩니다 <span class="dot">·</span> <span lang="zh">百年好合</span></p>
     <div class="hero-rule" aria-hidden="true"></div>
     <p class="hero-date">Saturday, the twentieth of February</p>
     <p class="hero-year">two thousand and twenty-seven</p>
     <p class="hero-venue">Raffles Sentosa &nbsp;·&nbsp; Singapore</p>
-    <a class="hero-cta" href="#rsvp">Kindly RSVP</a>
+    <a class="hero-cta" href="#rsvp"><span>Kindly RSVP</span></a>
   </div>
+
   <div class="scroll-hint" aria-hidden="true">
     <span>scroll</span>
     <div class="scroll-line"></div>
@@ -40,9 +89,19 @@
 <section class="hanok-scene" id="hanokScene" aria-label="A hanok house drawing itself as you scroll">
   <div class="hanok-sticky">
     <svg class="hanok-svg" viewBox="0 0 900 600" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <filter id="glowSoft" x="-60%" y="-60%" width="220%" height="220%">
+          <feGaussianBlur stdDeviation="7"/>
+        </filter>
+        <radialGradient id="windowGlow" cx="50%" cy="50%" r="60%">
+          <stop offset="0%" stop-color="#F0D49B" stop-opacity="0.85"/>
+          <stop offset="100%" stop-color="#F0D49B" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
       <!-- moon -->
       <circle class="draw gold" data-draw="0,0.18" cx="735" cy="118" r="42"/>
-      <circle class="fade" data-fade="0.85,1" cx="735" cy="118" r="42" fill="var(--gold)" opacity="0" fill-opacity="0.12" stroke="none"/>
+      <circle class="fade" data-fade="0.8,0.95" cx="735" cy="118" r="42" fill="var(--gold)" opacity="0" fill-opacity="0.16" stroke="none"/>
+      <circle class="fade" data-fade="0.85,1" cx="735" cy="118" r="58" fill="url(#windowGlow)" opacity="0" stroke="none"/>
       <!-- clouds -->
       <path class="draw faint" data-draw="0.02,0.2" d="M 88 196 q 26 -20 52 0 q 26 20 52 0"/>
       <path class="draw faint" data-draw="0.05,0.22" d="M 620 78 q 22 -16 44 0 q 22 16 44 0"/>
@@ -74,7 +133,13 @@
       <!-- roof wash -->
       <path class="fade" data-fade="0.66,0.82" opacity="0"
         d="M 180 318 Q 450 368 720 318 C 665 275 615 250 570 240 Q 450 231 330 240 C 285 250 235 275 180 318 Z"
-        fill="var(--ink)" fill-opacity="0.06" stroke="none"/>
+        fill="var(--celadon)" fill-opacity="0.08" stroke="none"/>
+      <!-- window glow behind lattice bays -->
+      <g class="fade flicker" data-fade="0.72,0.88" opacity="0" stroke="none">
+        <rect x="290" y="348" width="93" height="96" fill="url(#windowGlow)"/>
+        <rect x="404" y="348" width="93" height="96" fill="url(#windowGlow)"/>
+        <rect x="517" y="348" width="93" height="96" fill="url(#windowGlow)"/>
+      </g>
       <!-- lattice doors: three bays -->
       <g class="draw faint" data-draw="0.58,0.74">
         <path d="M 296 352 H 377 V 440 H 296 Z M 323 352 V 440 M 350 352 V 440 M 296 381 H 377 M 296 410 H 377"/>
@@ -86,22 +151,27 @@
         <path d="M 523 352 H 604 V 440 H 523 Z M 550 352 V 440 M 577 352 V 440 M 523 381 H 604 M 523 410 H 604"/>
       </g>
       <!-- lanterns -->
-      <g class="fade lantern-left" data-fade="0.74,0.88" opacity="0">
-        <path d="M 208 326 V 352" stroke="var(--ink)" stroke-width="1.4"/>
-        <ellipse cx="208" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.9" stroke="var(--ink)" stroke-width="1.2"/>
+      <g class="fade lantern-glow" data-fade="0.74,0.88" opacity="0">
+        <circle cx="208" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.25" filter="url(#glowSoft)" stroke="none"/>
+        <path d="M 208 326 V 352" stroke="var(--mist)" stroke-width="1.4"/>
+        <ellipse cx="208" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
         <path d="M 200 358 H 216 M 200 390 H 216" stroke="var(--gold)" stroke-width="1.6"/>
         <path d="M 208 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
       </g>
-      <g class="fade lantern-right" data-fade="0.78,0.92" opacity="0">
-        <path d="M 692 326 V 352" stroke="var(--ink)" stroke-width="1.4"/>
-        <ellipse cx="692" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.9" stroke="var(--ink)" stroke-width="1.2"/>
+      <g class="fade lantern-glow" data-fade="0.78,0.92" opacity="0">
+        <circle cx="692" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.25" filter="url(#glowSoft)" stroke="none"/>
+        <path d="M 692 326 V 352" stroke="var(--mist)" stroke-width="1.4"/>
+        <ellipse cx="692" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
         <path d="M 684 358 H 700 M 684 390 H 700" stroke="var(--gold)" stroke-width="1.6"/>
         <path d="M 692 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
       </g>
+      <!-- snow settling on the roof -->
+      <path class="draw snowline" data-draw="0.84,0.97" d="M 186 315 Q 450 363 714 315"/>
+      <path class="draw snowline thin" data-draw="0.88,1" d="M 334 237 Q 450 228 566 237"/>
       <!-- double happiness seal -->
       <g class="fade seal-mark" data-fade="0.88,1" opacity="0">
         <rect x="768" y="486" width="58" height="58" rx="9" fill="var(--vermilion)"/>
-        <text x="797" y="529" text-anchor="middle" font-size="36" fill="#F8F5EE" font-family="'Noto Serif SC', serif">囍</text>
+        <text x="797" y="529" text-anchor="middle" font-size="36" fill="#F0D49B" font-family="'Noto Serif SC', serif">囍</text>
       </g>
     </svg>
     <p class="scene-caption fade-caption">
@@ -321,6 +391,9 @@
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer class="footer">
+  <svg class="footer-ridge" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 60 Q 240 10 480 40 T 960 35 T 1440 45 V 60 Z"/>
+  </svg>
   <p class="footer-monogram">H <span class="amp">囍</span> K</p>
   <p class="footer-date">20 · 02 · 2027 — Raffles Sentosa, Singapore</p>
   <p class="footer-line" lang="zh">百年好合 · <span lang="ko">검은 머리 파뿌리 될 때까지</span></p>

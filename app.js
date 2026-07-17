@@ -6,6 +6,85 @@
    show a "not connected" notice instead of silently vanishing. */
 const RSVP_ENDPOINT = "";
 
+/* ── Ambient snowfall (with the occasional plum petal) ── */
+(function initSnow() {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const canvas = document.getElementById("snow");
+  if (!canvas || reduced) return;
+  const ctx = canvas.getContext("2d");
+  let W, H, flakes;
+
+  function makeFlake(fresh) {
+    const depth = 0.35 + Math.random() * 0.65; // 0.35 (far) → 1 (near)
+    const petal = Math.random() < 0.05;
+    return {
+      x: Math.random() * W,
+      y: fresh ? -10 - Math.random() * 40 : Math.random() * H,
+      depth,
+      petal,
+      r: petal ? 3 + depth * 2.4 : 0.8 + depth * 1.9,
+      vy: (petal ? 14 : 11) + depth * 21,          // px / s
+      phase: Math.random() * Math.PI * 2,
+      spin: (Math.random() - 0.5) * 2.2,
+      rot: Math.random() * Math.PI * 2,
+    };
+  }
+
+  function resize() {
+    W = canvas.width = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+    const count = Math.min(85, Math.round((W * H) / 22000));
+    flakes = Array.from({ length: count }, () => makeFlake(false));
+  }
+  resize();
+  window.addEventListener("resize", resize, { passive: true });
+
+  let last = performance.now();
+  function frame(now) {
+    const dt = Math.min(0.05, (now - last) / 1000);
+    last = now;
+    ctx.clearRect(0, 0, W, H);
+    const wind = Math.sin(now / 5200) * 14; // gentle shared breeze
+
+    for (let i = 0; i < flakes.length; i++) {
+      const f = flakes[i];
+      f.y += f.vy * dt;
+      f.x += (wind * f.depth + Math.sin(now / 900 + f.phase) * 8) * dt;
+      f.rot += f.spin * dt;
+      if (f.y > H + 12) flakes[i] = makeFlake(true);
+      if (f.x > W + 14) f.x = -14;
+      if (f.x < -14) f.x = W + 14;
+
+      if (f.petal) {
+        ctx.save();
+        ctx.translate(f.x, f.y);
+        ctx.rotate(f.rot);
+        ctx.globalAlpha = 0.35 + f.depth * 0.35;
+        ctx.fillStyle = "#C6503A";
+        ctx.beginPath();
+        ctx.ellipse(0, 0, f.r, f.r * 0.55, 0, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      } else {
+        ctx.globalAlpha = 0.22 + f.depth * 0.4;
+        ctx.fillStyle = "#EAF2EC";
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+    ctx.globalAlpha = 1;
+    if (!document.hidden) requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) {
+      last = performance.now();
+      requestAnimationFrame(frame);
+    }
+  });
+})();
+
 /* ── Reveal on scroll ── */
 const revealObserver = new IntersectionObserver(
   (entries) => {
