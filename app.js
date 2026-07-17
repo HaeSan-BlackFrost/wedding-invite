@@ -148,6 +148,7 @@ const sceneCouple = document.getElementById("sceneCouple");
 const hanokWash = document.getElementById("hanokWash");
 const caption = document.querySelector(".scene-caption");
 const openingHero = document.getElementById("openingHero");
+const openingCta = document.getElementById("openingCta");
 const scrollHint = document.getElementById("scrollHint");
 const plumBranch = document.querySelector(".hanok-sticky .plum");
 
@@ -175,6 +176,11 @@ function renderScene() {
   const heroGone = ease((p - 0.06) / 0.14);
   openingHero.style.opacity = String(1 - heroGone);
   openingHero.style.transform = "translateY(" + -60 * heroGone + "px)";
+  if (openingCta) {
+    openingCta.style.opacity = String(1 - heroGone);
+    openingCta.style.transform = "translate(-50%, " + 40 * heroGone + "px)";
+    openingCta.style.pointerEvents = heroGone > 0.5 ? "none" : "auto";
+  }
   if (scrollHint) scrollHint.style.opacity = String(1 - heroGone);
   if (plumBranch) plumBranch.style.opacity = String(0.95 * (1 - ease((p - 0.24) / 0.2)));
 
@@ -187,10 +193,13 @@ function renderScene() {
 
   // 2 · the approach — camera pushes in toward the doorway.
   // (450, fy) is the content point held at the viewport centre (450, 300).
-  const s0 = isPortrait() ? 0.52 : 0.78;
+  // frame the whole house (names live on its plaque now)
+  const vw = window.innerWidth;
+  const sliceScale = Math.max(vw / 900, vh / 600);
+  const s0 = Math.min((vh / sliceScale) / 360, (vw / sliceScale) / (isPortrait() ? 330 : 470));
   const zt = ease((p - 0.2) / 0.6);
   const s = s0 + zt * zt * (6.8 - s0);
-  const fy = 140 + ease((p - 0.26) / 0.48) * 256;   // sky-heavy wide shot → door centre
+  const fy = 335 + ease((p - 0.26) / 0.48) * 61;    // house centre → door centre
   cam.setAttribute(
     "transform",
     "translate(450 300) scale(" + s + ") translate(-450 " + -fy + ")"

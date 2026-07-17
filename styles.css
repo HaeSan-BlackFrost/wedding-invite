@@ -139,7 +139,7 @@ body {
 }
 
 .hero-countdown {
-  margin-top: 0.55rem;
+  margin-top: 0.7rem;
   font-size: 0.85rem;
   font-style: italic;
   color: var(--gold);
@@ -180,6 +180,21 @@ body {
   box-shadow: 0 8px 26px rgba(168, 127, 47, 0.4);
 }
 .hero-cta span { position: relative; }
+
+.opening-cta {
+  position: absolute;
+  bottom: 3svh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.sr-names {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
 
 .scroll-hint {
   position: absolute;
@@ -786,6 +801,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hanok-svg { position: static; width: min(92vw, 860px); height: auto; margin: 0 auto; display: block; }
   .hanok-wash { display: none; }
   .opening-hero { position: static; opacity: 1 !important; transform: none !important; padding: 4rem 1.5rem 1rem; animation: none; }
+  .opening-cta { position: static; display: block; width: fit-content; margin: 1.2rem auto; transform: none; opacity: 1 !important; }
   .scroll-hint { display: none; }
   #sceneCouple { opacity: 1 !important; transform: none !important; }
   .seal, .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,

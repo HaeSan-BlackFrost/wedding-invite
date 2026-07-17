@@ -140,6 +140,14 @@
           <path d="M 427 452 L 434 452" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
         </g>
 
+        <!-- 현판 · the name plaque above the doors -->
+        <g id="plaque">
+          <rect x="348" y="295" width="204" height="48" rx="3" fill="#3A2E22" stroke="var(--gold)" stroke-width="2.2"/>
+          <rect x="353" y="300" width="194" height="38" rx="2" fill="none" stroke="var(--gold)" stroke-width="0.9" opacity="0.65"/>
+          <text x="450" y="317" text-anchor="middle" font-size="13.5" fill="var(--gold-bright)" font-family="'Cormorant Garamond', Georgia, serif" letter-spacing="0.4">Tan Hae San &amp; Kristal Wong</text>
+          <text x="450" y="332" text-anchor="middle" font-size="7.5" fill="#CBA96A" font-family="'Cormorant Garamond', Georgia, serif" letter-spacing="1.4">20 FEBRUARY 2027 · RAFFLES SENTOSA</text>
+        </g>
+
         <!-- eave lanterns -->
         <g>
           <circle cx="208" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
@@ -172,24 +180,13 @@
     </svg>
 
     <div class="opening-hero" id="openingHero">
-      <div class="seal" aria-hidden="true">囍</div>
       <p class="hero-eyebrow">Together with their families</p>
-      <h1 class="hero-names">
-        <span class="name-line">Tan Hae San</span>
-        <span class="amp">&amp;</span>
-        <span class="name-line">Kristal Wong</span>
-      </h1>
       <p class="hero-hanja" lang="ko">두 사람이 하나가 됩니다 <span class="dot">·</span> <span lang="zh">百年好合</span></p>
-      <p class="hero-date">Saturday, the twentieth of February, <span class="year">2027</span></p>
-      <p class="hero-venue">Raffles Sentosa &nbsp;·&nbsp; Singapore</p>
       <p class="hero-countdown" id="countdown" aria-live="off"></p>
-      <a class="hero-cta" href="#rsvp"><span>Kindly RSVP</span></a>
     </div>
+    <h1 class="sr-names">Tan Hae San &amp; Kristal Wong — 20 February 2027, Raffles Sentosa, Singapore</h1>
+    <a class="hero-cta opening-cta" id="openingCta" href="#rsvp"><span>Kindly RSVP</span></a>
 
-    <div class="scroll-hint" id="scrollHint" aria-hidden="true">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
-    </div>
 
     <div class="hanok-wash" id="hanokWash" aria-hidden="true"></div>
     <p class="scene-caption fade-caption">
