@@ -147,15 +147,18 @@ const doorR = document.getElementById("doorR");
 const sceneCouple = document.getElementById("sceneCouple");
 const hanokWash = document.getElementById("hanokWash");
 const caption = document.querySelector(".scene-caption");
+const openingHero = document.getElementById("openingHero");
+const scrollHint = document.getElementById("scrollHint");
+const plumBranch = document.querySelector(".hanok-sticky .plum");
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const ease = (t) => { t = clamp01(t); return t * t * (3 - 2 * t); };
 
-// portrait phones: contain the scene instead of cropping it
+function isPortrait() {
+  return window.innerHeight > window.innerWidth * 1.1;
+}
 function fitScene() {
-  if (!hanokSvg) return;
-  const portrait = window.innerHeight > window.innerWidth * 1.1;
-  hanokSvg.setAttribute("preserveAspectRatio", portrait ? "xMidYMid meet" : "xMidYMid slice");
+  if (hanokSvg) hanokSvg.setAttribute("preserveAspectRatio", "xMidYMid slice");
 }
 fitScene();
 
@@ -168,30 +171,39 @@ function renderScene() {
   const total = rect.height - vh;
   const p = clamp01(-rect.top / total);
 
+  // 0 · the invitation drifts away as the journey begins
+  const heroGone = ease((p - 0.06) / 0.14);
+  openingHero.style.opacity = String(1 - heroGone);
+  openingHero.style.transform = "translateY(" + -60 * heroGone + "px)";
+  if (scrollHint) scrollHint.style.opacity = String(1 - heroGone);
+  if (plumBranch) plumBranch.style.opacity = String(0.95 * (1 - ease((p - 0.24) / 0.2)));
+
   // 1 · the walk — the couple crosses toward the steps
-  const walk = ease((p - 0.06) / 0.4);
+  const walk = ease((p - 0.14) / 0.36);
   const coupleOpacity =
-    clamp01((p - 0.06) / 0.07) * (1 - clamp01((p - 0.52) / 0.1));
+    clamp01((p - 0.14) / 0.08) * (1 - clamp01((p - 0.54) / 0.1));
   sceneCouple.setAttribute("transform", "translate(" + (-150 + walk * 150) + " 0)");
   sceneCouple.style.opacity = String(coupleOpacity);
 
-  // 2 · the approach — camera pushes in toward the doorway
-  const zt = ease((p - 0.12) / 0.68);
-  const s = 1 + zt * zt * 5.8;                       // up to ~6.8×
-  const fy = 300 + ease((p - 0.2) / 0.5) * 96;       // drift focus down to the door
+  // 2 · the approach — camera pushes in toward the doorway.
+  // (450, fy) is the content point held at the viewport centre (450, 300).
+  const s0 = isPortrait() ? 0.52 : 0.78;
+  const zt = ease((p - 0.2) / 0.6);
+  const s = s0 + zt * zt * (6.8 - s0);
+  const fy = 140 + ease((p - 0.26) / 0.48) * 256;   // sky-heavy wide shot → door centre
   cam.setAttribute(
     "transform",
-    "translate(450 " + fy + ") scale(" + s + ") translate(-450 " + -fy + ")"
+    "translate(450 300) scale(" + s + ") translate(-450 " + -fy + ")"
   );
 
   // 3 · the doors slide open
-  const d = ease((p - 0.55) / 0.23) * 46;
+  const d = ease((p - 0.62) / 0.22) * 46;
   doorL.setAttribute("transform", "translate(" + -d + " 0)");
   doorR.setAttribute("transform", "translate(" + d + " 0)");
 
-  // 4 · stepping into the light
-  hanokWash.style.opacity = String(ease((p - 0.84) / 0.14));
-  if (caption) caption.classList.toggle("visible", p > 0.9);
+  // 4 · stepping into the light → memory lane
+  hanokWash.style.opacity = String(ease((p - 0.86) / 0.13));
+  if (caption) caption.classList.toggle("visible", p > 0.92);
 }
 
 function onScroll() {
@@ -202,6 +214,10 @@ function onScroll() {
 }
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+if (!reducedMotion && openingHero) {
+  // gentle entrance; WAAPI releases the style once done, unlike CSS fill modes
+  openingHero.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 1400, easing: "ease-out" });
+}
 if (!reducedMotion) {
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", () => { fitScene(); onScroll(); }, { passive: true });

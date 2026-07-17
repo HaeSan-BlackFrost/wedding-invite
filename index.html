@@ -24,75 +24,7 @@
 <!-- ambient snowfall (canvas, site-wide) -->
 <canvas id="snow" aria-hidden="true"></canvas>
 
-<!-- ═══════════ HERO — night mountainscape ═══════════ -->
-<header class="hero">
-  <div class="sky" aria-hidden="true">
-    <div class="moon"></div>
-    <div class="mist mist-1"></div>
-    <div class="mist mist-2"></div>
 
-    <svg class="mountains" viewBox="0 0 1440 560" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
-      <path class="ridge back" d="M0 420 Q 180 300 360 380 T 720 350 T 1080 390 T 1440 340 V 560 H 0 Z"/>
-      <path class="ridge mid"  d="M0 470 Q 240 360 430 440 T 860 420 Q 1000 380 1120 430 T 1440 410 V 560 H 0 Z"/>
-      <path class="ridge front" d="M0 520 Q 200 470 420 505 T 900 495 T 1440 500 V 560 H 0 Z"/>
-      <!-- tiny hanok silhouette on the mid ridge -->
-      <g class="ridge-hanok">
-        <path d="M1150 421 q 28 -14 56 0 l -6 -3 q -22 -11 -44 0 Z"/>
-        <rect x="1162" y="421" width="32" height="12"/>
-        <rect x="1158" y="433" width="40" height="3"/>
-      </g>
-      <!-- pines on the front ridge -->
-      <g class="pines">
-        <path d="M120 520 l 10 -26 l 10 26 l -7 -2 l 7 14 h -20 l 7 -14 Z"/>
-        <path d="M158 524 l 8 -20 l 8 20 l -5 -2 l 5 11 h -16 l 5 -11 Z"/>
-        <path d="M92 526 l 7 -17 l 7 17 l -4 -1 l 4 9 h -14 l 4 -9 Z"/>
-      </g>
-    </svg>
-
-    <svg class="crane" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
-      <path d="M6 34 C 20 28 32 26 46 26 C 58 12 70 6 86 3 C 78 14 69 22 59 27 L 104 23 C 90 35 72 41 54 39 C 40 47 26 49 14 45 C 9 43 6 39 6 34 Z"/>
-      <path d="M46 26 L 112 20" stroke-width="1.6" fill="none"/>
-    </svg>
-
-    <svg class="plum" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg">
-      <path class="branch" d="M -10 20 C 60 40 110 60 150 110 M 70 44 C 96 70 104 96 106 128 M 150 110 C 176 146 182 180 178 214" fill="none"/>
-      <g class="blossoms">
-        <circle cx="106" cy="128" r="9"/><circle cx="96" cy="118" r="6"/><circle cx="118" cy="120" r="5"/>
-        <circle cx="152" cy="112" r="7"/><circle cx="166" cy="132" r="5"/>
-        <circle cx="178" cy="214" r="8"/><circle cx="168" cy="200" r="5"/><circle cx="188" cy="202" r="5"/>
-        <circle cx="60" cy="36" r="6"/><circle cx="34" cy="26" r="5"/>
-      </g>
-      <g class="blossom-hearts">
-        <circle cx="106" cy="128" r="2.6"/><circle cx="152" cy="112" r="2.2"/><circle cx="178" cy="214" r="2.4"/><circle cx="60" cy="36" r="2"/>
-      </g>
-    </svg>
-
-    <div class="lantern lantern-l"><span class="lantern-body">福</span></div>
-    <div class="lantern lantern-r"><span class="lantern-body">囍</span></div>
-  </div>
-
-  <div class="hero-inner">
-    <div class="seal" aria-hidden="true">囍</div>
-    <p class="hero-eyebrow">Together with their families</p>
-    <h1 class="hero-names">
-      <span class="name-line">Tan Hae San</span>
-      <span class="amp">&amp;</span>
-      <span class="name-line">Kristal Wong</span>
-    </h1>
-    <p class="hero-hanja" lang="ko">두 사람이 하나가 됩니다 <span class="dot">·</span> <span lang="zh">百年好合</span></p>
-    <div class="hero-rule" aria-hidden="true"></div>
-    <p class="hero-date">Saturday, the twentieth of February</p>
-    <p class="hero-year">two thousand and twenty-seven</p>
-    <p class="hero-venue">Raffles Sentosa &nbsp;·&nbsp; Singapore</p>
-    <p class="hero-countdown" id="countdown" aria-live="off"></p>
-    <a class="hero-cta" href="#rsvp"><span>Kindly RSVP</span></a>
-  </div>
-
-  <div class="scroll-hint" aria-hidden="true">
-    <span>scroll</span>
-    <div class="scroll-line"></div>
-  </div>
-</header>
 
 <!-- ═══════════ HANOK JOURNEY — approach, the doors open, step inside ═══════════ -->
 <section class="hanok-scene" id="hanokScene" aria-label="Approaching a hanok house; its doors open as you scroll">
@@ -128,7 +60,9 @@
         <!-- mountains + ground -->
         <path d="M -60 470 Q 140 340 340 470 Z" fill="var(--wash)" opacity="0.5"/>
         <path d="M 520 470 Q 700 330 900 470 Z" fill="var(--wash)" opacity="0.4"/>
-        <path d="M 100 470 H 800" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
+        <path d="M -240 470 Q -60 372 120 470 Z" fill="var(--wash)" opacity="0.45"/>
+        <path d="M 780 470 Q 980 366 1180 470 Z" fill="var(--wash)" opacity="0.5"/>
+        <path d="M -180 470 H 1080" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
 
         <!-- stone platform + steps -->
         <rect x="230" y="440" width="440" height="30" fill="#E9E0CE" stroke="var(--ink)" stroke-width="2"/>
@@ -223,6 +157,39 @@
         </g>
       </g>
     </svg>
+
+    <svg class="plum" viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path class="branch" d="M -10 20 C 60 40 110 60 150 110 M 70 44 C 96 70 104 96 106 128 M 150 110 C 176 146 182 180 178 214" fill="none"/>
+      <g class="blossoms">
+        <circle cx="106" cy="128" r="9"/><circle cx="96" cy="118" r="6"/><circle cx="118" cy="120" r="5"/>
+        <circle cx="152" cy="112" r="7"/><circle cx="166" cy="132" r="5"/>
+        <circle cx="178" cy="214" r="8"/><circle cx="168" cy="200" r="5"/><circle cx="188" cy="202" r="5"/>
+        <circle cx="60" cy="36" r="6"/><circle cx="34" cy="26" r="5"/>
+      </g>
+      <g class="blossom-hearts">
+        <circle cx="106" cy="128" r="2.6"/><circle cx="152" cy="112" r="2.2"/><circle cx="178" cy="214" r="2.4"/><circle cx="60" cy="36" r="2"/>
+      </g>
+    </svg>
+
+    <div class="opening-hero" id="openingHero">
+      <div class="seal" aria-hidden="true">囍</div>
+      <p class="hero-eyebrow">Together with their families</p>
+      <h1 class="hero-names">
+        <span class="name-line">Tan Hae San</span>
+        <span class="amp">&amp;</span>
+        <span class="name-line">Kristal Wong</span>
+      </h1>
+      <p class="hero-hanja" lang="ko">두 사람이 하나가 됩니다 <span class="dot">·</span> <span lang="zh">百年好合</span></p>
+      <p class="hero-date">Saturday, the twentieth of February, <span class="year">2027</span></p>
+      <p class="hero-venue">Raffles Sentosa &nbsp;·&nbsp; Singapore</p>
+      <p class="hero-countdown" id="countdown" aria-live="off"></p>
+      <a class="hero-cta" href="#rsvp"><span>Kindly RSVP</span></a>
+    </div>
+
+    <div class="scroll-hint" id="scrollHint" aria-hidden="true">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
+    </div>
 
     <div class="hanok-wash" id="hanokWash" aria-hidden="true"></div>
     <p class="scene-caption fade-caption">

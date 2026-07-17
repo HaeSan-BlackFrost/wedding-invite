@@ -61,173 +61,27 @@ body {
   color: transparent;
 }
 
-/* ═══════════ HERO ═══════════ */
-.hero {
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+/* ═══════════ OPENING — hero text over the hanok ═══════════ */
+.opening-hero {
+  position: absolute;
+  left: 0; right: 0;
+  top: 5svh;
+  z-index: 3;
   text-align: center;
-  padding: 4rem 1.5rem 5rem;
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
+  pointer-events: none;
+  padding: 0 1.5rem;
 }
-
-.sky { position: absolute; inset: 0; z-index: -1; }
-
-/* pale morning moon */
-.moon {
-  position: absolute;
-  top: 10%;
-  right: 22%;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 42% 38%, #FDF3DC, #F2DFAE 55%, #E3C88C);
-  box-shadow:
-    0 0 50px 16px rgba(217, 185, 121, 0.35),
-    0 0 130px 50px rgba(217, 185, 121, 0.15);
-  animation: moonBreathe 9s ease-in-out infinite;
-}
-@keyframes moonBreathe {
-  0%, 100% { box-shadow: 0 0 50px 16px rgba(217,185,121,0.35), 0 0 130px 50px rgba(217,185,121,0.15); }
-  50% { box-shadow: 0 0 66px 22px rgba(217,185,121,0.45), 0 0 160px 64px rgba(217,185,121,0.2); }
-}
-
-/* drifting mist */
-.mist {
-  position: absolute;
-  left: -20%;
-  width: 140%;
-  height: 26%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5) 30%, rgba(255, 255, 255, 0.75) 50%, rgba(255, 255, 255, 0.5) 70%, transparent);
-  filter: blur(16px);
-  border-radius: 50%;
-}
-.mist-1 { top: 36%; animation: mistDrift 38s linear infinite; }
-.mist-2 { top: 58%; animation: mistDrift 54s linear infinite reverse; opacity: 0.7; }
-@keyframes mistDrift {
-  0% { transform: translateX(-6%); }
-  50% { transform: translateX(6%); }
-  100% { transform: translateX(-6%); }
-}
-
-/* ink-wash mountains */
-.mountains {
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 100%;
-  height: 52%;
-}
-.mountains .ridge.back  { fill: var(--wash); opacity: 0.55; }
-.mountains .ridge.mid   { fill: var(--wash-deep); opacity: 0.45; }
-.mountains .ridge.front { fill: #7C8894; opacity: 0.5; }
-.mountains .ridge-hanok { fill: #4E5A66; }
-.mountains .pines { fill: #4E5A66; }
-
-/* crane — ink silhouette gliding across every ~30s */
-.crane {
-  position: absolute;
-  top: 20%;
-  left: -12%;
-  width: 92px;
-  fill: rgba(43, 38, 32, 0.45);
-  stroke: rgba(43, 38, 32, 0.45);
-  animation: craneFly 34s linear infinite;
-  animation-delay: 4s;
-  opacity: 0;
-}
-@keyframes craneFly {
-  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
-  4%   { opacity: 0.85; }
-  20%  { transform: translate(46vw, -6vh) scale(0.92); }
-  36%  { transform: translate(92vw, -3vh) scale(0.84); opacity: 0.8; }
-  42%  { transform: translate(118vw, -8vh) scale(0.8); opacity: 0; }
-  100% { transform: translate(118vw, -8vh) scale(0.8); opacity: 0; }
-}
-
-/* plum branch, top-left */
-.plum {
-  position: absolute;
-  top: -8px; left: -10px;
-  width: min(300px, 34vw);
-  opacity: 0.95;
-}
-.plum .branch { stroke: #6B4A33; stroke-width: 5; stroke-linecap: round; }
-.plum .blossoms { fill: var(--vermilion); opacity: 0.8; }
-.plum .blossom-hearts { fill: var(--gold-bright); }
-
-/* hanging lanterns */
-.lantern {
-  position: absolute;
-  top: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform-origin: top center;
-  animation: lanternSway 6.5s ease-in-out infinite;
-}
-.lantern-l { left: 12%; }
-.lantern-r { right: 6%; animation-delay: -3s; animation-duration: 7.5s; }
-.lantern::before {
-  content: "";
-  width: 1px;
-  height: 88px;
-  background: linear-gradient(rgba(43, 38, 32, 0), rgba(43, 38, 32, 0.4));
-}
-.lantern-body {
-  width: 54px;
-  height: 66px;
-  border-radius: 46% / 50%;
-  background: radial-gradient(circle at 50% 38%, #D8654E, var(--vermilion) 60%, #93321F);
-  border: 1px solid var(--gold-bright);
-  box-shadow: 0 8px 26px rgba(184, 67, 47, 0.35);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #F6DFA8;
-  font-family: var(--sc);
-  font-size: 1.35rem;
-  position: relative;
-  animation: lanternGlow 4s ease-in-out infinite;
-}
-.lantern-body::after {
-  content: "";
-  position: absolute;
-  bottom: -16px;
-  width: 2px;
-  height: 16px;
-  background: var(--gold);
-}
-@keyframes lanternSway {
-  0%, 100% { transform: rotate(2.4deg); }
-  50% { transform: rotate(-2.4deg); }
-}
-@keyframes lanternGlow {
-  0%, 100% { box-shadow: 0 8px 26px rgba(184, 67, 47, 0.35); }
-  50% { box-shadow: 0 8px 38px rgba(184, 67, 47, 0.55); }
-}
-
-.hero-inner {
-  max-width: 720px;
-  animation: heroIn 1.8s cubic-bezier(.22,1,.36,1) both;
-}
-@keyframes heroIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to   { opacity: 1; transform: none; }
-}
+.opening-hero .hero-cta { pointer-events: auto; }
 
 .seal {
-  width: 64px; height: 64px;
-  margin: 0 auto 2.2rem;
+  width: 48px; height: 48px;
+  margin: 0 auto 1.1rem;
   background: var(--vermilion);
   color: #F6DFA8;
-  border-radius: 12px;
+  border-radius: 11px;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--sc);
-  font-size: 2rem;
+  font-size: 1.5rem;
   box-shadow: 0 10px 30px rgba(184, 67, 47, 0.35);
   animation: sealPulse 5s ease-in-out infinite;
 }
@@ -238,19 +92,19 @@ body {
 .seal.small { width: 48px; height: 48px; font-size: 1.5rem; margin-bottom: 1.6rem; }
 
 .hero-eyebrow {
-  font-size: 0.82rem;
-  letter-spacing: 0.34em;
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   color: var(--ink-soft);
-  margin-bottom: 1.6rem;
+  margin-bottom: 0.9rem;
 }
 
 .hero-names {
   font-weight: 400;
-  font-size: clamp(2.4rem, 9vw, 4.6rem);
-  line-height: 1.14;
+  font-size: clamp(1.9rem, 5vw, 3.1rem);
+  line-height: 1.1;
   letter-spacing: 0.02em;
-  display: flex; flex-direction: column; gap: 0.1em;
+  display: flex; flex-direction: column; gap: 0.08em;
 }
 .hero-names .name-line {
   background-size: 220% 100%;
@@ -267,47 +121,41 @@ body {
 }
 
 .hero-hanja {
-  margin-top: 1.4rem;
-  font-size: 1rem;
+  margin-top: 0.7rem;
+  font-size: 0.9rem;
   color: var(--ink-soft);
   letter-spacing: 0.12em;
 }
 .hero-hanja .dot { color: var(--gold); margin: 0 0.4em; }
 
-.hero-rule {
-  width: 56px; height: 1px;
-  background: var(--gold);
-  margin: 2.2rem auto;
-}
-
-.hero-countdown {
-  margin-top: 1.2rem;
-  font-size: 0.92rem;
-  font-style: italic;
-  color: var(--gold);
-  letter-spacing: 0.08em;
-  min-height: 1.4em;
-}
-
-.hero-date { font-size: 1.35rem; font-style: italic; }
-.hero-year { font-size: 1.05rem; font-style: italic; color: var(--ink-soft); }
+.hero-date { margin-top: 0.9rem; font-size: 1.1rem; font-style: italic; }
+.hero-date .year { letter-spacing: 0.04em; }
 .hero-venue {
-  margin-top: 1.1rem;
-  font-size: 0.88rem;
-  letter-spacing: 0.3em;
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
 
+.hero-countdown {
+  margin-top: 0.55rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--gold);
+  letter-spacing: 0.08em;
+  min-height: 1.3em;
+}
+
 .hero-cta {
   display: inline-block;
-  margin-top: 2.6rem;
-  padding: 0.9rem 2.8rem;
+  margin-top: 1rem;
+  padding: 0.75rem 2.2rem;
   border: 1px solid var(--gold);
   color: var(--ink);
-  background: rgba(255, 253, 248, 0.6);
+  background: rgba(255, 253, 248, 0.65);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.83rem;
   letter-spacing: 0.28em;
   text-transform: uppercase;
   position: relative;
@@ -335,8 +183,9 @@ body {
 
 .scroll-hint {
   position: absolute;
-  bottom: 2rem; left: 50%;
+  bottom: 1.8rem; left: 50%;
   transform: translateX(-50%);
+  z-index: 3;
   display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
   color: var(--ink-soft);
   font-size: 0.7rem;
@@ -354,8 +203,25 @@ body {
   50% { transform: scaleY(1); opacity: 1; }
 }
 
+@media (max-height: 700px) {
+  .opening-hero .hero-hanja, .opening-hero .hero-countdown { display: none; }
+  .hero-names { font-size: clamp(1.7rem, 4.2vw, 2.5rem); }
+}
+
+/* plum branch, top-left of the opening scene */
+.plum {
+  position: absolute;
+  top: -8px; left: -10px;
+  width: min(280px, 30vw);
+  z-index: 2;
+  opacity: 0.95;
+}
+.plum .branch { stroke: #6B4A33; stroke-width: 5; stroke-linecap: round; }
+.plum .blossoms { fill: var(--vermilion); opacity: 0.8; }
+.plum .blossom-hearts { fill: var(--gold-bright); }
+
 /* ═══════════ HANOK SCROLL SCENE ═══════════ */
-.hanok-scene { height: 280vh; position: relative; }
+.hanok-scene { height: 400vh; position: relative; }
 
 .hanok-sticky {
   position: sticky;
@@ -914,22 +780,17 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none; }
-  .scene-caption { opacity: 1 !important; transform: translateY(-50%) !important; position: static; transform: none !important; margin-top: 1rem; transition: none; }
-  .hanok-scene { height: auto; padding: 4rem 0; }
+  .scene-caption { opacity: 1 !important; position: static; transform: none !important; margin-top: 1rem; transition: none; }
+  .hanok-scene { height: auto; padding: 0 0 3rem; }
   .hanok-sticky { position: static; height: auto; }
-  .hanok-svg { position: static; width: min(92vw, 860px); height: auto; margin: 0 auto; }
+  .hanok-svg { position: static; width: min(92vw, 860px); height: auto; margin: 0 auto; display: block; }
   .hanok-wash { display: none; }
+  .opening-hero { position: static; opacity: 1 !important; transform: none !important; padding: 4rem 1.5rem 1rem; animation: none; }
+  .scroll-hint { display: none; }
   #sceneCouple { opacity: 1 !important; transform: none !important; }
-  .hero-inner { animation: none; }
-  .moon, .seal, .lantern, .lantern-body, .crane, .mist,
-  .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,
+  .seal, .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,
   .scroll-line { animation: none !important; }
   #snow { display: none; }
-}
-
-/* ── Tablet: plum branch owns the top-left corner ── */
-@media (max-width: 960px) {
-  .lantern-l { display: none; }
 }
 
 /* ── Mobile (primary audience) ── */
@@ -937,22 +798,14 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   body { font-size: 17px; }
   .section { padding: 4.5rem 1.25rem; }
 
-  /* hero scenery re-composed for narrow screens:
-     the moon sits centered behind the 囍 seal — a stamped-moon motif */
-  .moon { width: 118px; height: 118px; top: 8.5%; right: 50%; transform: translateX(50%); }
-  .crane { width: 60px; top: 10%; }
-  .hero-venue { letter-spacing: 0.2em; font-size: 0.8rem; }
-  .plum { width: 44vw; top: -6px; left: -8px; }
-  .lantern-r { right: 7%; }
-  .lantern::before { height: 56px; }
-  .lantern-body { width: 42px; height: 52px; font-size: 1.05rem; }
-  .crane { width: 64px; top: 16%; }
-  .hero { padding: 3.5rem 1.25rem 4.5rem; }
-  .hero-eyebrow { font-size: 0.72rem; letter-spacing: 0.26em; }
-  .hero-date { font-size: 1.2rem; }
-  .hero-cta { width: 100%; padding: 1rem 1.5rem; }
+  .opening-hero { top: 4svh; }
+  .plum { width: 42vw; }
+  .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.16em; }
+  .hero-date { font-size: 1.05rem; }
+  .hero-venue { letter-spacing: 0.2em; font-size: 0.76rem; }
+  .hero-cta { padding: 0.85rem 2rem; }
 
-  .hanok-scene { height: 200vh; }
+  .hanok-scene { height: 320vh; }
   .scene-caption { padding: 0 1.5rem; }
   .scroll-hint span { display: none; }        /* just the breathing line — less clutter */
 
