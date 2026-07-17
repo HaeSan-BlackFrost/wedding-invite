@@ -46,12 +46,19 @@ const RSVP_ENDPOINT = "";
     ctx.clearRect(0, 0, W, H);
     const wind = Math.sin(now / 5200) * 14; // gentle shared breeze
 
-    for (let i = 0; i < flakes.length; i++) {
+    for (let i = flakes.length - 1; i >= 0; i--) {
       const f = flakes[i];
       f.y += f.vy * dt;
       f.x += (wind * f.depth + Math.sin(now / 900 + f.phase) * 8) * dt;
       f.rot += f.spin * dt;
-      if (f.y > H + 12) flakes[i] = makeFlake(true);
+      if (f.vx !== undefined) {           // burst petals: fling, then drift down
+        f.x += f.vx * dt;
+        f.vx *= 0.96;
+        f.vy = Math.min(f.vy + 60 * dt, 46);
+        if (f.y > H + 12) { flakes.splice(i, 1); continue; }
+      } else if (f.y > H + 12) {
+        flakes[i] = makeFlake(true);
+      }
       if (f.x > W + 14) f.x = -14;
       if (f.x < -14) f.x = W + 14;
 
@@ -84,6 +91,37 @@ const RSVP_ENDPOINT = "";
       requestAnimationFrame(frame);
     }
   });
+
+  /* celebration: fling a handful of petals from (x, y) */
+  window.__burstPetals = function (x, y) {
+    for (let i = 0; i < 26; i++) {
+      const angle = Math.PI * (1 + Math.random());       // upward half-circle
+      const speed = 90 + Math.random() * 200;
+      flakes.push({
+        x, y,
+        depth: 0.6 + Math.random() * 0.4,
+        petal: true,
+        r: 3.2 + Math.random() * 2.6,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed * 0.55,
+        phase: Math.random() * Math.PI * 2,
+        spin: (Math.random() - 0.5) * 6,
+        rot: Math.random() * Math.PI * 2,
+      });
+    }
+  };
+})();
+
+/* ── Countdown ── */
+(function initCountdown() {
+  const el = document.getElementById("countdown");
+  if (!el) return;
+  const target = new Date("2027-02-20T00:00:00+08:00");
+  const days = Math.ceil((target - Date.now()) / 86400000);
+  if (days > 1) el.textContent = "— " + days + " days from now —";
+  else if (days === 1) el.textContent = "— tomorrow —";
+  else if (days === 0) el.textContent = "— today 囍 —";
+  else el.textContent = "";
 })();
 
 /* ── Reveal on scroll ── */
@@ -250,6 +288,10 @@ form.addEventListener("submit", async (e) => {
 
 function showSuccess(data) {
   const accepted = data.attending === "accepts";
+  const rect = form.getBoundingClientRect();
+  if (accepted && window.__burstPetals) {
+    window.__burstPetals(rect.left + rect.width / 2, Math.max(80, rect.top + 120));
+  }
   form.outerHTML = `
     <div class="form-success">
       <div class="seal small">囍</div>

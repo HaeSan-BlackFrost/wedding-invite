@@ -1,0 +1,17 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Hae San & Kristal//Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:haesan-kristal-20270220@haesan-blackfrost.github.io
+DTSTAMP:20260718T000000Z
+DTSTART:20270220T030000Z
+DTEND:20270220T140000Z
+SUMMARY:Wedding of Tan Hae San & Kristal Wong 囍
+LOCATION:Raffles Sentosa\, Sentosa Island\, Singapore
+DESCRIPTION:Tea Ceremony · Solemnization · Evening Banquet\nDetails and RSVP: https://haesan-blackfrost.github.io/wedding-invite/
+URL:https://haesan-blackfrost.github.io/wedding-invite/
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR

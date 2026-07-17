@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hae San &amp; Kristal — 20 February 2027</title>
 <meta name="description" content="Tan Hae San & Kristal Wong invite you to celebrate their wedding — 20 February 2027, Raffles Sentosa, Singapore.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hae San &amp; Kristal — 20 February 2027">
+<meta property="og:description" content="Together with their families, Tan Hae San &amp; Kristal Wong invite you to celebrate their wedding at Raffles Sentosa, Singapore. RSVP inside.">
+<meta property="og:url" content="https://haesan-blackfrost.github.io/wedding-invite/">
+<meta property="og:image" content="https://haesan-blackfrost.github.io/wedding-invite/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+KR:wght@400;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
@@ -76,6 +84,7 @@
     <p class="hero-date">Saturday, the twentieth of February</p>
     <p class="hero-year">two thousand and twenty-seven</p>
     <p class="hero-venue">Raffles Sentosa &nbsp;·&nbsp; Singapore</p>
+    <p class="hero-countdown" id="countdown" aria-live="off"></p>
     <a class="hero-cta" href="#rsvp"><span>Kindly RSVP</span></a>
   </div>
 
@@ -168,6 +177,14 @@
       <!-- snow settling on the roof -->
       <path class="draw snowline" data-draw="0.84,0.97" d="M 186 315 Q 450 363 714 315"/>
       <path class="draw snowline thin" data-draw="0.88,1" d="M 334 237 Q 450 228 566 237"/>
+      <!-- the couple, walking home -->
+      <g class="fade couple" data-fade="0.9,1" opacity="0" fill="var(--ink)" stroke="none">
+        <circle cx="176" cy="423" r="6.5"/>
+        <path d="M 169 448 Q 176 429 183 448 L 184 470 H 168 Z"/>
+        <circle cx="196" cy="427" r="6"/>
+        <path d="M 190 450 Q 196 434 202 450 L 207 470 H 186 Z"/>
+        <path d="M 183 452 L 190 452" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+      </g>
       <!-- double happiness seal -->
       <g class="fade seal-mark" data-fade="0.88,1" opacity="0">
         <rect x="768" y="486" width="58" height="58" rx="9" fill="var(--vermilion)"/>
@@ -181,20 +198,134 @@
   </div>
 </section>
 
-<!-- ═══════════ OUR STORY ═══════════ -->
+<!-- ═══════════ OUR STORY — photo timeline ═══════════ -->
 <section class="section reveal" id="story">
-  <div class="section-inner narrow">
+  <div class="section-inner">
     <p class="section-eyebrow">Our Story</p>
     <h2 class="section-title">A tale of two families</h2>
     <div class="eave-divider" aria-hidden="true">
       <svg viewBox="0 0 120 20"><path d="M 5 6 Q 60 20 115 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
-    <p class="story-text">
-      From Singapore to Seoul and back again, Hae San and Kristal's paths crossed
-      where two cultures meet. What began as a chance meeting became a shared life —
-      one that now brings together Chinese and Korean traditions under one roof.
-      <!-- ✏️ PLACEHOLDER — replace with your real story -->
-    </p>
+
+    <ol class="chapters">
+      <!-- ✏️ Each chapter: swap the placeholder art for a real photo by replacing
+           the .photo-art block with <img src="photos/your-photo.jpg" alt="…"> -->
+      <li class="chapter reveal">
+        <figure class="chapter-photo">
+          <div class="photo-mat">
+            <div class="photo-art" aria-hidden="true">
+              <svg viewBox="0 0 200 250"><g fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round">
+                <path d="M 62 128 H 128 Q 132 170 95 170 Q 58 170 62 128 Z" stroke-linejoin="round"/>
+                <path d="M 128 134 Q 152 130 149 148 Q 146 164 126 160"/>
+                <path d="M 84 112 q 6 -12 0 -24 M 104 112 q 6 -12 0 -24" opacity=".55"/>
+                <path d="M 56 186 H 136" opacity=".7"/>
+              </g></svg>
+            </div>
+            <span class="photo-hint">photograph to come</span>
+            <span class="chapter-seal" lang="zh">一</span>
+          </div>
+        </figure>
+        <div class="chapter-text">
+          <p class="chapter-date">Singapore · 20XX</p><!-- ✏️ -->
+          <h3>The first hello</h3>
+          <p>Where it all began — two strangers, one conversation that refused to end.</p><!-- ✏️ -->
+        </div>
+      </li>
+
+      <li class="chapter reveal">
+        <figure class="chapter-photo">
+          <div class="photo-mat">
+            <div class="photo-art" aria-hidden="true">
+              <svg viewBox="0 0 200 250"><g fill="none" stroke="#6B4A33" stroke-width="4" stroke-linecap="round">
+                <path d="M 44 196 C 76 162 116 150 160 92"/>
+                <path d="M 98 146 q 18 6 26 20"/>
+                <circle cx="86" cy="128" r="13" fill="var(--vermilion)" stroke="none" opacity=".85"/>
+                <circle cx="126" cy="112" r="10" fill="var(--vermilion)" stroke="none" opacity=".75"/>
+                <circle cx="128" cy="170" r="11" fill="var(--vermilion)" stroke="none" opacity=".8"/>
+                <circle cx="86" cy="128" r="4" fill="var(--gold-bright)" stroke="none"/>
+                <circle cx="126" cy="112" r="3.2" fill="var(--gold-bright)" stroke="none"/>
+                <circle cx="128" cy="170" r="3.6" fill="var(--gold-bright)" stroke="none"/>
+              </g></svg>
+            </div>
+            <span class="photo-hint">photograph to come</span>
+            <span class="chapter-seal" lang="zh">二</span>
+          </div>
+        </figure>
+        <div class="chapter-text">
+          <p class="chapter-date">· 20XX</p><!-- ✏️ -->
+          <h3>Falling in love</h3>
+          <p>Somewhere between late-night suppers and long walks, it stopped being a question.</p><!-- ✏️ -->
+        </div>
+      </li>
+
+      <li class="chapter reveal">
+        <figure class="chapter-photo">
+          <div class="photo-mat">
+            <div class="photo-art" aria-hidden="true">
+              <svg viewBox="0 0 200 250"><g fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 42 142 L 158 90 L 122 132 L 136 168 L 110 140 L 64 160 Z"/>
+                <path d="M 122 132 L 110 140"/>
+                <path d="M 46 92 q 14 -12 28 0 q 14 12 28 0" opacity=".45" stroke-width="3"/>
+                <path d="M 120 200 q 14 -12 28 0" opacity=".45" stroke-width="3"/>
+              </g></svg>
+            </div>
+            <span class="photo-hint">photograph to come</span>
+            <span class="chapter-seal" lang="zh">三</span>
+          </div>
+        </figure>
+        <div class="chapter-text">
+          <p class="chapter-date">Singapore ↔ Seoul</p><!-- ✏️ -->
+          <h3>Between two cities</h3>
+          <p>Two families, two languages, one shared home slowly taking shape across the miles.</p><!-- ✏️ -->
+        </div>
+      </li>
+
+      <li class="chapter reveal">
+        <figure class="chapter-photo">
+          <div class="photo-mat">
+            <div class="photo-art" aria-hidden="true">
+              <svg viewBox="0 0 200 250"><g fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round">
+                <circle cx="100" cy="146" r="36"/>
+                <path d="M 82 110 L 100 84 L 118 110 Z" stroke-linejoin="round"/>
+                <path d="M 100 84 v -10 M 74 100 l -8 -8 M 126 100 l 8 -8" opacity=".6"/>
+              </g></svg>
+            </div>
+            <span class="photo-hint">photograph to come</span>
+            <span class="chapter-seal" lang="zh">四</span>
+          </div>
+        </figure>
+        <div class="chapter-text">
+          <p class="chapter-date">· 20XX</p><!-- ✏️ -->
+          <h3>She said yes</h3>
+          <p>One question, asked with a full heart — and answered before it was finished.</p><!-- ✏️ -->
+        </div>
+      </li>
+
+      <li class="chapter reveal">
+        <figure class="chapter-photo">
+          <div class="photo-mat">
+            <div class="photo-art" aria-hidden="true">
+              <svg viewBox="0 0 200 250"><g fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round">
+                <path d="M 46 128 Q 100 150 154 128"/>
+                <path d="M 46 128 C 62 108 78 98 100 96 C 122 98 138 108 154 128"/>
+                <path d="M 64 136 V 172 M 136 136 V 172"/>
+                <path d="M 54 174 H 146"/>
+                <rect x="86" y="142" width="28" height="32" rx="2" opacity=".65" stroke-width="3"/>
+                <circle cx="100" cy="70" r="9" opacity=".55" stroke-width="3"/>
+              </g></svg>
+            </div>
+            <span class="photo-hint">photograph to come</span>
+            <span class="chapter-seal" lang="zh">五</span>
+          </div>
+        </figure>
+        <div class="chapter-text">
+          <p class="chapter-date">Raffles Sentosa · 20.02.2027</p>
+          <h3>Our next chapter</h3>
+          <p>And now, with both our families beside us — the beginning of everything else.</p><!-- ✏️ -->
+        </div>
+      </li>
+    </ol>
+
     <p class="story-sign" lang="zh">囍 · 두 사람, 한 마음</p>
   </div>
 </section>
@@ -211,21 +342,21 @@
       <li class="timeline-item reveal">
         <div class="timeline-time">11:00 <span>AM</span></div><!-- ✏️ TBC -->
         <div class="timeline-body">
-          <h3>Tea Ceremony <span class="hanja" lang="zh">敬茶</span></h3>
+          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 10h11q1 6-5.5 6T5 10Z"/><path d="M16 11q3 -0.5 2.6 2q-0.4 2 -3 1.4"/><path d="M9 7q1 -1.5 0 -3M13 7q1 -1.5 0 -3" opacity=".6"/></g></svg>Tea Ceremony <span class="hanja" lang="zh">敬茶</span></h3>
           <p>An intimate morning honouring our parents and elders with the traditional serving of tea.</p>
         </div>
       </li>
       <li class="timeline-item reveal">
         <div class="timeline-time">4:00 <span>PM</span></div><!-- ✏️ TBC -->
         <div class="timeline-body">
-          <h3>Solemnization <span class="hanja" lang="ko">혼인 서약</span></h3>
+          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9.5" cy="13" r="5"/><circle cx="14.5" cy="13" r="5"/><path d="M12 5l1.5 2h-3Z" stroke-linejoin="round"/></g></svg>Solemnization <span class="hanja" lang="ko">혼인 서약</span></h3>
           <p>The exchange of vows, witnessed by family and friends against the Sentosa sea.</p>
         </div>
       </li>
       <li class="timeline-item reveal">
         <div class="timeline-time">7:00 <span>PM</span></div><!-- ✏️ TBC -->
         <div class="timeline-body">
-          <h3>Evening Banquet <span class="hanja" lang="zh">晚宴</span></h3>
+          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="12" rx="6" ry="7.5"/><path d="M9 5.5h6M9 18.5h6M12 19v2.5"/></g></svg>Evening Banquet <span class="hanja" lang="zh">晚宴</span></h3>
           <p>Dinner, toasts, and celebration late into the evening.</p>
         </div>
       </li>
@@ -243,6 +374,59 @@
       <svg viewBox="0 0 120 20"><path d="M 5 6 Q 60 20 115 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
     <p class="venue-sub">Sentosa Island · Singapore</p>
+
+    <!-- ink-wash impression of the resort by the sea -->
+    <div class="venue-art reveal" aria-hidden="true">
+      <svg viewBox="0 0 1200 380" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- sun -->
+        <circle cx="880" cy="86" r="38" fill="var(--gold-bright)" opacity="0.55"/>
+        <circle cx="880" cy="86" r="58" fill="var(--gold-bright)" opacity="0.14"/>
+        <!-- distant isles -->
+        <path d="M -20 260 Q 140 210 300 258 T 640 252 V 380 H -20 Z" fill="var(--wash)" opacity="0.5"/>
+        <path d="M 560 262 Q 760 214 960 260 T 1220 250 V 380 H 560 Z" fill="var(--wash)" opacity="0.35"/>
+        <!-- shoreline -->
+        <path d="M -20 300 Q 300 282 620 296 T 1220 292 V 380 H -20 Z" fill="var(--wash-deep)" opacity="0.4"/>
+        <!-- resort pavilions -->
+        <g stroke="var(--ink)" stroke-width="2.4" fill="var(--paper-card)" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M 486 246 Q 540 258 594 246 Q 570 226 540 224 Q 510 226 486 246 Z"/>
+          <rect x="506" y="248" width="68" height="34" />
+          <path d="M 522 252 v 30 M 540 252 v 30 M 558 252 v 30" stroke-width="1.4" opacity="0.6"/>
+          <path d="M 636 262 Q 678 271 720 262 Q 702 246 678 245 Q 654 246 636 262 Z"/>
+          <rect x="650" y="264" width="56" height="24"/>
+          <path d="M 664 267 v 21 M 678 267 v 21 M 692 267 v 21" stroke-width="1.4" opacity="0.6"/>
+        </g>
+        <!-- palms -->
+        <g fill="none" stroke="#4E5A66" stroke-width="3" stroke-linecap="round">
+          <path d="M 180 296 C 186 260 184 234 176 214"/>
+          <g stroke-width="2.4">
+            <path d="M 176 214 q -26 -12 -46 -2"/><path d="M 176 214 q -8 -24 -28 -32"/>
+            <path d="M 176 214 q 12 -22 34 -26"/><path d="M 176 214 q 26 -8 44 4"/><path d="M 176 214 q 2 -26 16 -38"/>
+          </g>
+          <path d="M 262 300 C 268 272 266 252 260 236"/>
+          <g stroke-width="2.2">
+            <path d="M 260 236 q -20 -10 -36 -2"/><path d="M 260 236 q -4 -20 -20 -28"/>
+            <path d="M 260 236 q 12 -16 28 -18"/><path d="M 260 236 q 20 -4 32 6"/>
+          </g>
+          <path d="M 1052 292 C 1058 262 1056 240 1048 222"/>
+          <g stroke-width="2.4">
+            <path d="M 1048 222 q -24 -12 -42 -2"/><path d="M 1048 222 q -6 -22 -24 -30"/>
+            <path d="M 1048 222 q 12 -20 32 -22"/><path d="M 1048 222 q 24 -6 40 6"/>
+          </g>
+        </g>
+        <!-- sea -->
+        <path d="M -20 322 Q 300 310 620 320 T 1220 316 V 380 H -20 Z" fill="var(--wash)" opacity="0.55"/>
+        <g stroke="var(--wash-deep)" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.7">
+          <path d="M 120 340 q 22 -8 44 0"/><path d="M 420 350 q 22 -8 44 0"/><path d="M 720 344 q 22 -8 44 0"/>
+          <path d="M 980 352 q 22 -8 44 0"/><path d="M 260 358 q 18 -7 36 0"/><path d="M 600 362 q 18 -7 36 0"/>
+        </g>
+        <!-- birds -->
+        <g stroke="var(--ink)" stroke-width="1.8" fill="none" opacity="0.6" stroke-linecap="round">
+          <path d="M 330 120 q 8 -8 16 0 q 8 -8 16 0"/><path d="M 388 100 q 6 -6 12 0 q 6 -6 12 0"/>
+        </g>
+      </svg>
+      <p class="venue-art-caption">An impression of the resort by the sea — 바다 곁의 집</p>
+    </div>
+
     <div class="map-frame reveal">
       <iframe
         title="Map to Raffles Sentosa Singapore"
@@ -251,6 +435,7 @@
     </div>
     <div class="venue-actions">
       <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Raffles+Sentosa+Singapore" target="_blank" rel="noopener">Open in Google Maps</a>
+      <a class="btn ghost" href="wedding.ics" download>Add to Calendar</a>
     </div>
     <div class="venue-notes">
       <div class="venue-note">
@@ -300,6 +485,10 @@
     <details class="faq-item reveal">
       <summary>Is there parking at the venue?</summary>
       <p>Yes — parking is available at Raffles Sentosa. Please indicate in your RSVP if you'll be driving so we can plan spaces.</p>
+    </details>
+    <details class="faq-item reveal">
+      <summary>What time should I arrive?</summary>
+      <p>Doors open half an hour before each event — arriving 20–30 minutes ahead of the solemnization or banquet gives time to be seated comfortably.</p><!-- ✏️ TBC -->
     </details>
     <details class="faq-item reveal">
       <summary>When should I RSVP by?</summary>
