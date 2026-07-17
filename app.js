@@ -59,15 +59,16 @@ const RSVP_ENDPOINT = "";
         ctx.save();
         ctx.translate(f.x, f.y);
         ctx.rotate(f.rot);
-        ctx.globalAlpha = 0.35 + f.depth * 0.35;
+        ctx.globalAlpha = 0.4 + f.depth * 0.35;
         ctx.fillStyle = "#C6503A";
         ctx.beginPath();
         ctx.ellipse(0, 0, f.r, f.r * 0.55, 0, 0, Math.PI * 2);
         ctx.fill();
         ctx.restore();
       } else {
-        ctx.globalAlpha = 0.22 + f.depth * 0.4;
-        ctx.fillStyle = "#EAF2EC";
+        // soft ink-wash flakes so they read on rice paper
+        ctx.globalAlpha = 0.25 + f.depth * 0.4;
+        ctx.fillStyle = "#A8B6C2";
         ctx.beginPath();
         ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
         ctx.fill();
