@@ -80,12 +80,16 @@
           <rect x="428" y="414" width="44" height="6" rx="2" fill="#6B4A33"/>
           <rect x="432" y="420" width="3" height="10" fill="#6B4A33"/>
           <rect x="465" y="420" width="3" height="10" fill="#6B4A33"/>
-          <circle cx="442" cy="411" r="2.8" fill="#F6DFA8" stroke="#6B4A33" stroke-width="0.9"/>
-          <circle cx="458" cy="411" r="2.8" fill="#F6DFA8" stroke="#6B4A33" stroke-width="0.9"/>
+          <path d="M 432 411.5 q 1.8 -5 6 -5 q 4.2 0 6 5 q -1.8 2.4 -6 2.4 q -4.2 0 -6 -2.4 Z" fill="#E3C88C" stroke="#8A6A30" stroke-width="0.9"/>
+          <circle cx="438" cy="406.8" r="2.2" fill="#E3C88C" stroke="#8A6A30" stroke-width="0.9"/>
+          <rect x="447" y="407.5" width="5.4" height="6" rx="0.7" fill="#B8432F"/>
+          <path d="M 447.2 409 l 2.5 1.6 l 2.5 -1.6" stroke="var(--gold-bright)" stroke-width="0.7" fill="none"/>
+          <circle cx="458.5" cy="410.5" r="2.9" stroke="var(--gold-bright)" stroke-width="1.2" fill="none"/>
+          <circle cx="463.5" cy="410.5" r="2.9" stroke="var(--gold-bright)" stroke-width="1.2" fill="none"/>
         </g>
 
         <!-- wall band above openings -->
-        <rect x="262" y="335" width="376" height="17" fill="#EFE7D6" stroke="var(--ink)" stroke-width="1.2"/>
+        <rect x="262" y="335" width="376" height="17" fill="#EFE7D6"/>
 
         <!-- side bays: glowing lattice windows -->
         <g class="flicker">
@@ -93,29 +97,25 @@
           <rect x="290" y="348" width="93" height="96" fill="url(#windowGlow)" opacity="0.75"/>
           <g stroke="#6B4A33" stroke-width="1.6">
             <rect x="296" y="360" width="81" height="72" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 304 360 V 432 M 312 360 V 432 M 320 360 V 432 M 328 360 V 432 M 336 360 V 432 M 344 360 V 432 M 352 360 V 432 M 360 360 V 432 M 368 360 V 432" stroke-width="1"/>
-            <path d="M 296 380 H 377 M 296 412 H 377" stroke-width="1.6"/>
+            <path d="M 323 360 V 432 M 350 360 V 432 M 296 384 H 377 M 296 408 H 377"/>
           </g>
           <rect x="511" y="352" width="105" height="88" fill="#F3ECDD" stroke="var(--ink)" stroke-width="1.4"/>
           <rect x="517" y="348" width="93" height="96" fill="url(#windowGlow)" opacity="0.75"/>
           <g stroke="#6B4A33" stroke-width="1.6">
             <rect x="523" y="360" width="81" height="72" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 531 360 V 432 M 539 360 V 432 M 547 360 V 432 M 555 360 V 432 M 563 360 V 432 M 571 360 V 432 M 579 360 V 432 M 587 360 V 432 M 595 360 V 432" stroke-width="1"/>
-            <path d="M 523 380 H 604 M 523 412 H 604" stroke-width="1.6"/>
+            <path d="M 550 360 V 432 M 577 360 V 432 M 523 384 H 604 M 523 408 H 604"/>
           </g>
         </g>
 
         <!-- sliding doors (JS slides them apart) -->
         <g id="doorL">
           <rect x="397" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
-          <path d="M 403 352 V 440 M 409 352 V 440 M 415 352 V 440 M 421 352 V 440 M 427 352 V 440 M 433 352 V 440 M 439 352 V 440 M 445 352 V 440" stroke="#6B4A33" stroke-width="1"/>
-          <path d="M 397 368 H 450 M 397 424 H 450" stroke="#6B4A33" stroke-width="1.6"/>
+          <path d="M 415 352 V 440 M 433 352 V 440 M 397 381 H 450 M 397 410 H 450" stroke="#6B4A33" stroke-width="1.4"/>
           <circle cx="443" cy="397" r="2.4" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
         </g>
         <g id="doorR">
           <rect x="450" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
-          <path d="M 456 352 V 440 M 462 352 V 440 M 468 352 V 440 M 474 352 V 440 M 480 352 V 440 M 486 352 V 440 M 492 352 V 440 M 498 352 V 440" stroke="#6B4A33" stroke-width="1"/>
-          <path d="M 450 368 H 503 M 450 424 H 503" stroke="#6B4A33" stroke-width="1.6"/>
+          <path d="M 467 352 V 440 M 485 352 V 440 M 450 381 H 503 M 450 410 H 503" stroke="#6B4A33" stroke-width="1.4"/>
           <circle cx="457" cy="397" r="2.4" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
         </g>
 
@@ -132,45 +132,28 @@
         <circle cx="282" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="306" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="330" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="354" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="378" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="402" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="426" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="450" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="474" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="498" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="522" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="546" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="570" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="594" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="618" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/>
         <path d="M 262 333 H 638" stroke="var(--gold)" stroke-width="1.6" opacity="0.9"/>
 
-        <!-- roof -->
-        <path d="M 180 318 Q 450 368 720 318 C 665 275 615 250 570 240 Q 450 231 330 240 C 285 250 235 275 180 318 Z"
+        <!-- roof · concave giwa sweep -->
+        <path d="M 180 300 Q 450 360 720 300 C 668 291 616 262 570 238 Q 450 229 330 238 C 284 262 232 291 180 300 Z"
           fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M 205 324 Q 450 362 695 324" stroke="#3B454F" stroke-width="2" opacity="0.7"/>
+        <path d="M 205 306 Q 450 352 695 306" stroke="#3B454F" stroke-width="2" opacity="0.7"/>
         <g stroke="#39434D" stroke-width="1.3" opacity="0.35" fill="none">
-          <path d="M 450 233 L 450 341"/>
-          <path d="M 395 236 Q 390 290 372 334"/>
-          <path d="M 505 236 Q 510 290 528 334"/>
-          <path d="M 340 242 Q 325 288 292 326"/>
-          <path d="M 560 242 Q 575 288 608 326"/>
+          <path d="M 450 231 L 450 333"/>
+          <path d="M 395 233 Q 392 283 378 322"/>
+          <path d="M 505 233 Q 508 283 522 322"/>
+          <path d="M 342 238 Q 330 276 300 306"/>
+          <path d="M 558 238 Q 570 276 600 306"/>
         </g>
-        <path d="M 180 318 Q 450 368 720 318" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
-        <path d="M 330 240 q -8 -4 -6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M 570 240 q 8 -4 6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M 330 240 Q 450 231 570 240" stroke="#2B2620" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 338 247 Q 450 238.5 562 247" stroke="#E8E4DA" stroke-width="2.6" stroke-linecap="round" opacity="0.95"/>
-        <path d="M 186 313 Q 450 361 714 313" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
-        <path d="M 334 234 Q 450 225 566 234" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
-        <g>
-          <circle cx="212" cy="327" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="242" cy="332" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="272" cy="336" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="302" cy="339" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="331" cy="342" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="361" cy="344" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="391" cy="345" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="420" cy="346" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="450" cy="346" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="480" cy="346" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="509" cy="345" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="539" cy="344" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="569" cy="342" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="598" cy="339" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="628" cy="336" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="658" cy="332" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-          <circle cx="688" cy="327" r="2.9" fill="#EDE7D9" stroke="#2B2620" stroke-width="1"/>
-        </g>
+        <path d="M 180 300 C 232 291 284 262 330 238" stroke="var(--ink)" stroke-width="2.2" fill="none"/>
+        <path d="M 720 300 C 668 291 616 262 570 238" stroke="var(--ink)" stroke-width="2.2" fill="none"/>
+        <path d="M 180 300 Q 450 360 720 300" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
+        <path d="M 330 238 q -8 -4 -6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 570 238 q 8 -4 6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 330 238 Q 450 229 570 238" stroke="#2B2620" stroke-width="6" stroke-linecap="round"/>
+        <path d="M 338 245 Q 450 236.5 562 245" stroke="#E8E4DA" stroke-width="2.6" stroke-linecap="round" opacity="0.95"/>
+        <path d="M 186 295 Q 450 353 714 295" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
+        <path d="M 334 232 Q 450 223 566 232" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
 
-        <!-- the couple, walking up to the steps (JS moves them; drawn in front) -->
+        <!-- the couple, walking up to the steps (JS moves them) -->
         <g id="sceneCouple" opacity="0" transform="translate(-150 0)">
           <!-- him · gwanbok: deep-blue robe, red belt, black samo hat -->
           <ellipse cx="420" cy="470" rx="13" ry="2.4" fill="var(--ink)" opacity="0.14"/>
@@ -200,7 +183,7 @@
 
         <!-- 현판 · the name plaque above the doors -->
         <g id="plaque">
-          <path d="M 338 248 L 352 280 M 562 248 L 548 280" stroke="#3A2E22" stroke-width="2.2"/>
+          <path d="M 338 245 L 352 280 M 562 245 L 548 280" stroke="#3A2E22" stroke-width="2.2"/>
           <rect x="310" y="278" width="280" height="66" rx="5" fill="#352A1E" stroke="var(--gold)" stroke-width="3"/>
           <rect x="318" y="286" width="264" height="50" rx="3" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.6"/>
           <text x="450" y="313" text-anchor="middle" font-size="15.5" font-weight="500" fill="var(--gold-bright)" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="0.4">Tan Hae San &amp; Kristal Wong</text>
@@ -210,14 +193,14 @@
         <!-- eave lanterns -->
         <g>
           <circle cx="208" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
-          <path d="M 208 326 V 352" stroke="var(--ink)" stroke-width="1.4"/>
+          <path d="M 208 306 V 352" stroke="var(--ink)" stroke-width="1.4"/>
           <ellipse cx="208" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
           <path d="M 200 358 H 216 M 200 390 H 216" stroke="var(--gold)" stroke-width="1.6"/>
           <path d="M 208 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
         </g>
         <g>
           <circle cx="692" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
-          <path d="M 692 326 V 352" stroke="var(--ink)" stroke-width="1.4"/>
+          <path d="M 692 306 V 352" stroke="var(--ink)" stroke-width="1.4"/>
           <ellipse cx="692" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
           <path d="M 684 358 H 700 M 684 390 H 700" stroke="var(--gold)" stroke-width="1.6"/>
           <path d="M 692 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>

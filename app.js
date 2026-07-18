@@ -217,7 +217,7 @@ function renderScene() {
   doorR.setAttribute("transform", "translate(" + d + " 0)");
 
   // 4 · stepping into the light → memory lane
-  hanokWash.style.opacity = String(ease((p - 0.86) / 0.13));
+  hanokWash.style.opacity = String(ease((p - 0.8) / 0.15));
   if (caption) caption.classList.toggle("visible", p > 0.92);
 }
 
