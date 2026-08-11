@@ -25,7 +25,7 @@ const RSVP_ENDPOINT = "";
       r: petal ? 3 + depth * 2.4 : 0.8 + depth * 1.9,
       vy: (petal ? 14 : 11) + depth * 21,          // px / s
       phase: Math.random() * Math.PI * 2,
-      spin: (Math.random() - 0.5) * 2.2,
+      spin: (Math.random() - 0.5) * (petal ? 2.2 : 0.8),
       rot: Math.random() * Math.PI * 2,
     };
   }
@@ -73,12 +73,28 @@ const RSVP_ENDPOINT = "";
         ctx.fill();
         ctx.restore();
       } else {
-        // soft ink-wash flakes so they read on rice paper
-        ctx.globalAlpha = 0.25 + f.depth * 0.4;
-        ctx.fillStyle = "#A8B6C2";
+        // six-armed snowflakes, slowly turning as they fall
+        ctx.save();
+        ctx.translate(f.x, f.y);
+        ctx.rotate(f.rot);
+        ctx.globalAlpha = 0.3 + f.depth * 0.4;
+        ctx.strokeStyle = "#A8B6C2";
+        ctx.lineWidth = Math.max(0.6, f.r * 0.3);
+        ctx.lineCap = "round";
+        const arm = f.r * 2.3;
         ctx.beginPath();
-        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-        ctx.fill();
+        for (let k = 0; k < 3; k++) {
+          ctx.rotate(Math.PI / 3);
+          ctx.moveTo(-arm, 0);
+          ctx.lineTo(arm, 0);
+          if (f.r > 1.7) {                     // branch ticks on the larger flakes
+            const t = arm * 0.55, s = arm * 0.28;
+            ctx.moveTo(t - s, -s); ctx.lineTo(t, 0); ctx.lineTo(t - s, s);
+            ctx.moveTo(-(t - s), -s); ctx.lineTo(-t, 0); ctx.lineTo(-(t - s), s);
+          }
+        }
+        ctx.stroke();
+        ctx.restore();
       }
     }
     ctx.globalAlpha = 1;
