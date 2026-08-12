@@ -196,6 +196,32 @@ body {
   clip-path: inset(50%);
 }
 
+.scroll-cue {
+  position: absolute;
+  bottom: 2.4svh;
+  right: 2.2rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.scroll-cue span {
+  width: 11px;
+  height: 11px;
+  border-right: 2px solid var(--ink-soft);
+  border-bottom: 2px solid var(--ink-soft);
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: cueDrop 1.7s ease-in-out infinite;
+}
+.scroll-cue span:last-child { animation-delay: 0.28s; }
+@keyframes cueDrop {
+  0% { opacity: 0; transform: rotate(45deg) translate(-4px, -4px); }
+  45% { opacity: 0.85; }
+  100% { opacity: 0; transform: rotate(45deg) translate(4px, 4px); }
+}
+
 .scroll-hint {
   position: absolute;
   bottom: 1.8rem; left: 50%;
@@ -826,11 +852,39 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hanok-wash { display: none; }
   .opening-hero { position: static; opacity: 1 !important; transform: none !important; padding: 4rem 1.5rem 1rem; animation: none; }
   .opening-cta { position: static; display: block; width: fit-content; margin: 1.2rem auto; transform: none; opacity: 1 !important; }
-  .scroll-hint { display: none; }
+  .scroll-cue {
+  position: absolute;
+  bottom: 2.4svh;
+  right: 2.2rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.scroll-cue span {
+  width: 11px;
+  height: 11px;
+  border-right: 2px solid var(--ink-soft);
+  border-bottom: 2px solid var(--ink-soft);
+  transform: rotate(45deg);
+  opacity: 0;
+  animation: cueDrop 1.7s ease-in-out infinite;
+}
+.scroll-cue span:last-child { animation-delay: 0.28s; }
+@keyframes cueDrop {
+  0% { opacity: 0; transform: rotate(45deg) translate(-4px, -4px); }
+  45% { opacity: 0.85; }
+  100% { opacity: 0; transform: rotate(45deg) translate(4px, 4px); }
+}
+
+.scroll-hint { display: none; }
   #sceneCouple { opacity: 1 !important; transform: none !important; }
   .seal, .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,
   .hanok-svg .flame, .hanok-svg .flame-glow,
   .scroll-line { animation: none !important; }
+  .scroll-cue span { animation: none !important; opacity: 0.6; }
+  .scroll-cue { position: static; margin: 0.5rem auto 1rem; }
   #snow { display: none; }
 }
 
@@ -847,6 +901,8 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hero-cta { padding: 0.85rem 2rem; }
 
   .hanok-scene { height: 320vh; }
+  .scroll-cue { right: 1.1rem; bottom: 2svh; }
+  .scroll-cue span { width: 9px; height: 9px; }
   .scene-caption { padding: 0 1.5rem; }
   .scroll-hint span { display: none; }        /* just the breathing line — less clutter */
 

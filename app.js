@@ -167,6 +167,7 @@ const openingHero = document.getElementById("openingHero");
 const plaque = document.getElementById("plaque");
 const openingCta = document.getElementById("openingCta");
 const scrollHint = document.getElementById("scrollHint");
+const scrollCue = document.getElementById("scrollCue");
 const plumBranch = document.querySelector(".hanok-sticky .plum");
 
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
@@ -199,6 +200,7 @@ function renderScene() {
     openingCta.style.pointerEvents = heroGone > 0.5 ? "none" : "auto";
   }
   if (scrollHint) scrollHint.style.opacity = String(1 - heroGone);
+  if (scrollCue) scrollCue.style.opacity = String(1 - heroGone);
   if (plumBranch) plumBranch.style.opacity = String(0.95 * (1 - ease((p - 0.24) / 0.2)));
 
   // 1 · the walk — the couple crosses toward the steps
