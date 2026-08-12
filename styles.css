@@ -258,6 +258,30 @@ body {
 }
 
 .hanok-svg .flicker { animation: windowFlicker 5s ease-in-out infinite; }
+
+/* candle flames — alive */
+.hanok-svg .flame {
+  transform-box: fill-box;
+  transform-origin: 50% 92%;
+  animation: flameDance 1.15s ease-in-out infinite;
+}
+.hanok-svg .flame.alt { animation-duration: 1.45s; animation-delay: -0.6s; }
+@keyframes flameDance {
+  0%, 100% { transform: scale(1, 1) rotate(0deg); }
+  22% { transform: scale(0.92, 1.12) rotate(-2.6deg); }
+  45% { transform: scale(1.07, 0.93) rotate(2deg); }
+  68% { transform: scale(0.95, 1.08) rotate(-1.4deg); }
+  85% { transform: scale(1.04, 0.96) rotate(1deg); }
+}
+.hanok-svg .flame-glow {
+  animation: glowPulse 1.15s ease-in-out infinite;
+}
+.hanok-svg .flame-glow.alt { animation-duration: 1.45s; animation-delay: -0.6s; }
+@keyframes glowPulse {
+  0%, 100% { opacity: 0.4; }
+  40% { opacity: 0.52; }
+  70% { opacity: 0.3; }
+}
 @keyframes windowFlicker {
   0%, 100% { filter: brightness(1); }
   40% { filter: brightness(1.12); }
@@ -805,6 +829,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .scroll-hint { display: none; }
   #sceneCouple { opacity: 1 !important; transform: none !important; }
   .seal, .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,
+  .hanok-svg .flame, .hanok-svg .flame-glow,
   .scroll-line { animation: none !important; }
   #snow { display: none; }
 }

@@ -86,12 +86,16 @@
           <rect x="432" y="420" width="3" height="10" fill="#6B4A33"/>
           <rect x="465" y="420" width="3" height="10" fill="#6B4A33"/>
           <!-- a pair of wedding candles, a teapot, two cups -->
-          <circle cx="433.5" cy="400" r="5" fill="var(--gold-bright)" opacity="0.4" filter="url(#glowSoft)"/>
-          <circle cx="466.5" cy="400" r="5" fill="var(--gold-bright)" opacity="0.4" filter="url(#glowSoft)"/>
-          <path d="M 433.5 397.4 q 1.6 2.2 0 3.8 q -1.6 -1.6 0 -3.8 Z" fill="#F6C96B" stroke="none"/>
-          <circle cx="433.5" cy="399.9" r="0.6" fill="#FBEBC8"/>
-          <path d="M 466.5 397.4 q 1.6 2.2 0 3.8 q -1.6 -1.6 0 -3.8 Z" fill="#F6C96B" stroke="none"/>
-          <circle cx="466.5" cy="399.9" r="0.6" fill="#FBEBC8"/>
+          <circle class="flame-glow" cx="433.5" cy="400" r="5" fill="var(--gold-bright)" opacity="0.4" filter="url(#glowSoft)"/>
+          <circle class="flame-glow alt" cx="466.5" cy="400" r="5" fill="var(--gold-bright)" opacity="0.4" filter="url(#glowSoft)"/>
+          <g class="flame">
+            <path d="M 433.5 397.4 q 1.6 2.2 0 3.8 q -1.6 -1.6 0 -3.8 Z" fill="#F6C96B" stroke="none"/>
+            <circle cx="433.5" cy="399.9" r="0.6" fill="#FBEBC8"/>
+          </g>
+          <g class="flame alt">
+            <path d="M 466.5 397.4 q 1.6 2.2 0 3.8 q -1.6 -1.6 0 -3.8 Z" fill="#F6C96B" stroke="none"/>
+            <circle cx="466.5" cy="399.9" r="0.6" fill="#FBEBC8"/>
+          </g>
           <rect x="432.5" y="401.8" width="2" height="10.4" rx="0.5" fill="#C6503A" stroke="#8C2F22" stroke-width="0.4"/>
           <rect x="465.5" y="401.8" width="2" height="10.4" rx="0.5" fill="#C6503A" stroke="#8C2F22" stroke-width="0.4"/>
           <path d="M 431 414 L 431.7 412 H 435.3 L 436 414 Z" fill="var(--gold)" stroke="#7A5A1F" stroke-width="0.4" stroke-linejoin="round"/>
