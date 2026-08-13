@@ -204,13 +204,30 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
+}
+@media (orientation: portrait) {
+  .scroll-cue {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(3svh + 62px);
+  }
+}
+.scroll-cue em {
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+  margin-left: 0.34em;
 }
 .scroll-cue span {
-  width: 11px;
-  height: 11px;
-  border-right: 2px solid var(--ink-soft);
-  border-bottom: 2px solid var(--ink-soft);
+  width: 15px;
+  height: 15px;
+  border-right: 2.4px solid var(--gold);
+  border-bottom: 2.4px solid var(--gold);
   transform: rotate(45deg);
   opacity: 0;
   animation: cueDrop 1.7s ease-in-out infinite;
@@ -299,6 +316,23 @@ body {
   68% { transform: scale(0.95, 1.08) rotate(-1.4deg); }
   85% { transform: scale(1.04, 0.96) rotate(1deg); }
 }
+/* tea steam — curling upward */
+.hanok-svg .steam {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  opacity: 0;
+  animation: steamRise 2.4s ease-out infinite;
+}
+.hanok-svg .steam.d2 { animation-delay: 1.2s; }
+.hanok-svg .steam.d3 { animation-delay: 0.5s; }
+.hanok-svg .steam.d4 { animation-delay: 1.7s; }
+@keyframes steamRise {
+  0% { transform: translate(0, 1.6px) scale(0.85); opacity: 0; }
+  25% { opacity: 0.85; }
+  55% { transform: translate(0.35px, -0.9px) scale(0.98); opacity: 0.55; }
+  100% { transform: translate(-0.25px, -3.4px) scale(1.1); opacity: 0; }
+}
+
 .hanok-svg .flame-glow {
   animation: glowPulse 1.15s ease-in-out infinite;
 }
@@ -860,13 +894,30 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
+  gap: 3px;
+}
+@media (orientation: portrait) {
+  .scroll-cue {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: calc(3svh + 62px);
+  }
+}
+.scroll-cue em {
+  font-style: normal;
+  font-size: 0.72rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.35rem;
+  margin-left: 0.34em;
 }
 .scroll-cue span {
-  width: 11px;
-  height: 11px;
-  border-right: 2px solid var(--ink-soft);
-  border-bottom: 2px solid var(--ink-soft);
+  width: 15px;
+  height: 15px;
+  border-right: 2.4px solid var(--gold);
+  border-bottom: 2.4px solid var(--gold);
   transform: rotate(45deg);
   opacity: 0;
   animation: cueDrop 1.7s ease-in-out infinite;
@@ -884,6 +935,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hanok-svg .flame, .hanok-svg .flame-glow,
   .scroll-line { animation: none !important; }
   .scroll-cue span { animation: none !important; opacity: 0.6; }
+  .hanok-svg .steam { animation: none !important; opacity: 0.7; }
   .scroll-cue { position: static; margin: 0.5rem auto 1rem; }
   #snow { display: none; }
 }
@@ -901,8 +953,8 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hero-cta { padding: 0.85rem 2rem; }
 
   .hanok-scene { height: 320vh; }
-  .scroll-cue { right: 1.1rem; bottom: 2svh; }
-  .scroll-cue span { width: 9px; height: 9px; }
+  .scroll-cue span { width: 12px; height: 12px; }
+  .scroll-cue em { font-size: 0.64rem; }
   .scene-caption { padding: 0 1.5rem; }
   .scroll-hint span { display: none; }        /* just the breathing line — less clutter */
 
