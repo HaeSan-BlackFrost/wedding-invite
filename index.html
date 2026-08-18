@@ -438,25 +438,24 @@
         <div class="timeline-time">5:00 <span>PM</span></div>
         <div class="timeline-body">
           <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 10h11q1 6-5.5 6T5 10Z"/><path d="M16 11q3 -0.5 2.6 2q-0.4 2 -3 1.4"/><path d="M9 7q1 -1.5 0 -3M13 7q1 -1.5 0 -3" opacity=".6"/></g></svg>Tea Ceremony <span class="hanja" lang="zh">敬茶</span></h3>
-          <p>In the Garden Room — honouring our parents and elders with the traditional serving of tea.</p>
+          <p>Honouring our parents and elders with the traditional serving of tea.</p>
         </div>
       </li>
       <li class="timeline-item reveal">
         <div class="timeline-time">6:00 <span>PM</span></div>
         <div class="timeline-body">
           <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9.5" cy="13" r="5"/><circle cx="14.5" cy="13" r="5"/><path d="M12 5l1.5 2h-3Z" stroke-linejoin="round"/></g></svg>Solemnization <span class="hanja" lang="ko">혼인 서약</span></h3>
-          <p>By the pool — the exchange of vows, witnessed by family and friends against the Sentosa sea.</p>
+          <p>The exchange of vows by the pool, against the Sentosa sea.</p>
         </div>
       </li>
       <li class="timeline-item reveal">
         <div class="timeline-time">7:00 <span>PM</span></div>
         <div class="timeline-body">
           <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="12" rx="6" ry="7.5"/><path d="M9 5.5h6M9 18.5h6M12 19v2.5"/></g></svg>Evening Banquet <span class="hanja" lang="zh">晚宴</span></h3>
-          <p>Cocktails in the Garden Room from 6:20, ballroom doors at 7:00 — dinner, toasts, and celebration late into the evening.</p>
+          <p>Dinner, toasts, and celebration late into the evening.</p>
         </div>
       </li>
     </ol>
-    <p class="fine-note">Registration opens in the Garden Room from 4:30 PM.</p>
   </div>
 </section>
 
@@ -469,6 +468,13 @@
       <svg viewBox="0 0 120 20"><path d="M 5 6 Q 60 20 115 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
     <p class="venue-sub">4 Bukit Manis Road · Sentosa Island · Singapore</p>
+
+    <!-- real venue photo: drop venue-photo.jpg into the site folder and this replaces the illustration -->
+    <div class="venue-photo reveal" id="venuePhoto" hidden>
+      <img src="venue-photo.jpg" alt="Raffles Sentosa, Singapore"
+        onload="document.getElementById('venuePhoto').hidden = false; document.querySelector('.venue-art').style.display = 'none';"
+        onerror="this.closest('#venuePhoto').remove();">
+    </div>
 
     <!-- ink-wash impression of the resort by the sea -->
     <div class="venue-art reveal" aria-hidden="true">
