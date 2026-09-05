@@ -214,29 +214,36 @@ body {
     bottom: calc(3svh + 62px);
   }
 }
+.scroll-cue { cursor: pointer; animation: cueBob 1.7s ease-in-out infinite; }
 .scroll-cue em {
   font-style: normal;
-  font-size: 0.72rem;
-  letter-spacing: 0.34em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.35rem;
-  margin-left: 0.34em;
+  margin-bottom: 0.45rem;
+  margin-left: 0.36em;
 }
 .scroll-cue span {
-  width: 15px;
-  height: 15px;
-  border-right: 2.4px solid var(--gold);
-  border-bottom: 2.4px solid var(--gold);
+  width: 19px;
+  height: 19px;
+  border-right: 3.2px solid var(--gold);
+  border-bottom: 3.2px solid var(--gold);
+  border-radius: 1px;
   transform: rotate(45deg);
   opacity: 0;
   animation: cueDrop 1.7s ease-in-out infinite;
 }
-.scroll-cue span:last-child { animation-delay: 0.28s; }
+.scroll-cue span:last-child { animation-delay: 0.28s; margin-top: -7px; }
 @keyframes cueDrop {
-  0% { opacity: 0; transform: rotate(45deg) translate(-4px, -4px); }
-  45% { opacity: 0.85; }
-  100% { opacity: 0; transform: rotate(45deg) translate(4px, 4px); }
+  0% { opacity: 0; transform: rotate(45deg) translate(-5px, -5px); }
+  45% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(45deg) translate(6px, 6px); }
+}
+@keyframes cueBob {
+  0%, 100% { margin-bottom: 0; }
+  50% { margin-bottom: 7px; }
 }
 
 .scroll-hint {
@@ -919,29 +926,36 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
     bottom: calc(3svh + 62px);
   }
 }
+.scroll-cue { cursor: pointer; animation: cueBob 1.7s ease-in-out infinite; }
 .scroll-cue em {
   font-style: normal;
-  font-size: 0.72rem;
-  letter-spacing: 0.34em;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 0.35rem;
-  margin-left: 0.34em;
+  margin-bottom: 0.45rem;
+  margin-left: 0.36em;
 }
 .scroll-cue span {
-  width: 15px;
-  height: 15px;
-  border-right: 2.4px solid var(--gold);
-  border-bottom: 2.4px solid var(--gold);
+  width: 19px;
+  height: 19px;
+  border-right: 3.2px solid var(--gold);
+  border-bottom: 3.2px solid var(--gold);
+  border-radius: 1px;
   transform: rotate(45deg);
   opacity: 0;
   animation: cueDrop 1.7s ease-in-out infinite;
 }
-.scroll-cue span:last-child { animation-delay: 0.28s; }
+.scroll-cue span:last-child { animation-delay: 0.28s; margin-top: -7px; }
 @keyframes cueDrop {
-  0% { opacity: 0; transform: rotate(45deg) translate(-4px, -4px); }
-  45% { opacity: 0.85; }
-  100% { opacity: 0; transform: rotate(45deg) translate(4px, 4px); }
+  0% { opacity: 0; transform: rotate(45deg) translate(-5px, -5px); }
+  45% { opacity: 1; }
+  100% { opacity: 0; transform: rotate(45deg) translate(6px, 6px); }
+}
+@keyframes cueBob {
+  0%, 100% { margin-bottom: 0; }
+  50% { margin-bottom: 7px; }
 }
 
 .scroll-hint { display: none; }
@@ -949,7 +963,8 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .seal, .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,
   .hanok-svg .flame, .hanok-svg .flame-glow,
   .scroll-line { animation: none !important; }
-  .scroll-cue span { animation: none !important; opacity: 0.6; }
+  .scroll-cue { animation: none !important; }
+  .scroll-cue span { animation: none !important; opacity: 0.8; }
   .hanok-svg .steam { animation: none !important; opacity: 0.7; }
   .scroll-cue { position: static; margin: 0.5rem auto 1rem; }
   #snow { display: none; }
@@ -968,8 +983,8 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hero-cta { padding: 0.85rem 2rem; }
 
   .hanok-scene { height: 320vh; }
-  .scroll-cue span { width: 12px; height: 12px; }
-  .scroll-cue em { font-size: 0.64rem; }
+  .scroll-cue span { width: 16px; height: 16px; }
+  .scroll-cue em { font-size: 0.74rem; }
   .scene-caption { padding: 0 1.5rem; }
   .scroll-hint span { display: none; }        /* just the breathing line — less clutter */
 

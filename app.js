@@ -170,6 +170,12 @@ const scrollHint = document.getElementById("scrollHint");
 const scrollCue = document.getElementById("scrollCue");
 const plumBranch = document.querySelector(".hanok-sticky .plum");
 
+if (scrollCue) {
+  scrollCue.addEventListener("click", () => {
+    window.scrollTo({ top: window.innerHeight * 1.4, behavior: "smooth" });
+  });
+}
+
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const ease = (t) => { t = clamp01(t); return t * t * (3 - 2 * t); };
 
