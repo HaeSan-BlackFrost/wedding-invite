@@ -796,7 +796,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
 .choice {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
+  gap: 0.85rem;
   padding: 0.8rem 1.2rem;
   border: 1px solid var(--hairline);
   border-radius: 4px;
@@ -815,7 +815,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   background: rgba(184, 67, 47, 0.06);
   box-shadow: 0 4px 14px rgba(184, 67, 47, 0.1);
 }
-.choice input { accent-color: var(--vermilion); }
+.choice input { accent-color: var(--vermilion); width: 1.05rem; height: 1.05rem; flex-shrink: 0; }
 
 .field-hint {
   margin-top: 0.5rem;
@@ -985,6 +985,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hanok-scene { height: 320vh; }
   .scroll-cue span { width: 16px; height: 16px; }
   .scroll-cue em { font-size: 0.74rem; }
+  .venue-photo img { aspect-ratio: 16 / 9; }
   .scene-caption { padding: 0 1.5rem; }
   .scroll-hint span { display: none; }        /* just the breathing line — less clutter */
 
