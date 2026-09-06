@@ -222,11 +222,9 @@ function renderScene() {
   const portrait = isPortrait();
   const vw = window.innerWidth;
   const sliceScale = Math.max(vw / 900, vh / 600);
-  const s0 = Math.min((vh / sliceScale) / 360, (vw / sliceScale) / (portrait ? 580 : 470));
-  // phones: the plaque leans larger so the names stay readable
-  if (plaque) {
-    plaque.setAttribute("transform", portrait ? "translate(450 311) scale(1.32) translate(-450 -311)" : "");
-  }
+  // portrait crops the roof tips so the house stands tall in frame
+  const s0 = Math.min((vh / sliceScale) / 360, (vw / sliceScale) / (portrait ? 310 : 470));
+  if (plaque) plaque.setAttribute("transform", "");
   const zt = ease((p - 0.2) / 0.6);
   const s = s0 + zt * zt * (6.8 - s0);
   const fy = 335 + ease((p - 0.26) / 0.48) * 61;    // house centre → door centre

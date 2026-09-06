@@ -149,6 +149,7 @@ body {
 
 .hero-cta {
   display: inline-block;
+  white-space: nowrap;
   margin-top: 1rem;
   padding: 0.75rem 2.2rem;
   border: 1px solid var(--gold);
@@ -211,7 +212,7 @@ body {
     right: auto;
     left: 50%;
     transform: translateX(-50%);
-    bottom: calc(3svh + 62px);
+    bottom: calc(3svh + 72px);
   }
 }
 .scroll-cue { cursor: pointer; animation: cueBob 1.7s ease-in-out infinite; }
@@ -923,7 +924,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
     right: auto;
     left: 50%;
     transform: translateX(-50%);
-    bottom: calc(3svh + 62px);
+    bottom: calc(3svh + 72px);
   }
 }
 .scroll-cue { cursor: pointer; animation: cueBob 1.7s ease-in-out infinite; }
@@ -980,7 +981,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.16em; }
   .hero-date { font-size: 1.05rem; }
   .hero-venue { letter-spacing: 0.2em; font-size: 0.76rem; }
-  .hero-cta { padding: 0.85rem 2rem; }
+  .hero-cta { padding: 0.85rem 1.7rem; font-size: 0.8rem; letter-spacing: 0.22em; }
 
   .hanok-scene { height: 320vh; }
   .scroll-cue span { width: 16px; height: 16px; }
