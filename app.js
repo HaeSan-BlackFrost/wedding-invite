@@ -223,11 +223,12 @@ function renderScene() {
   const vw = window.innerWidth;
   const sliceScale = Math.max(vw / 900, vh / 600);
   // portrait crops the roof tips so the house stands tall in frame
-  const s0 = Math.min((vh / sliceScale) / 360, (vw / sliceScale) / (portrait ? 310 : 470));
+  const s0 = Math.min((vh / sliceScale) / (portrait ? 385 : 490), (vw / sliceScale) / (portrait ? 340 : 470));
   if (plaque) plaque.setAttribute("transform", "");
   const zt = ease((p - 0.2) / 0.6);
   const s = s0 + zt * zt * (6.8 - s0);
-  const fy = 335 + ease((p - 0.26) / 0.48) * 61;    // house centre → door centre
+  const fy0 = portrait ? 292 : 290;                 // tower centre, seated a touch low
+  const fy = fy0 + ease((p - 0.26) / 0.48) * (396 - fy0);
   cam.setAttribute(
     "transform",
     "translate(450 300) scale(" + s + ") translate(-450 " + -fy + ")"

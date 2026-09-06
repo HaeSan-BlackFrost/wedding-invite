@@ -306,6 +306,8 @@ body {
   width: 100%;
   height: 100%;
   display: block;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
 }
 
 .hanok-svg .flicker { animation: windowFlicker 5s ease-in-out infinite; }
