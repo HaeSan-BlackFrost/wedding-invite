@@ -223,7 +223,7 @@ function renderScene() {
   const vw = window.innerWidth;
   const sliceScale = Math.max(vw / 900, vh / 600);
   // portrait crops the roof tips so the house stands tall in frame
-  const s0 = Math.min((vh / sliceScale) / (portrait ? 385 : 490), (vw / sliceScale) / (portrait ? 340 : 470));
+  const s0 = Math.min((vh / sliceScale) / (portrait ? 385 : 490), (vw / sliceScale) / (portrait ? 440 : 460));
   if (plaque) plaque.setAttribute("transform", "");
   const zt = ease((p - 0.2) / 0.6);
   const s = s0 + zt * zt * (6.8 - s0);
