@@ -48,6 +48,24 @@
           <stop offset="55%" stop-color="#F5EFE2"/>
           <stop offset="100%" stop-color="#DACDB4"/>
         </radialGradient>
+        <linearGradient id="roofGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#5D6B79"/>
+          <stop offset="100%" stop-color="#3E4A56"/>
+        </linearGradient>
+        <linearGradient id="colGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#AB5340"/>
+          <stop offset="45%" stop-color="#8A3427"/>
+          <stop offset="100%" stop-color="#6E2A1F"/>
+        </linearGradient>
+        <linearGradient id="shadeGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#23201B" stop-opacity="0.16"/>
+          <stop offset="100%" stop-color="#23201B" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="stoneGrad" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#E4DDCC"/>
+          <stop offset="50%" stop-color="#D5CDB9"/>
+          <stop offset="100%" stop-color="#C4BBA5"/>
+        </linearGradient>
         <linearGradient id="skyHint" gradientUnits="userSpaceOnUse" x1="0" y1="-150" x2="0" y2="220">
           <stop offset="0%" stop-color="#F3E9D5" stop-opacity="0.65"/>
           <stop offset="100%" stop-color="#F3E9D5" stop-opacity="0"/>
@@ -69,15 +87,36 @@
         <path d="M 780 470 Q 980 366 1180 470 Z" fill="var(--wash)" opacity="0.5"/>
         <path d="M -1400 470 H 2300" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
 
-        <!-- ══ stone platform + steps ══ -->
-        <rect x="240" y="440" width="420" height="30" fill="#E9E0CE" stroke="var(--ink)" stroke-width="2"/>
-        <path d="M 258 455 H 642" stroke="var(--ink)" stroke-width="1" opacity="0.35"/>
-        <rect x="418" y="462" width="64" height="8" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
-        <rect x="424" y="455" width="52" height="7" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
-        <rect x="430" y="448" width="40" height="7" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
-
-        <!-- ground-floor body (walls first; the doorway reveals the room) -->
-        <rect x="260" y="335" width="380" height="105" fill="#F3ECDD" stroke="var(--ink)" stroke-width="2"/>
+        <!-- ══ Gwanghwamun gate · granite base ══ -->
+        <ellipse cx="450" cy="471" rx="240" ry="7" fill="#23201B" opacity="0.08"/>
+        <rect x="268" y="336" width="364" height="134" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="2"/>
+        <path d="M 268 363 H 632" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 268 390 H 632" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 268 416 H 632" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 268 443 H 632" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 290 336 V 363" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 350 336 V 363" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 410 336 V 363" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 470 336 V 363" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 530 336 V 363" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 590 336 V 363" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 320 363 V 390" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 380 363 V 390" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 560 363 V 390" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 620 363 V 390" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 290 390 V 416" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 350 390 V 416" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 530 390 V 416" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 590 390 V 416" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 320 416 V 443" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 380 416 V 443" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 560 416 V 443" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 620 416 V 443" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 290 443 V 470" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 350 443 V 470" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 530 443 V 470" stroke="#A89E88" stroke-width="1"/>
+        <path d="M 590 443 V 470" stroke="#A89E88" stroke-width="1"/>
+        <rect x="270" y="338" width="360" height="10" fill="url(#shadeGrad)"/>
 
         <!-- interior, revealed when the doors open -->
         <rect x="397" y="352" width="106" height="88" fill="url(#interiorGrad)"/>
@@ -88,7 +127,6 @@
           <rect x="428" y="414" width="44" height="6" rx="2" fill="#6B4A33"/>
           <rect x="432" y="420" width="3" height="10" fill="#6B4A33"/>
           <rect x="465" y="420" width="3" height="10" fill="#6B4A33"/>
-          <!-- a pair of wedding candles, a teapot, two cups -->
           <circle class="flame-glow" cx="433.5" cy="400" r="5" fill="var(--gold-bright)" opacity="0.4" filter="url(#glowSoft)"/>
           <circle class="flame-glow alt" cx="466.5" cy="400" r="5" fill="var(--gold-bright)" opacity="0.4" filter="url(#glowSoft)"/>
           <g class="flame">
@@ -136,17 +174,6 @@
           <path class="steam d4" d="M 457.7 410.5 q 0.8 -0.8 0.1 -1.6 q -0.6 -0.8 0.2 -1.7" stroke="#C5CFD8" stroke-width="0.4" fill="none" stroke-linecap="round"/>
         </g>
 
-        <!-- ══ ground floor · one clean body ══ -->
-        <g class="flicker">
-          <rect x="276" y="346" width="98" height="88" fill="url(#windowGlow)" opacity="0.75"/>
-          <rect x="526" y="346" width="98" height="88" fill="url(#windowGlow)" opacity="0.75"/>
-          <g stroke="#6B4A33" stroke-width="1.4">
-            <rect x="282" y="352" width="86" height="76" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 311 352 V 428 M 340 352 V 428 M 282 377 H 368 M 282 402 H 368"/>
-            <rect x="532" y="352" width="86" height="76" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 561 352 V 428 M 590 352 V 428 M 532 377 H 618 M 532 402 H 618"/>
-          </g>
-        </g>
         <g id="doorL">
           <rect x="397" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
           <path d="M 415 352 V 440 M 433 352 V 440 M 397 381 H 450 M 397 410 H 450" stroke="#6B4A33" stroke-width="1.4"/>
@@ -157,38 +184,146 @@
           <path d="M 467 352 V 440 M 485 352 V 440 M 450 381 H 503 M 450 410 H 503" stroke="#6B4A33" stroke-width="1.4"/>
           <circle cx="457" cy="397" r="2.4" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
         </g>
-        <rect x="260" y="335" width="9" height="105" fill="#963B2A"/>
-        <rect x="631" y="335" width="9" height="105" fill="#963B2A"/>
-        <rect x="385" y="335" width="9" height="105" fill="#963B2A"/>
-        <rect x="506" y="335" width="9" height="105" fill="#963B2A"/>
+        <!-- arch masks round the doorway; doors slide into the stone -->
+        <path d="M 391 352 H 450 Q 397 353 397 380 L 397 470 H 391 Z" fill="url(#stoneGrad)"/>
+        <path d="M 509 352 H 450 Q 503 353 503 380 L 503 470 H 509 Z" fill="url(#stoneGrad)"/>
+        <path d="M 391 470 V 378 Q 391 346 450 346 Q 509 346 509 378 V 470" fill="none" stroke="#2B2620" stroke-width="2.6"/>
+        <path d="M 384 470 V 376 Q 384 339 450 339 Q 516 339 516 376 V 470" fill="none" stroke="#A89E88" stroke-width="1.4"/>
+        <path d="M 441 340 L 444 351 M 459 340 L 456 351 M 421 344 L 427 354 M 479 344 L 473 354" stroke="#A89E88" stroke-width="1.2"/>
+        <path d="M 444 338 H 456 L 453.5 350 H 446.5 Z" fill="#C2B9A3" stroke="#2B2620" stroke-width="1.2"/>
 
-        <!-- ══ skirt roof with dancheong fascia ══ -->
-        <path d="M 240 318 Q 450 346 660 318 L 596 304 Q 450 294 304 304 Z" fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M 244 315 Q 450 342 656 315" stroke="#2F4858" stroke-width="6" fill="none"/>
-        <path d="M 246 320 Q 450 347 654 320" stroke="var(--gold)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <!-- parapet -->
+        <rect x="264" y="328" width="372" height="9" fill="#963B2A" stroke="#2B2620" stroke-width="1.3"/>
+        <path d="M 268 332.5 H 632" stroke="#C9972F" stroke-width="1.2" opacity="0.9"/>
+        <rect x="278" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="311" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="344" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="377" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="410" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="443" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="476" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="509" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="542" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="575" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/> <rect x="608" y="320" width="15" height="8.5" rx="1" fill="url(#stoneGrad)" stroke="#2B2620" stroke-width="1"/>
 
-        <!-- ══ upper storey · plaque hall ══ -->
-        <rect x="310" y="235" width="280" height="70" fill="#F3ECDD" stroke="var(--ink)" stroke-width="2"/>
-        <rect x="310" y="235" width="280" height="8" fill="#2F4858"/>
-        <circle cx="324" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="345" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="366" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="387" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="408" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="429" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="450" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="471" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="492" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="513" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="534" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="555" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="576" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/>
-        <rect x="310" y="243" width="9" height="62" fill="#963B2A"/>
-        <rect x="581" y="243" width="9" height="62" fill="#963B2A"/>
+        <!-- ══ pavilion · first floor ══ -->
+        <rect x="300" y="252" width="300" height="68" fill="#F3ECDD" stroke="#2B2620" stroke-width="2"/>
+        <rect x="302" y="254" width="296" height="9" fill="url(#shadeGrad)"/>
+        <rect x="303" y="257" width="50" height="52" fill="url(#windowGlow)" opacity="0.75"/>
+        <rect x="308" y="262" width="40" height="42" fill="#F7F1E4" fill-opacity="0.94" stroke="#6B4A33" stroke-width="1.8"/>
+        <rect x="310.5" y="264.5" width="35" height="37" fill="none" stroke="#8A6A46" stroke-width="0.8" opacity="0.7"/>
+        <path d="M 328 262 V 304" stroke="#6B4A33" stroke-width="1.2"/>
+        <path d="M 308 276 H 348" stroke="#6B4A33" stroke-width="1.2"/>
+        <path d="M 308 290 H 348" stroke="#6B4A33" stroke-width="1.2"/>
+        <rect x="305" y="304" width="46" height="3.4" rx="1" fill="#6B4A33"/>
+        <rect x="547" y="257" width="50" height="52" fill="url(#windowGlow)" opacity="0.75"/>
+        <rect x="552" y="262" width="40" height="42" fill="#F7F1E4" fill-opacity="0.94" stroke="#6B4A33" stroke-width="1.8"/>
+        <rect x="554.5" y="264.5" width="35" height="37" fill="none" stroke="#8A6A46" stroke-width="0.8" opacity="0.7"/>
+        <path d="M 572 262 V 304" stroke="#6B4A33" stroke-width="1.2"/>
+        <path d="M 552 276 H 592" stroke="#6B4A33" stroke-width="1.2"/>
+        <path d="M 552 290 H 592" stroke="#6B4A33" stroke-width="1.2"/>
+        <rect x="549" y="304" width="46" height="3.4" rx="1" fill="#6B4A33"/>
+        <path d="M 302.0 252 L 301.0 320 L 311.0 320 L 310.0 252 Z" fill="url(#colGrad)" stroke="#4A1E15" stroke-width="0.8"/><rect x="299.5" y="248" width="13" height="4" rx="1.2" fill="#C9972F"/>
+        <path d="M 590.0 252 L 589.0 320 L 599.0 320 L 598.0 252 Z" fill="url(#colGrad)" stroke="#4A1E15" stroke-width="0.8"/><rect x="587.5" y="248" width="13" height="4" rx="1.2" fill="#C9972F"/>
+        <rect x="334.5" y="243" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="336.4" y="239.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="338.7" y="236.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <rect x="389.5" y="243" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="391.4" y="239.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="393.7" y="236.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <rect x="444.5" y="243" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="446.4" y="239.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="448.7" y="236.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <rect x="499.5" y="243" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="501.4" y="239.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="503.7" y="236.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <rect x="554.5" y="243" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="556.4" y="239.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="558.7" y="236.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <path d="M 262 242 Q 450 268 638 242 C 606 233 568 206 548 192 Q 450 183 352 192 C 332 206 294 233 262 242 Z" fill="url(#roofGrad)" stroke="#2B2620" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M 385 196 Q 352 221 325 246" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 417 196 Q 401 223 387 251" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 450 196 Q 450 224 450 252" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 483 196 Q 499 223 513 251" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 515 196 Q 548 221 575 246" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 262 242 Q 450 268 638 242" stroke="#778694" stroke-width="2.4" fill="none" opacity="0.85"/>
+        <path d="M 267 245 Q 450 271 633 245" stroke="#2F4858" stroke-width="6" fill="none"/>
+        <path d="M 268 249.5 Q 450 275.5 632 249.5" stroke="#C9972F" stroke-width="2" fill="none"/>
+        <rect x="281.6" y="250.4" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="305.5" y="253.5" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="329.4" y="256.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="353.3" y="258.1" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="377.2" y="259.8" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="401.1" y="261.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="425.0" y="261.7" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="448.9" y="261.9" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="472.8" y="261.7" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="496.7" y="261.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="520.6" y="259.8" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="544.5" y="258.1" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="568.4" y="256.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="592.3" y="253.5" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="616.2" y="250.4" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <path d="M 352 192 Q 450 183 548 192" stroke="#23201B" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+        <path d="M 356 186 Q 450 177.5 544 186" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" fill="none" opacity="0.92"/>
 
-        <!-- ══ crown roof ══ -->
-        <path d="M 250 210 Q 450 248 650 210 C 612 200 578 174 550 154 Q 450 145 350 154 C 322 174 288 200 250 210 Z" fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-        <g stroke="#39434D" stroke-width="1.2" opacity="0.32" fill="none">
-          <path d="M 450 147 L 450 242"/>
-          <path d="M 395 149 Q 392 195 383 235"/>
-          <path d="M 505 149 Q 508 195 517 235"/>
+        <!-- lanterns under the lower eaves -->
+        <g>
+          <circle cx="276" cy="278" r="22" fill="#B8432F" fill-opacity="0.22" filter="url(#glowSoft)"/>
+          <path d="M 276 249 V 262" stroke="#2B2620" stroke-width="1.4"/>
+          <ellipse cx="276" cy="278" rx="13" ry="16.5" fill="#B8432F" fill-opacity="0.95" stroke="#A87F2F" stroke-width="1.2"/>
+          <path d="M 269 264.5 H 283 M 269 291.5 H 283" stroke="#A87F2F" stroke-width="1.5"/>
+          <path d="M 276 294.5 V 310" stroke="#B8432F" stroke-width="1.4"/>
         </g>
-        <path d="M 250 210 C 288 200 322 174 350 154" stroke="var(--ink)" stroke-width="2" fill="none"/>
-        <path d="M 650 210 C 612 200 578 174 550 154" stroke="var(--ink)" stroke-width="2" fill="none"/>
-        <path d="M 254 207 Q 450 244 646 207" stroke="#2F4858" stroke-width="6" fill="none"/>
-        <path d="M 256 212 Q 450 249 644 212" stroke="var(--gold)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-        <path d="M 350 154 q -8 -4 -6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <path d="M 550 154 q 8 -4 6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-        <path d="M 350 154 Q 450 145 550 154" stroke="#2B2620" stroke-width="6" stroke-linecap="round" fill="none"/>
-        <path d="M 353 148 Q 450 139 547 148" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.92"/>
+        <g>
+          <circle cx="624" cy="278" r="22" fill="#B8432F" fill-opacity="0.22" filter="url(#glowSoft)"/>
+          <path d="M 624 249 V 262" stroke="#2B2620" stroke-width="1.4"/>
+          <ellipse cx="624" cy="278" rx="13" ry="16.5" fill="#B8432F" fill-opacity="0.95" stroke="#A87F2F" stroke-width="1.2"/>
+          <path d="M 617 264.5 H 631 M 617 291.5 H 631" stroke="#A87F2F" stroke-width="1.5"/>
+          <path d="M 624 294.5 V 310" stroke="#B8432F" stroke-width="1.4"/>
+        </g>
+
+        <!-- ══ pavilion · upper hall + crown ══ -->
+        <rect x="330" y="158" width="240" height="34" fill="#F3ECDD" stroke="#2B2620" stroke-width="2"/>
+        <rect x="333" y="159" width="46" height="32" fill="url(#windowGlow)" opacity="0.75"/>
+        <rect x="338" y="164" width="36" height="22" fill="#F7F1E4" fill-opacity="0.94" stroke="#6B4A33" stroke-width="1.8"/>
+        <rect x="340.5" y="166.5" width="31" height="17" fill="none" stroke="#8A6A46" stroke-width="0.8" opacity="0.7"/>
+        <path d="M 356 164 V 186" stroke="#6B4A33" stroke-width="1.2"/>
+        <path d="M 338 175 H 374" stroke="#6B4A33" stroke-width="1.2"/>
+        <rect x="335" y="186" width="42" height="3.4" rx="1" fill="#6B4A33"/>
+        <rect x="521" y="159" width="46" height="32" fill="url(#windowGlow)" opacity="0.75"/>
+        <rect x="526" y="164" width="36" height="22" fill="#F7F1E4" fill-opacity="0.94" stroke="#6B4A33" stroke-width="1.8"/>
+        <rect x="528.5" y="166.5" width="31" height="17" fill="none" stroke="#8A6A46" stroke-width="0.8" opacity="0.7"/>
+        <path d="M 544 164 V 186" stroke="#6B4A33" stroke-width="1.2"/>
+        <path d="M 526 175 H 562" stroke="#6B4A33" stroke-width="1.2"/>
+        <rect x="523" y="186" width="42" height="3.4" rx="1" fill="#6B4A33"/>
+        <rect x="366.5" y="149" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="368.4" y="145.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="370.7" y="142.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <rect x="444.5" y="149" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="446.4" y="145.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="448.7" y="142.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <rect x="522.5" y="149" width="11" height="3.4" rx="0.8" fill="#2F4858"/>
+        <rect x="524.4" y="145.8" width="7.2" height="3.4" rx="0.8" fill="#C9972F"/>
+        <rect x="526.7" y="142.8" width="2.6" height="3.2" rx="0.7" fill="#963B2A"/>
+        <path d="M 288 140 Q 450 166 612 140 C 581 131 543 105 524 92 Q 450 83 376 92 C 357 105 319 131 288 140 Z" fill="url(#roofGrad)" stroke="#2B2620" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M 406 96 Q 377 120 353 145" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 435 96 Q 426 122 418 149" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 465 96 Q 474 122 482 149" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 494 96 Q 523 120 547 145" stroke="#333E49" stroke-width="1.2" fill="none" opacity="0.4"/>
+        <path d="M 288 140 Q 450 166 612 140" stroke="#778694" stroke-width="2.4" fill="none" opacity="0.85"/>
+        <path d="M 293 143 Q 450 169 607 143" stroke="#2F4858" stroke-width="6" fill="none"/>
+        <path d="M 294 147.5 Q 450 173.5 606 147.5" stroke="#C9972F" stroke-width="2" fill="none"/>
+        <rect x="304.7" y="148.4" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="325.3" y="151.5" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="345.9" y="154.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="366.5" y="156.1" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="387.1" y="157.8" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="407.7" y="159.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="428.3" y="159.7" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="448.9" y="159.9" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="469.5" y="159.7" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="490.1" y="159.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="510.7" y="157.8" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="531.3" y="156.1" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="551.9" y="154.0" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="572.5" y="151.5" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <rect x="593.1" y="148.4" width="2.2" height="4.6" rx="1.1" fill="#6B4A33"/>
+        <path d="M 376 92 Q 450 83 524 92" stroke="#23201B" stroke-width="6.5" stroke-linecap="round" fill="none"/>
+        <path d="M 380 86 Q 450 77.5 520 86" stroke="#FFFFFF" stroke-width="3.4" stroke-linecap="round" fill="none" opacity="0.92"/>
+        <path d="M 378 91 C 372 85 373 76 380 73 C 378.6 81 381 87 386 90 Z" fill="#23201B"/>
+        <path d="M 522 91 C 528 85 527 76 520 73 C 521.4 81 519 87 514 90 Z" fill="#23201B"/>
 
         <!-- the couple, walking up to the steps (JS moves them) -->
         <g id="sceneCouple" opacity="0" transform="translate(-150 0)">
@@ -218,29 +353,13 @@
           <circle cx="444" cy="414.5" r="1.3" fill="#C6503A"/>
         </g>
 
-        <!-- ══ 현판 · mounted on the upper hall ══ -->
-<g id="plaque">
-          <path d="M 358 157 L 346 248 M 542 157 L 554 248" stroke="#3A2E22" stroke-width="2"/>
-          <rect x="330" y="248" width="240" height="54" rx="4" fill="#352A1E" stroke="var(--gold)" stroke-width="2.6"/>
-          <rect x="336" y="254" width="228" height="42" rx="2.5" fill="none" stroke="var(--gold)" stroke-width="0.9" opacity="0.6"/>
-          <text x="450" y="273.5" text-anchor="middle" font-size="13.4" font-weight="500" fill="var(--gold-bright)" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="0.3">Tan Hae San &amp; Kristal Wong</text>
-          <text x="450" y="290" text-anchor="middle" font-size="7.2" fill="#CBA96A" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="1.6">20 February 2027 · Raffles Sentosa</text>
-        </g>
-
-        <!-- ══ lanterns at the skirt tips ══ -->
-        <g>
-          <circle cx="268" cy="372" r="24" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
-          <path d="M 268 322 V 352" stroke="var(--ink)" stroke-width="1.4"/>
-          <ellipse cx="268" cy="372" rx="14" ry="18" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
-          <path d="M 260.5 357 H 275.5 M 260.5 387 H 275.5" stroke="var(--gold)" stroke-width="1.5"/>
-          <path d="M 268 390 V 408" stroke="var(--vermilion)" stroke-width="1.4"/>
-        </g>
-        <g>
-          <circle cx="632" cy="372" r="24" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
-          <path d="M 632 322 V 352" stroke="var(--ink)" stroke-width="1.4"/>
-          <ellipse cx="632" cy="372" rx="14" ry="18" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
-          <path d="M 624.5 357 H 639.5 M 624.5 387 H 639.5" stroke="var(--gold)" stroke-width="1.5"/>
-          <path d="M 632 390 V 408" stroke="var(--vermilion)" stroke-width="1.4"/>
+        <!-- 현판 · mounted on the pavilion -->
+        <g id="plaque">
+          <rect x="350" y="256" width="200" height="50" rx="4" fill="#352A1E" stroke="#A87F2F" stroke-width="2.6"/>
+          <rect x="355" y="261" width="190" height="40" rx="2.5" fill="none" stroke="#A87F2F" stroke-width="0.9" opacity="0.6"/>
+          <path d="M 353.5 265 v -6 h 8 M 546.5 259 h -8 M 546.5 259 v 6 M 353.5 297 v 6 h 8 M 546.5 303 h -8 M 546.5 303 v -6" stroke="#D9B979" stroke-width="1.5" fill="none"/>
+          <text x="450" y="279" text-anchor="middle" font-size="11.4" font-weight="500" fill="#D9B979" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="0.3">Tan Hae San &amp; Kristal Wong</text>
+          <text x="450" y="295" text-anchor="middle" font-size="6.6" fill="#CBA96A" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="1.4">20 February 2027 · Raffles Sentosa</text>
         </g>
       </g>
     </svg>
