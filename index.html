@@ -69,12 +69,15 @@
         <path d="M 780 470 Q 980 366 1180 470 Z" fill="var(--wash)" opacity="0.5"/>
         <path d="M -1400 470 H 2300" stroke="var(--ink)" stroke-width="2" stroke-linecap="round"/>
 
-        <!-- stone platform + steps -->
-        <rect x="250" y="440" width="400" height="30" fill="#E9E0CE" stroke="var(--ink)" stroke-width="2"/>
-        <path d="M 268 455 H 632" stroke="var(--ink)" stroke-width="1" opacity="0.35"/>
+        <!-- ══ stone platform + steps ══ -->
+        <rect x="240" y="440" width="420" height="30" fill="#E9E0CE" stroke="var(--ink)" stroke-width="2"/>
+        <path d="M 258 455 H 642" stroke="var(--ink)" stroke-width="1" opacity="0.35"/>
         <rect x="418" y="462" width="64" height="8" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
         <rect x="424" y="455" width="52" height="7" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
         <rect x="430" y="448" width="40" height="7" fill="#F1E9D8" stroke="var(--ink)" stroke-width="1.4"/>
+
+        <!-- ground-floor body (walls first; the doorway reveals the room) -->
+        <rect x="260" y="335" width="380" height="105" fill="#F3ECDD" stroke="var(--ink)" stroke-width="2"/>
 
         <!-- interior, revealed when the doors open -->
         <rect x="397" y="352" width="106" height="88" fill="url(#interiorGrad)"/>
@@ -100,9 +103,7 @@
           <rect x="465.5" y="401.8" width="2" height="10.4" rx="0.5" fill="#C6503A" stroke="#8C2F22" stroke-width="0.4"/>
           <path d="M 431 414 L 431.7 412 H 435.3 L 436 414 Z" fill="var(--gold)" stroke="#7A5A1F" stroke-width="0.4" stroke-linejoin="round"/>
           <path d="M 464 414 L 464.7 412 H 468.3 L 469 414 Z" fill="var(--gold)" stroke="#7A5A1F" stroke-width="0.4" stroke-linejoin="round"/>
-          <!-- wooden tray -->
           <rect x="438.8" y="413" width="22.4" height="1.6" rx="0.8" fill="#5C3A21"/>
-          <!-- 청화백자 teapot · overhead handle, peony on the belly -->
           <path d="M 446.4 404.8 C 445.4 399.8 454.6 399.8 453.6 404.8" stroke="#9AA6B4" stroke-width="2.1" fill="none" stroke-linecap="round"/>
           <path d="M 446.4 404.8 C 445.4 399.8 454.6 399.8 453.6 404.8" stroke="#F7F1E4" stroke-width="1.25" fill="none" stroke-linecap="round"/>
           <path d="M 448.2 401.3 l 0.5 -0.9 M 449.4 400.9 l 0.4 -1 M 450.6 400.85 l 0.3 -1 M 451.8 401.2 l 0.2 -1" stroke="#9AA6B4" stroke-width="0.35" fill="none"/>
@@ -113,7 +114,6 @@
           <path d="M 450 402.9 v -0.9" stroke="#9AA6B4" stroke-width="0.5"/>
           <circle cx="450" cy="401.6" r="0.55" fill="#F7F1E4" stroke="#9AA6B4" stroke-width="0.4"/>
           <path d="M 447 404.9 H 453" stroke="#3A5A8C" stroke-width="0.55" stroke-dasharray="0.65 0.5" opacity="0.9"/>
-          <!-- painted peony -->
           <circle cx="449.9" cy="408.7" r="1.5" fill="#5B79A8"/>
           <circle cx="448.7" cy="408" r="0.95" fill="#7590BE"/>
           <circle cx="451.2" cy="408" r="0.9" fill="#7590BE"/>
@@ -126,7 +126,6 @@
           <ellipse cx="447.4" cy="410.7" rx="1" ry="0.48" fill="#3A5A8C" opacity="0.8" transform="rotate(150 447.4 410.7)"/>
           <path d="M 447.6 410.4 Q 449 411.6 451 411.4" stroke="#3A5A8C" stroke-width="0.35" fill="none" opacity="0.8"/>
           <ellipse cx="447.6" cy="405.6" rx="1.05" ry="0.6" fill="#FFFFFF" opacity="0.7" transform="rotate(-24 447.6 405.6)"/>
-          <!-- matching cups -->
           <path d="M 441.4 411.2 h 3.6 q 0.25 2.3 -1.8 2.3 q -2.05 0 -1.8 -2.3 Z" fill="url(#porcelainGrad)" stroke="#9AA6B4" stroke-width="0.5"/>
           <path d="M 441.6 411.5 h 3.2" stroke="#3A5A8C" stroke-width="0.4" opacity="0.85"/>
           <path d="M 455 411.2 h 3.6 q 0.25 2.3 -1.8 2.3 q -2.05 0 -1.8 -2.3 Z" fill="url(#porcelainGrad)" stroke="#9AA6B4" stroke-width="0.5"/>
@@ -137,26 +136,17 @@
           <path class="steam d4" d="M 457.7 410.5 q 0.8 -0.8 0.1 -1.6 q -0.6 -0.8 0.2 -1.7" stroke="#C5CFD8" stroke-width="0.4" fill="none" stroke-linecap="round"/>
         </g>
 
-        <!-- wall band above openings -->
-        <rect x="262" y="335" width="376" height="17" fill="#EFE7D6"/>
-
-        <!-- side bays: glowing lattice windows -->
+        <!-- ══ ground floor · one clean body ══ -->
         <g class="flicker">
-          <rect x="284" y="352" width="105" height="88" fill="#F3ECDD" stroke="var(--ink)" stroke-width="1.4"/>
-          <rect x="290" y="348" width="93" height="96" fill="url(#windowGlow)" opacity="0.75"/>
-          <g stroke="#6B4A33" stroke-width="1.6">
-            <rect x="296" y="360" width="81" height="72" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 323 360 V 432 M 350 360 V 432 M 296 384 H 377 M 296 408 H 377"/>
-          </g>
-          <rect x="511" y="352" width="105" height="88" fill="#F3ECDD" stroke="var(--ink)" stroke-width="1.4"/>
-          <rect x="517" y="348" width="93" height="96" fill="url(#windowGlow)" opacity="0.75"/>
-          <g stroke="#6B4A33" stroke-width="1.6">
-            <rect x="523" y="360" width="81" height="72" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 550 360 V 432 M 577 360 V 432 M 523 384 H 604 M 523 408 H 604"/>
+          <rect x="276" y="346" width="98" height="88" fill="url(#windowGlow)" opacity="0.75"/>
+          <rect x="526" y="346" width="98" height="88" fill="url(#windowGlow)" opacity="0.75"/>
+          <g stroke="#6B4A33" stroke-width="1.4">
+            <rect x="282" y="352" width="86" height="76" fill="#F7F1E4" fill-opacity="0.92"/>
+            <path d="M 311 352 V 428 M 340 352 V 428 M 282 377 H 368 M 282 402 H 368"/>
+            <rect x="532" y="352" width="86" height="76" fill="#F7F1E4" fill-opacity="0.92"/>
+            <path d="M 561 352 V 428 M 590 352 V 428 M 532 377 H 618 M 532 402 H 618"/>
           </g>
         </g>
-
-        <!-- sliding doors (JS slides them apart) -->
         <g id="doorL">
           <rect x="397" y="352" width="53" height="88" fill="#F7F1E4" fill-opacity="0.93" stroke="#6B4A33" stroke-width="2"/>
           <path d="M 415 352 V 440 M 433 352 V 440 M 397 381 H 450 M 397 410 H 450" stroke="#6B4A33" stroke-width="1.4"/>
@@ -167,69 +157,38 @@
           <path d="M 467 352 V 440 M 485 352 V 440 M 450 381 H 503 M 450 410 H 503" stroke="#6B4A33" stroke-width="1.4"/>
           <circle cx="457" cy="397" r="2.4" stroke="var(--gold)" stroke-width="1.4" fill="none"/>
         </g>
+        <rect x="260" y="335" width="9" height="105" fill="#963B2A"/>
+        <rect x="631" y="335" width="9" height="105" fill="#963B2A"/>
+        <rect x="385" y="335" width="9" height="105" fill="#963B2A"/>
+        <rect x="506" y="335" width="9" height="105" fill="#963B2A"/>
 
-        <!-- columns + beam · dancheong -->
-        <rect x="275" y="340" width="10" height="100" fill="#963B2A"/>
-        <rect x="388" y="340" width="10" height="100" fill="#963B2A"/>
-        <rect x="502" y="340" width="10" height="100" fill="#963B2A"/>
-        <rect x="615" y="340" width="10" height="100" fill="#963B2A"/>
-        <rect x="273" y="335" width="14" height="5" fill="var(--gold)"/>
-        <rect x="386" y="335" width="14" height="5" fill="var(--gold)"/>
-        <rect x="500" y="335" width="14" height="5" fill="var(--gold)"/>
-        <rect x="613" y="335" width="14" height="5" fill="var(--gold)"/>
-        <rect x="262" y="321" width="376" height="14" fill="#2F4858"/>
-        <circle cx="282" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="306" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="330" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="354" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="378" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="402" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="426" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="450" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="474" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="498" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="522" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="546" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="570" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="594" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="618" cy="328" r="1.9" fill="var(--gold-bright)" opacity="0.85"/>
-        <path d="M 262 333 H 638" stroke="var(--gold)" stroke-width="1.6" opacity="0.9"/>
+        <!-- ══ skirt roof with dancheong fascia ══ -->
+        <path d="M 240 318 Q 450 346 660 318 L 596 304 Q 450 294 304 304 Z" fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M 244 315 Q 450 342 656 315" stroke="#2F4858" stroke-width="6" fill="none"/>
+        <path d="M 246 320 Q 450 347 654 320" stroke="var(--gold)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
 
-        <!-- ══ upper storey · palace gate tower ══ -->
-        <rect x="264" y="240" width="372" height="60" fill="#EFE7D6" stroke="var(--ink)" stroke-width="1.2"/>
-        <rect x="264" y="240" width="372" height="9" fill="#2F4858"/>
-        <circle cx="282" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="306" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="330" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="354" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="378" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="402" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="426" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="450" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="474" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="498" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="522" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="546" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="570" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="594" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="618" cy="244.5" r="1.5" fill="var(--gold-bright)" opacity="0.85"/>
-        <rect x="273" y="245" width="14" height="4" fill="var(--gold)"/>
-        <rect x="386" y="245" width="14" height="4" fill="var(--gold)"/>
-        <rect x="500" y="245" width="14" height="4" fill="var(--gold)"/>
-        <rect x="613" y="245" width="14" height="4" fill="var(--gold)"/>
-        <rect x="276" y="249" width="8" height="51" fill="#963B2A"/>
-        <rect x="389" y="249" width="8" height="51" fill="#963B2A"/>
-        <rect x="503" y="249" width="8" height="51" fill="#963B2A"/>
-        <rect x="616" y="249" width="8" height="51" fill="#963B2A"/>
-        <g class="flicker">
-          <rect x="290" y="262" width="76" height="38" fill="url(#windowGlow)" opacity="0.7"/>
-          <rect x="534" y="262" width="76" height="38" fill="url(#windowGlow)" opacity="0.7"/>
-          <g stroke="#6B4A33" stroke-width="1.3">
-            <rect x="296" y="268" width="64" height="26" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 312 268 V 294 M 328 268 V 294 M 344 268 V 294 M 296 281 H 360"/>
-            <rect x="540" y="268" width="64" height="26" fill="#F7F1E4" fill-opacity="0.92"/>
-            <path d="M 556 268 V 294 M 572 268 V 294 M 588 268 V 294 M 540 281 H 604"/>
-          </g>
+        <!-- ══ upper storey · plaque hall ══ -->
+        <rect x="310" y="235" width="280" height="70" fill="#F3ECDD" stroke="var(--ink)" stroke-width="2"/>
+        <rect x="310" y="235" width="280" height="8" fill="#2F4858"/>
+        <circle cx="324" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="345" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="366" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="387" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="408" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="429" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="450" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="471" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="492" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="513" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="534" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="555" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/> <circle cx="576" cy="239" r="1.4" fill="var(--gold-bright)" opacity="0.85"/>
+        <rect x="310" y="243" width="9" height="62" fill="#963B2A"/>
+        <rect x="581" y="243" width="9" height="62" fill="#963B2A"/>
+
+        <!-- ══ crown roof ══ -->
+        <path d="M 250 210 Q 450 248 650 210 C 612 200 578 174 550 154 Q 450 145 350 154 C 322 174 288 200 250 210 Z" fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
+        <g stroke="#39434D" stroke-width="1.2" opacity="0.32" fill="none">
+          <path d="M 450 147 L 450 242"/>
+          <path d="M 395 149 Q 392 195 383 235"/>
+          <path d="M 505 149 Q 508 195 517 235"/>
         </g>
-
-        <!-- skirt roof between the storeys -->
-        <path d="M 252 316 Q 450 342 648 316 L 620 300 Q 450 291 280 300 Z" fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M 268 318 Q 450 338 632 318" stroke="#3B454F" stroke-width="1.8" opacity="0.6"/>
-        <path d="M 252 316 Q 450 342 648 316" stroke="var(--gold)" stroke-width="2.6" stroke-linecap="round"/>
-        <path d="M 258 312 Q 450 337 642 312" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.95"/>
-
-        <!-- crown roof · concave giwa sweep -->
-        <path d="M 240 208 Q 450 262 660 208 C 618 199 578 172 548 150 Q 450 141 352 150 C 322 172 282 199 240 208 Z"
-          fill="#4E5A66" stroke="var(--ink)" stroke-width="2" stroke-linejoin="round"/>
-        <path d="M 262 214 Q 450 256 638 214" stroke="#3B454F" stroke-width="2" opacity="0.7"/>
-        <g stroke="#39434D" stroke-width="1.3" opacity="0.35" fill="none">
-          <path d="M 450 143 L 450 235"/>
-          <path d="M 400 145 Q 397 190 386 226"/>
-          <path d="M 500 145 Q 503 190 514 226"/>
-          <path d="M 358 150 Q 348 184 322 212"/>
-          <path d="M 542 150 Q 552 184 578 212"/>
-        </g>
-        <path d="M 240 208 C 282 199 322 172 352 150" stroke="var(--ink)" stroke-width="2.2" fill="none"/>
-        <path d="M 660 208 C 618 199 578 172 548 150" stroke="var(--ink)" stroke-width="2.2" fill="none"/>
-        <path d="M 240 208 Q 450 262 660 208" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
-        <path d="M 352 150 q -8 -4 -6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M 548 150 q 8 -4 6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round"/>
-        <path d="M 352 150 Q 450 141 548 150" stroke="#2B2620" stroke-width="6" stroke-linecap="round"/>
-        <path d="M 359 157 Q 450 148.5 541 157" stroke="#E8E4DA" stroke-width="2.6" stroke-linecap="round" opacity="0.95"/>
-        <path d="M 246 203 Q 450 255 654 203" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" opacity="0.95"/>
-        <path d="M 356 144 Q 450 135 544 144" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" opacity="0.9"/>
+        <path d="M 250 210 C 288 200 322 174 350 154" stroke="var(--ink)" stroke-width="2" fill="none"/>
+        <path d="M 650 210 C 612 200 578 174 550 154" stroke="var(--ink)" stroke-width="2" fill="none"/>
+        <path d="M 254 207 Q 450 244 646 207" stroke="#2F4858" stroke-width="6" fill="none"/>
+        <path d="M 256 212 Q 450 249 644 212" stroke="var(--gold)" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <path d="M 350 154 q -8 -4 -6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M 550 154 q 8 -4 6 -14" stroke="var(--ink)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
+        <path d="M 350 154 Q 450 145 550 154" stroke="#2B2620" stroke-width="6" stroke-linecap="round" fill="none"/>
+        <path d="M 353 148 Q 450 139 547 148" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" fill="none" opacity="0.92"/>
 
         <!-- the couple, walking up to the steps (JS moves them) -->
         <g id="sceneCouple" opacity="0" transform="translate(-150 0)">
@@ -259,29 +218,29 @@
           <circle cx="444" cy="414.5" r="1.3" fill="#C6503A"/>
         </g>
 
-        <!-- 현판 · hung high between the roofs -->
-        <g id="plaque">
-          <path d="M 356 156 L 366 212 M 544 156 L 534 212" stroke="#3A2E22" stroke-width="2.2"/>
-          <rect x="310" y="210" width="280" height="66" rx="5" fill="#352A1E" stroke="var(--gold)" stroke-width="3"/>
-          <rect x="318" y="218" width="264" height="50" rx="3" fill="none" stroke="var(--gold)" stroke-width="1" opacity="0.6"/>
-          <text x="450" y="245" text-anchor="middle" font-size="15.5" font-weight="500" fill="var(--gold-bright)" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="0.4">Tan Hae San &amp; Kristal Wong</text>
-          <text x="450" y="262.5" text-anchor="middle" font-size="7.8" fill="#CBA96A" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="1.8">20 February 2027 · Raffles Sentosa</text>
+        <!-- ══ 현판 · mounted on the upper hall ══ -->
+<g id="plaque">
+          <path d="M 358 157 L 346 248 M 542 157 L 554 248" stroke="#3A2E22" stroke-width="2"/>
+          <rect x="330" y="248" width="240" height="54" rx="4" fill="#352A1E" stroke="var(--gold)" stroke-width="2.6"/>
+          <rect x="336" y="254" width="228" height="42" rx="2.5" fill="none" stroke="var(--gold)" stroke-width="0.9" opacity="0.6"/>
+          <text x="450" y="273.5" text-anchor="middle" font-size="13.4" font-weight="500" fill="var(--gold-bright)" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="0.3">Tan Hae San &amp; Kristal Wong</text>
+          <text x="450" y="290" text-anchor="middle" font-size="7.2" fill="#CBA96A" font-family="'Cinzel', 'Cormorant Garamond', Georgia, serif" letter-spacing="1.6">20 February 2027 · Raffles Sentosa</text>
         </g>
 
-        <!-- eave lanterns -->
+        <!-- ══ lanterns at the skirt tips ══ -->
         <g>
-          <circle cx="248" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
-          <path d="M 248 318 V 352" stroke="var(--ink)" stroke-width="1.4"/>
-          <ellipse cx="248" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
-          <path d="M 240 358 H 256 M 240 390 H 256" stroke="var(--gold)" stroke-width="1.6"/>
-          <path d="M 248 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
+          <circle cx="268" cy="372" r="24" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
+          <path d="M 268 322 V 352" stroke="var(--ink)" stroke-width="1.4"/>
+          <ellipse cx="268" cy="372" rx="14" ry="18" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
+          <path d="M 260.5 357 H 275.5 M 260.5 387 H 275.5" stroke="var(--gold)" stroke-width="1.5"/>
+          <path d="M 268 390 V 408" stroke="var(--vermilion)" stroke-width="1.4"/>
         </g>
         <g>
-          <circle cx="652" cy="374" r="26" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
-          <path d="M 652 318 V 352" stroke="var(--ink)" stroke-width="1.4"/>
-          <ellipse cx="652" cy="374" rx="15" ry="19" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
-          <path d="M 644 358 H 660 M 644 390 H 660" stroke="var(--gold)" stroke-width="1.6"/>
-          <path d="M 652 393 V 412" stroke="var(--vermilion)" stroke-width="1.4"/>
+          <circle cx="632" cy="372" r="24" fill="var(--vermilion)" fill-opacity="0.22" filter="url(#glowSoft)"/>
+          <path d="M 632 322 V 352" stroke="var(--ink)" stroke-width="1.4"/>
+          <ellipse cx="632" cy="372" rx="14" ry="18" fill="var(--vermilion)" fill-opacity="0.95" stroke="var(--gold)" stroke-width="1.2"/>
+          <path d="M 624.5 357 H 639.5 M 624.5 387 H 639.5" stroke="var(--gold)" stroke-width="1.5"/>
+          <path d="M 632 390 V 408" stroke="var(--vermilion)" stroke-width="1.4"/>
         </g>
       </g>
     </svg>

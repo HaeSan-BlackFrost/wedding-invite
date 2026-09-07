@@ -34,7 +34,13 @@ const RSVP_ENDPOINT = "";
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
     const count = Math.min(85, Math.round((W * H) / 22000));
-    flakes = Array.from({ length: count }, () => makeFlake(false));
+    if (!flakes) {
+      flakes = Array.from({ length: count }, () => makeFlake(false));
+    } else if (flakes.length < count) {
+      while (flakes.length < count) flakes.push(makeFlake(false));
+    } else if (flakes.length > count) {
+      flakes.length = count;   // mobile URL-bar resizes must not teleport the snow
+    }
   }
   resize();
   window.addEventListener("resize", resize, { passive: true });
@@ -223,11 +229,11 @@ function renderScene() {
   const vw = window.innerWidth;
   const sliceScale = Math.max(vw / 900, vh / 600);
   // portrait crops the roof tips so the house stands tall in frame
-  const s0 = Math.min((vh / sliceScale) / (portrait ? 385 : 490), (vw / sliceScale) / (portrait ? 440 : 460));
+  const s0 = Math.min((vh / sliceScale) / (portrait ? 375 : 480), (vw / sliceScale) / (portrait ? 420 : 450));
   if (plaque) plaque.setAttribute("transform", "");
   const zt = ease((p - 0.2) / 0.6);
   const s = s0 + zt * zt * (6.8 - s0);
-  const fy0 = portrait ? 292 : 290;                 // tower centre, seated a touch low
+  const fy0 = portrait ? 296 : 292;                 // tower centre, seated a touch low
   const fy = fy0 + ease((p - 0.26) / 0.48) * (396 - fy0);
   cam.setAttribute(
     "transform",

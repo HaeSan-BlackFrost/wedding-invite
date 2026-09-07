@@ -66,6 +66,11 @@ body {
   position: absolute;
   left: 0; right: 0;
   top: 5svh;
+}
+@media (orientation: portrait) {
+  .opening-hero { top: 11svh; }
+}
+.opening-hero {
   z-index: 3;
   text-align: center;
   pointer-events: none;
@@ -362,10 +367,22 @@ body {
 .hanok-wash {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 75% 65% at 50% 48%, #FBEBC8 0%, #F6E3B8 40%, var(--paper) 100%);
+  background: linear-gradient(180deg, #FBEBC8 0%, #F6E3B8 55%, #F1DFB6 100%);
   opacity: 0;
   pointer-events: none;
 }
+
+/* the golden light spills onward into the story */
+#story { position: relative; }
+#story::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: min(52vh, 460px);
+  background: linear-gradient(180deg, #F1DFB6, rgba(241, 223, 182, 0));
+  pointer-events: none;
+}
+#story > .section-inner { position: relative; }
 
 .scene-caption {
   position: absolute;
@@ -978,7 +995,6 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   body { font-size: 17px; }
   .section { padding: 4.5rem 1.25rem; }
 
-  .opening-hero { top: 4svh; }
   .plum { width: 42vw; }
   .hero-eyebrow { font-size: 0.68rem; letter-spacing: 0.16em; }
   .hero-date { font-size: 1.05rem; }
