@@ -231,11 +231,13 @@ body::before {
   .scroll-cue {
     right: auto;
     left: 50%;
+    --cue-x: -50%;
     transform: translateX(-50%);
     bottom: calc(3svh + 72px);
   }
 }
 .scroll-cue { cursor: pointer; animation: cueBob 1.7s ease-in-out infinite; }
+/* cueBob owns transform while animating, so the portrait centring lives in --cue-x */
 .scroll-cue em {
   font-style: normal;
   font-size: 0.82rem;
@@ -263,8 +265,8 @@ body::before {
   100% { opacity: 0; transform: rotate(45deg) translate(6px, 6px); }
 }
 @keyframes cueBob {
-  0%, 100% { margin-bottom: 0; }
-  50% { margin-bottom: 7px; }
+  0%, 100% { transform: translate(var(--cue-x, 0), 0); }
+  50% { transform: translate(var(--cue-x, 0), -7px); }
 }
 
 .scroll-hint {
@@ -327,6 +329,8 @@ body::before {
   width: 100%;
   height: 100%;
   display: block;
+  transform-origin: 0 0;
+  will-change: transform;
 }
 /* soft width-crop dissolve: cheap composited overlay strips instead of a
    full-SVG alpha mask (the mask forced an offscreen buffer + re-mask on
@@ -1029,11 +1033,13 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .scroll-cue {
     right: auto;
     left: 50%;
+    --cue-x: -50%;
     transform: translateX(-50%);
     bottom: calc(3svh + 72px);
   }
 }
 .scroll-cue { cursor: pointer; animation: cueBob 1.7s ease-in-out infinite; }
+/* cueBob owns transform while animating, so the portrait centring lives in --cue-x */
 .scroll-cue em {
   font-style: normal;
   font-size: 0.82rem;
@@ -1061,8 +1067,8 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   100% { opacity: 0; transform: rotate(45deg) translate(6px, 6px); }
 }
 @keyframes cueBob {
-  0%, 100% { margin-bottom: 0; }
-  50% { margin-bottom: 7px; }
+  0%, 100% { transform: translate(var(--cue-x, 0), 0); }
+  50% { transform: translate(var(--cue-x, 0), -7px); }
 }
 
 .scroll-hint { display: none; }
