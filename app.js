@@ -6,6 +6,28 @@
    show a "not connected" notice instead of silently vanishing. */
 const RSVP_ENDPOINT = "";
 
+/* ── Always open at the top of the journey ──
+   The page is a linear story: gate → doors → garden → invitation. Browser
+   scroll restoration (pull-to-refresh, in-app webviews reopening the tab)
+   would otherwise drop returning guests mid-journey with the doors already
+   open. Hash links (e.g. a shared #rsvp) are left alone. */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+if (!location.hash) {
+  window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  // some in-app webviews restore after the load event; re-assert the top
+  // then, unless the guest has already started interacting
+  let guestMoved = false;
+  const noteMove = () => { guestMoved = true; };
+  for (const ev of ["touchstart", "wheel", "keydown", "pointerdown"]) {
+    window.addEventListener(ev, noteMove, { passive: true, once: true });
+  }
+  window.addEventListener("load", () => {
+    if (!guestMoved && window.scrollY > 0) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
+  });
+}
+
 /* ── Ambient snowfall (with the occasional plum petal) ── */
 (function initSnow() {
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
