@@ -64,6 +64,15 @@ const RSVP_ENDPOINT = "";
     // A zero-dimension first read leaves the canvas unsized and flakes unbuilt;
     // idle until a real measurement arrives rather than throwing.
     if (!sized || !flakes) { requestAnimationFrame(frame); return; }
+    // deep in the journey the canvas is faded to near zero — clear once and
+    // idle at 4Hz instead of stroking invisible flakes at full frame rate
+    const faded = parseFloat(canvas.style.opacity || "1") < 0.08;
+    if (faded && !flakes.some((f) => f.vx !== undefined)) {
+      if (!frame.cleared) { ctx.clearRect(0, 0, W, H); frame.cleared = true; }
+      if (!document.hidden) setTimeout(() => requestAnimationFrame(frame), 250);
+      return;
+    }
+    frame.cleared = false;
     ctx.clearRect(0, 0, W, H);
     const wind = Math.sin(now / 5200) * 14; // gentle shared breeze
 
@@ -131,6 +140,12 @@ const RSVP_ENDPOINT = "";
 
   /* celebration: fling a handful of petals from (x, y) */
   window.__burstPetals = function (x, y) {
+    // the journey fades this canvas to near zero by the time the RSVP form is
+    // reached — lift it for the burst, then hand the value back
+    const prev = canvas.style.opacity;
+    canvas.style.transition = "opacity 0.3s";
+    canvas.style.opacity = "1";
+    setTimeout(() => { canvas.style.opacity = prev; canvas.style.transition = ""; }, 4200);
     for (let i = 0; i < 26; i++) {
       const angle = Math.PI * (1 + Math.random());       // upward half-circle
       const speed = 90 + Math.random() * 200;
@@ -231,6 +246,21 @@ function fitScene() {
 fitScene();
 
 let ticking = false;
+const snowEl = document.getElementById("snow");
+const petals = document.getElementById("petalDrift");
+if (plaque) plaque.setAttribute("transform", "");
+
+// Every SVG attribute write invalidates the raster even when the value is
+// unchanged, so each per-frame write goes through this cache and rounded
+// values — static stretches of the journey then cost nothing.
+const frameCache = {};
+function put(key, value, apply) {
+  if (frameCache[key] === value) return;
+  frameCache[key] = value;
+  apply(value);
+}
+const r3 = (v) => Math.round(v * 1000) / 1000;
+
 function renderScene() {
   ticking = false;
   if (!scene || !cam) return;
@@ -240,17 +270,17 @@ function renderScene() {
   const p = total > 0 ? clamp01(-rect.top / total) : 0;
 
   // 0 · the invitation drifts away as the journey begins
-  const heroGone = ease((p - 0.06) / 0.14);
-  openingHero.style.opacity = String(1 - heroGone);
-  openingHero.style.transform = "translateY(" + -60 * heroGone + "px)";
+  const heroGone = r3(ease((p - 0.06) / 0.14));
+  put("heroO", String(1 - heroGone), (v) => { openingHero.style.opacity = v; });
+  put("heroT", "translateY(" + -60 * heroGone + "px)", (v) => { openingHero.style.transform = v; });
   if (openingCta) {
-    openingCta.style.opacity = String(1 - heroGone);
-    openingCta.style.transform = "translate(-50%, " + 40 * heroGone + "px)";
-    openingCta.style.pointerEvents = heroGone > 0.5 ? "none" : "auto";
+    put("ctaO", String(1 - heroGone), (v) => { openingCta.style.opacity = v; });
+    put("ctaT", "translate(-50%, " + 40 * heroGone + "px)", (v) => { openingCta.style.transform = v; });
+    put("ctaP", heroGone > 0.5 ? "none" : "auto", (v) => { openingCta.style.pointerEvents = v; });
   }
-  if (scrollHint) scrollHint.style.opacity = String(1 - heroGone);
-  if (scrollCue) scrollCue.style.opacity = String(1 - heroGone);
-  if (plumBranch) plumBranch.style.opacity = String(0.95 * (1 - ease((p - 0.24) / 0.2)));
+  if (scrollHint) put("hintO", String(1 - heroGone), (v) => { scrollHint.style.opacity = v; });
+  if (scrollCue) put("cueO", String(1 - heroGone), (v) => { scrollCue.style.opacity = v; });
+  if (plumBranch) put("plumO", String(r3(0.95 * (1 - ease((p - 0.24) / 0.2)))), (v) => { plumBranch.style.opacity = v; });
 
   // 2 · the approach — camera pushes in toward the doorway.
   // (450, fy) is the content point held at the viewport centre (450, 300).
@@ -260,40 +290,47 @@ function renderScene() {
   const sliceScale = Math.max(vw / 900, vh / 600);
   // portrait crops the roof tips so the house stands tall in frame
   const s0 = Math.min((vh / sliceScale) / (portrait ? 476 : 690), (vw / sliceScale) / (portrait ? 452 : 476));
-  if (plaque) plaque.setAttribute("transform", "");
   const zt = ease((p - 0.2) / 0.6);
-  const s = s0 + zt * zt * (5.6 - s0);
+  const s = Math.round((s0 + zt * zt * (5.6 - s0)) * 10000) / 10000;
   const fy0 = portrait ? 268 : 250;                 // tower centre, seated a touch low
-  const fy = fy0 + ease((p - 0.26) / 0.48) * (396 - fy0);
-  cam.setAttribute(
-    "transform",
-    "translate(450 300) scale(" + s + ") translate(-450 " + -fy + ")"
-  );
+  const fy = r3(fy0 + ease((p - 0.26) / 0.48) * (396 - fy0));
+  put("cam", "translate(450 300) scale(" + s + ") translate(-450 " + -fy + ")",
+    (v) => { cam.setAttribute("transform", v); });
 
   // 1 · the walk — the couple crosses toward the steps (as originally authored:
   // plain world-space children of the camera, so the push-in grows them naturally)
-  const walk = ease((p - 0.14) / 0.36);
+  const walk = r3(ease((p - 0.14) / 0.36));
   const coupleOpacity =
-    clamp01((p - 0.14) / 0.08) * (1 - clamp01((p - 0.54) / 0.1));
-  sceneCouple.setAttribute("transform", "translate(" + (-150 + walk * 150) + " 0)");
-  sceneCouple.style.opacity = String(coupleOpacity);
-
+    r3(clamp01((p - 0.14) / 0.08) * (1 - clamp01((p - 0.54) / 0.1)));
+  put("walkT", "translate(" + (-150 + walk * 150) + " 0)", (v) => { sceneCouple.setAttribute("transform", v); });
+  put("walkO", String(coupleOpacity), (v) => { sceneCouple.style.opacity = v; });
 
   // 3 · the doors slide open
-  const d = ease((p - 0.40) / 0.20) * 62;
+  const d = r3(ease((p - 0.40) / 0.20) * 62);
+  put("doorL", "translate(" + -d + " 0)", (v) => { doorL.setAttribute("transform", v); });
+  put("doorR", "translate(" + d + " 0)", (v) => { doorR.setAttribute("transform", v); });
 
-  doorL.setAttribute("transform", "translate(" + -d + " 0)");
-  doorR.setAttribute("transform", "translate(" + d + " 0)");
+  // the garden's crane wings and drifting petals only animate while the
+  // doors are apart and the golden wash has not swallowed the view
+  if (hanokSvg) put("gardenLive", d > 0.5 && p < 0.94 ? "1" : "0",
+    (v) => { hanokSvg.classList.toggle("garden-hidden", v === "0"); });
 
   // 4 · stepping into the light → memory lane
   // snow belongs outdoors: fade it as the camera enters the gateway
-  const snowEl = document.getElementById("snow");
-  if (snowEl) snowEl.style.opacity = String(1 - 0.95 * ease((p - 0.42) / 0.28));
-  const petals = document.getElementById("petalDrift");
-  if (petals) petals.setAttribute("opacity",
-    String(clamp01((p - 0.44) / 0.16) * (1 - ease((p - 0.72) / 0.2))));
-  hanokWash.style.opacity = String(ease((p - 0.72) / 0.2));
-  if (caption) caption.classList.toggle("visible", p > 0.92);
+  if (snowEl) put("snowO", String(r3(1 - 0.95 * ease((p - 0.42) / 0.28))), (v) => { snowEl.style.opacity = v; });
+  if (petals) put("petalO", String(r3(clamp01((p - 0.44) / 0.16) * (1 - ease((p - 0.72) / 0.2)))),
+    (v) => { petals.setAttribute("opacity", v); });
+  put("washO", String(r3(ease((p - 0.72) / 0.2))), (v) => { hanokWash.style.opacity = v; });
+  if (caption) put("captionV", p > 0.92 ? "1" : "0", (v) => { caption.classList.toggle("visible", v === "1"); });
+}
+
+// pause every ambient SVG animation while the journey is scrolled offstage —
+// offscreen wing beats and window flicker otherwise keep the compositor busy
+// all the way down at the RSVP form
+if (hanokSvg && scene && "IntersectionObserver" in window) {
+  new IntersectionObserver((entries) => {
+    hanokSvg.classList.toggle("offstage", !entries[0].isIntersecting);
+  }, { rootMargin: "60px" }).observe(scene);
 }
 
 function onScroll() {
