@@ -329,8 +329,6 @@ body::before {
   width: 100%;
   height: 100%;
   display: block;
-  transform-origin: 0 0;
-  will-change: transform;
 }
 /* soft width-crop dissolve: cheap composited overlay strips instead of a
    full-SVG alpha mask (the mask forced an offscreen buffer + re-mask on

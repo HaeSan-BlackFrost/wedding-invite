@@ -317,22 +317,13 @@ function renderScene() {
   const fy0 = portrait ? 268 : 250;                 // tower centre, seated a touch low
   const fy = r3(fy0 + ease((p - 0.26) / 0.48) * (396 - fy0));
 
-  // The camera is split in two so the zoom never re-rasterises the scene:
-  //  · #cam holds only the REST framing (world (450, fy0) centred at s0) —
-  //    written when the viewport changes, not per frame
-  //  · the push-in is the delta from rest, applied as a CSS transform on the
-  //    <svg> element itself, which the compositor scales as a cached texture
-  put("camRest", "translate(450 300) scale(" + Math.round(s0 * 10000) / 10000 + ") translate(-450 " + -fy0 + ")",
+  // Vector camera, updated per frame. A compositor-texture zoom was tried
+  // here and reverted: while the camera moves, engines show a scaled cached
+  // texture and re-sharpen afterwards, which reads as blurry art mid-scroll.
+  // Crisp every frame wins; the raster cost is kept in budget by the light
+  // patterns, no filters/masks in the scene, and the write cache above.
+  put("cam", "translate(450 300) scale(" + s + ") translate(-450 " + -fy + ")",
     (v) => { cam.setAttribute("transform", v); });
-  // screen position of the focus point (450, fy) in the rest frame; the CSS
-  // transform pulls it to the viewport centre at the remaining zoom factor
-  const k = Math.round((s / s0) * 10000) / 10000;
-  const cy = vh / 2 + (fy - fy0) * s0 * sliceScale;
-  const tx = Math.round((vw / 2) * (1 - k) * 100) / 100;
-  const ty = Math.round((vh / 2 - k * cy) * 100) / 100;
-  put("camZoom", "translate(" + tx + "px, " + ty + "px) scale(" + k + ")",
-    (v) => { hanokSvg.style.transform = v; });
-  lastCam = { s: s, fy: fy };
 
   // 1 · the walk — the couple crosses toward the steps (as originally authored:
   // plain world-space children of the camera, so the push-in grows them naturally)
@@ -370,27 +361,11 @@ if (hanokSvg && scene && "IntersectionObserver" in window) {
   }, { rootMargin: "60px" }).observe(scene);
 }
 
-let lastCam = null;
-let bakeTimer = 0;
-
-// When scrolling pauses, fold the CSS zoom back into the vector transform:
-// engines that cap a composited layer's raster resolution (WebKit) then
-// re-render the settled frame at full sharpness. The two forms are the same
-// transform, so the swap is invisible; the next scroll frame splits it again.
-function bakeCamera() {
-  if (!lastCam || !cam || !hanokSvg) return;
-  put("camRest", "translate(450 300) scale(" + lastCam.s + ") translate(-450 " + -lastCam.fy + ")",
-    (v) => { cam.setAttribute("transform", v); });
-  put("camZoom", "none", (v) => { hanokSvg.style.transform = v; });
-}
-
 function onScroll() {
   if (!ticking) {
     ticking = true;
     requestAnimationFrame(renderScene);
   }
-  clearTimeout(bakeTimer);
-  bakeTimer = setTimeout(bakeCamera, 160);
 }
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
