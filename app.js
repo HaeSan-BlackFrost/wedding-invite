@@ -12,7 +12,8 @@ const RSVP_ENDPOINT = "";
   const canvas = document.getElementById("snow");
   if (!canvas || reduced) return;
   const ctx = canvas.getContext("2d");
-  let W, H, flakes;
+  let W, H, flakes, sized = false;
+  window.__snowResize = () => resize();
 
   function makeFlake(fresh) {
     const depth = 0.35 + Math.random() * 0.65; // 0.35 (far) → 1 (near)
@@ -31,8 +32,14 @@ const RSVP_ENDPOINT = "";
   }
 
   function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
+    // Only size from a genuine measurement; a zero read must not be cached,
+    // or the bitmap stays stretched for the life of the page.
+    const w = window.innerWidth || document.documentElement.clientWidth || 0;
+    const h = window.innerHeight || document.documentElement.clientHeight || 0;
+    if (!w || !h) { sized = false; return; }
+    sized = true;
+    W = canvas.width = w;
+    H = canvas.height = h;
     const count = Math.min(85, Math.round((W * H) / 22000));
     if (!flakes) {
       flakes = Array.from({ length: count }, () => makeFlake(false));
@@ -44,11 +51,19 @@ const RSVP_ENDPOINT = "";
   }
   resize();
   window.addEventListener("resize", resize, { passive: true });
+  window.addEventListener("load", resize);
+  requestAnimationFrame(resize);
+  if (window.ResizeObserver) {
+    new ResizeObserver(() => resize()).observe(document.documentElement);
+  }
 
   let last = performance.now();
   function frame(now) {
     const dt = Math.min(0.05, (now - last) / 1000);
     last = now;
+    // A zero-dimension first read leaves the canvas unsized and flakes unbuilt;
+    // idle until a real measurement arrives rather than throwing.
+    if (!sized || !flakes) { requestAnimationFrame(frame); return; }
     ctx.clearRect(0, 0, W, H);
     const wind = Math.sin(now / 5200) * 14; // gentle shared breeze
 
@@ -160,6 +175,24 @@ const revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
+/* ── Venue photo swap: show the real photo once it loads, keep the ink-wash otherwise ── */
+(function initVenuePhoto() {
+  const wrap = document.getElementById("venuePhoto");
+  const art = document.querySelector(".venue-art");
+  const img = wrap && wrap.querySelector("img");
+  if (!img) return;
+  const swap = () => {
+    if (!img.naturalWidth) return;
+    if (art) art.style.display = "none";
+    wrap.hidden = false;
+  };
+  if (img.complete) swap();
+  else {
+    img.addEventListener("load", swap, { once: true });
+    img.addEventListener("error", () => { wrap.hidden = true; }, { once: true });
+  }
+})();
+
 /* ── Hanok journey: approach → doors open → step into the light ── */
 const scene = document.getElementById("hanokScene");
 const hanokSvg = document.getElementById("hanokSvg");
@@ -185,8 +218,12 @@ if (scrollCue) {
 const clamp01 = (v) => Math.min(1, Math.max(0, v));
 const ease = (t) => { t = clamp01(t); return t * t * (3 - 2 * t); };
 
+// A preview pane can run this before the iframe has dimensions; a zero viewport
+// used to make sliceScale 0 and s0 NaN, which the browser discards wholesale.
+function vpW() { return window.innerWidth || document.documentElement.clientWidth || 900; }
+function vpH() { return window.innerHeight || document.documentElement.clientHeight || 600; }
 function isPortrait() {
-  return window.innerHeight > window.innerWidth * 1.1;
+  return vpH() > vpW() * 1.1;
 }
 function fitScene() {
   if (hanokSvg) hanokSvg.setAttribute("preserveAspectRatio", "xMidYMid slice");
@@ -198,9 +235,9 @@ function renderScene() {
   ticking = false;
   if (!scene || !cam) return;
   const rect = scene.getBoundingClientRect();
-  const vh = window.innerHeight;
+  const vh = vpH();
   const total = rect.height - vh;
-  const p = clamp01(-rect.top / total);
+  const p = total > 0 ? clamp01(-rect.top / total) : 0;
 
   // 0 · the invitation drifts away as the journey begins
   const heroGone = ease((p - 0.06) / 0.14);
@@ -215,38 +252,47 @@ function renderScene() {
   if (scrollCue) scrollCue.style.opacity = String(1 - heroGone);
   if (plumBranch) plumBranch.style.opacity = String(0.95 * (1 - ease((p - 0.24) / 0.2)));
 
-  // 1 · the walk — the couple crosses toward the steps
-  const walk = ease((p - 0.14) / 0.36);
-  const coupleOpacity =
-    clamp01((p - 0.14) / 0.08) * (1 - clamp01((p - 0.54) / 0.1));
-  sceneCouple.setAttribute("transform", "translate(" + (-150 + walk * 150) + " 0)");
-  sceneCouple.style.opacity = String(coupleOpacity);
-
   // 2 · the approach — camera pushes in toward the doorway.
   // (450, fy) is the content point held at the viewport centre (450, 300).
   // frame the whole house (names live on its plaque now)
   const portrait = isPortrait();
-  const vw = window.innerWidth;
+  const vw = vpW();
   const sliceScale = Math.max(vw / 900, vh / 600);
   // portrait crops the roof tips so the house stands tall in frame
-  const s0 = Math.min((vh / sliceScale) / (portrait ? 420 : 620), (vw / sliceScale) / (portrait ? 400 : 420));
+  const s0 = Math.min((vh / sliceScale) / (portrait ? 476 : 690), (vw / sliceScale) / (portrait ? 452 : 476));
   if (plaque) plaque.setAttribute("transform", "");
   const zt = ease((p - 0.2) / 0.6);
-  const s = s0 + zt * zt * (6.8 - s0);
-  const fy0 = portrait ? 279 : 260;                 // tower centre, seated a touch low
+  const s = s0 + zt * zt * (5.6 - s0);
+  const fy0 = portrait ? 268 : 250;                 // tower centre, seated a touch low
   const fy = fy0 + ease((p - 0.26) / 0.48) * (396 - fy0);
   cam.setAttribute(
     "transform",
     "translate(450 300) scale(" + s + ") translate(-450 " + -fy + ")"
   );
 
+  // 1 · the walk — the couple crosses toward the steps (as originally authored:
+  // plain world-space children of the camera, so the push-in grows them naturally)
+  const walk = ease((p - 0.14) / 0.36);
+  const coupleOpacity =
+    clamp01((p - 0.14) / 0.08) * (1 - clamp01((p - 0.54) / 0.1));
+  sceneCouple.setAttribute("transform", "translate(" + (-150 + walk * 150) + " 0)");
+  sceneCouple.style.opacity = String(coupleOpacity);
+
+
   // 3 · the doors slide open
-  const d = ease((p - 0.62) / 0.22) * 46;
+  const d = ease((p - 0.40) / 0.20) * 62;
+
   doorL.setAttribute("transform", "translate(" + -d + " 0)");
   doorR.setAttribute("transform", "translate(" + d + " 0)");
 
   // 4 · stepping into the light → memory lane
-  hanokWash.style.opacity = String(ease((p - 0.8) / 0.15));
+  // snow belongs outdoors: fade it as the camera enters the gateway
+  const snowEl = document.getElementById("snow");
+  if (snowEl) snowEl.style.opacity = String(1 - 0.95 * ease((p - 0.42) / 0.28));
+  const petals = document.getElementById("petalDrift");
+  if (petals) petals.setAttribute("opacity",
+    String(clamp01((p - 0.44) / 0.16) * (1 - ease((p - 0.72) / 0.2))));
+  hanokWash.style.opacity = String(ease((p - 0.72) / 0.2));
   if (caption) caption.classList.toggle("visible", p > 0.92);
 }
 
@@ -259,8 +305,24 @@ function onScroll() {
 
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (!reducedMotion) {
+  void document.getElementById("hanokScene").getBoundingClientRect();
+  renderScene();
   window.addEventListener("scroll", onScroll, { passive: true });
   window.addEventListener("resize", () => { fitScene(); onScroll(); }, { passive: true });
+  // rAF is suspended while the document is hidden, so re-render directly the
+  // moment real dimensions or visibility arrive
+  if (window.ResizeObserver) {
+    const ro = new ResizeObserver(() => {
+      renderScene();
+      if (window.__snowResize) window.__snowResize();
+    });
+    ro.observe(scene);
+    ro.observe(document.documentElement);
+  }
+  document.addEventListener("visibilitychange", () => {
+    renderScene();
+    if (window.__snowResize) window.__snowResize();
+  }, { passive: true });
   renderScene();
 }
 

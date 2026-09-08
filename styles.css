@@ -13,6 +13,8 @@
   --gold-dim: rgba(168, 127, 47, 0.3);
   --vermilion: #B8432F;
   --blush: #E8B4A8;
+  --glow: #FDF4E1;        /* golden light, warm end of the paper palette */
+  --glow-edge: #F8EBDA;   /* where the glow meets the paper */
   --hairline: rgba(43, 38, 32, 0.12);
   --serif: 'Cormorant Garamond', 'Times New Roman', Georgia, serif;
   --kr: 'Noto Serif KR', serif;
@@ -25,10 +27,7 @@ html { scroll-behavior: smooth; }
 
 body {
   background:
-    radial-gradient(ellipse 90% 55% at 50% -8%, rgba(232, 180, 168, 0.18), transparent 60%),
-    radial-gradient(ellipse 70% 40% at 82% 4%, rgba(217, 185, 121, 0.16), transparent 65%),
     linear-gradient(180deg, var(--paper) 0%, #F7F1E5 100%);
-  background-attachment: fixed;
   color: var(--ink);
   font-family: var(--serif);
   font-size: 19px;
@@ -40,6 +39,20 @@ body {
 
 [lang="ko"] { font-family: var(--kr); }
 [lang="zh"] { font-family: var(--sc); }
+
+/* Ambient glows ride the viewport on every platform. iOS Safari mis-handles
+   background-attachment: fixed, so a position: fixed layer does the job instead.
+   z-index: -1 keeps it behind all content without needing child overrides. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -8%, rgba(232, 180, 168, 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 40% at 82% 4%, rgba(217, 185, 121, 0.16), transparent 65%);
+}
 
 /* ── snow canvas ── */
 #snow {
@@ -292,9 +305,10 @@ body {
 .plum .blossom-hearts { fill: var(--gold-bright); }
 
 /* ═══════════ HANOK SCROLL SCENE ═══════════ */
-.hanok-scene { height: 400vh; position: relative; }
+.hanok-scene { height: 400vh; position: relative; background: var(--paper); }
 
 .hanok-sticky {
+  background: var(--paper);
   position: sticky;
   top: 0;
   height: 100svh;
@@ -363,23 +377,65 @@ body {
   60% { filter: brightness(0.96); }
 }
 
+/* sakura petals, drifting down through the garden */
+.hanok-svg .petal {
+  transform-box: fill-box;
+  transform-origin: 50% 50%;
+  animation: petalDrift 7.5s linear infinite;
+  opacity: 0;
+}
+.hanok-svg .petal.d2 { animation-duration: 9s;   animation-delay: -1.2s; }
+.hanok-svg .petal.d3 { animation-duration: 8.2s; animation-delay: -2.6s; }
+.hanok-svg .petal.d4 { animation-duration: 10s;  animation-delay: -4.1s; }
+.hanok-svg .petal.d5 { animation-duration: 7s;   animation-delay: -5.3s; }
+.hanok-svg .petal.d6 { animation-duration: 9.6s; animation-delay: -0.6s; }
+.hanok-svg .petal.d7 { animation-duration: 8.8s; animation-delay: -3.4s; }
+.hanok-svg .petal.d8 { animation-duration: 7.8s; animation-delay: -6.2s; }
+.hanok-svg .petal.d9 { animation-duration: 9.2s; animation-delay: -2.1s; }
+@keyframes craneBeat {
+  0%, 100% { transform: rotate(0deg) scaleY(1); }
+  50%      { transform: rotate(26deg) scaleY(0.72); }
+}
+.wing-up, .wing-fore {
+  animation: craneBeat 2.6s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: 60% 100%;
+}
+.wing-fore { animation-delay: -0.08s; }
+.crane.d2 .wing-up, .crane.d2 .wing-fore { animation-delay: -0.4s; }
+.crane.d3 .wing-up, .crane.d3 .wing-fore { animation-delay: -0.9s; }
+.crane.d4 .wing-up, .crane.d4 .wing-fore { animation-delay: -1.3s; }
+.crane.d5 .wing-up, .crane.d5 .wing-fore { animation-delay: -1.8s; }
+.crane.d6 .wing-up, .crane.d6 .wing-fore { animation-delay: -2.2s; }
+.crane-o2 .wing-up, .crane-o2 .wing-fore { animation-delay: -0.7s; }
+.crane-o3 .wing-up, .crane-o3 .wing-fore { animation-delay: -1.5s; }
+.crane-o4 .wing-up, .crane-o4 .wing-fore { animation-delay: -2.1s; }
+
+@keyframes petalDrift {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  12%  { opacity: 0.9; }
+  50%  { transform: translate(-34px, 190px) rotate(180deg); opacity: 0.85; }
+  88%  { opacity: 0.55; }
+  100% { transform: translate(18px, 400px) rotate(360deg); opacity: 0; }
+}
+
 /* stepping into the light */
 .hanok-wash {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #FBEBC8 0%, #F6E3B8 55%, #F1DFB6 100%);
+  background: linear-gradient(180deg, var(--glow) 0%, #FBEDD5 46%, var(--glow-edge) 100%);
   opacity: 0;
   pointer-events: none;
 }
 
 /* the golden light spills onward into the story */
-#story { position: relative; }
+#story { position: relative; background: var(--paper); }
 #story::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: min(52vh, 460px);
-  background: linear-gradient(180deg, #F1DFB6, rgba(241, 223, 182, 0));
+  top: -2px; left: 0; right: 0;
+  height: min(34vh, 300px);
+  background: linear-gradient(180deg, var(--glow-edge), rgba(248, 235, 218, 0));
   pointer-events: none;
 }
 #story > .section-inner { position: relative; }
@@ -603,6 +659,7 @@ body {
   margin-bottom: 2.2rem;
 }
 
+
 .venue-photo {
   border: 1px solid var(--gold-dim);
   border-radius: 6px;
@@ -777,7 +834,9 @@ body {
 
 .field { margin-bottom: 1.6rem; }
 
-.field label, .choice-group legend {
+/* :not(.choice) so this rule does not out-specify .choice's display: flex —
+   without it the radio/checkbox labels fall back to block and lose their gap */
+.field label:not(.choice), .choice-group legend {
   display: block;
   font-size: 0.82rem;
   letter-spacing: 0.18em;
@@ -981,7 +1040,7 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
 .scroll-hint { display: none; }
   #sceneCouple { opacity: 1 !important; transform: none !important; }
   .seal, .hero-names .name-line, .hero-cta::before, .hanok-svg .flicker,
-  .hanok-svg .flame, .hanok-svg .flame-glow,
+  .hanok-svg .flame, .hanok-svg .flame-glow, .hanok-svg .petal,
   .scroll-line { animation: none !important; }
   .scroll-cue { animation: none !important; }
   .scroll-cue span { animation: none !important; opacity: 0.8; }
@@ -993,6 +1052,10 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
 /* ── Mobile (primary audience) ── */
 @media (max-width: 560px) {
   body { font-size: 17px; }
+  /* every tap target clears 44px */
+  .hero-cta { padding: 1rem 1.7rem; font-size: 0.82rem; min-height: 46px; display: inline-flex; align-items: center; justify-content: center; }
+  .btn, .btn.ghost, .btn.primary { min-height: 46px; display: inline-flex; align-items: center; justify-content: center; }
+  .faq-item summary { min-height: 48px; }
   .section { padding: 4.5rem 1.25rem; }
 
   .plum { width: 42vw; }
@@ -1004,8 +1067,8 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hanok-scene { height: 320vh; }
   .scroll-cue span { width: 16px; height: 16px; }
   .scroll-cue em { font-size: 0.74rem; }
-  .venue-photo img { aspect-ratio: 16 / 9; }
   .scene-caption { padding: 0 1.5rem; }
+  .venue-photo img { aspect-ratio: 16 / 9; }
   .scroll-hint span { display: none; }        /* just the breathing line — less clutter */
 
   /* story chapters stack */
