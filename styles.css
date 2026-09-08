@@ -558,6 +558,7 @@ body::before {
 .photo-art, .photo-mat img {
   display: block;
   width: 100%;
+  height: auto;   /* the height attribute must not win over the mat's width */
   aspect-ratio: 4 / 5;
   object-fit: cover;
   background:
