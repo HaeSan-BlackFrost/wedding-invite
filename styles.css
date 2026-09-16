@@ -1,6 +1,7 @@
 /* ═══════════ Hae San & Kristal — morning snow on rice paper ═══════════ */
 
 :root {
+  color-scheme: light only;
   --paper: #FBF7EF;
   --paper-2: #F4EDE0;
   --paper-card: #FFFDF8;
@@ -292,8 +293,14 @@ body::before {
 }
 
 @media (max-height: 700px) {
-  .opening-hero .hero-hanja, .opening-hero .hero-countdown { display: none; }
+  /* in-app browsers (Telegram) sit their own bar on top of the viewport;
+     tighten the hero instead of hiding the hanja line and countdown */
+  .opening-hero { top: 6svh; }
+  .hero-eyebrow { margin-bottom: 0.5rem; font-size: 0.72rem; }
+  .hero-hanja { margin-top: 0.4rem; font-size: 0.8rem; }
+  .hero-countdown { margin-top: 0.4rem; font-size: 0.78rem; }
   .hero-names { font-size: clamp(1.7rem, 4.2vw, 2.5rem); }
+  .scroll-cue em { display: none; }   /* chevrons alone; the word crowds the steps */
 }
 
 /* plum branch, top-left of the opening scene */
