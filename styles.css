@@ -477,10 +477,12 @@ body::before {
 }
 #story > .section-inner { position: relative; }
 
+.hanja-dot { color: var(--gold); margin: 0 0.35em; font-size: 0.85em; }
+
 .scene-caption {
   position: absolute;
   left: 0; right: 0;
-  top: 50%;
+  top: 58%;
   transform: translateY(-40%);
   text-align: center;
   font-size: clamp(1.15rem, 3vw, 1.6rem);
@@ -500,6 +502,8 @@ body::before {
   border-top: 1px solid var(--hairline);
   border-bottom: 1px solid var(--hairline);
 }
+
+#story { padding-top: 3.5rem; }
 
 .section-inner { max-width: 960px; margin: 0 auto; text-align: center; }
 .section-inner.narrow { max-width: 640px; }
@@ -1018,7 +1022,9 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1 !important; transform: none !important; transition: none; }
-  .scene-caption { opacity: 1 !important; position: static; transform: none !important; margin-top: 1rem; transition: none; }
+  .hanja-dot { color: var(--gold); margin: 0 0.35em; font-size: 0.85em; }
+
+.scene-caption { opacity: 1 !important; position: static; transform: none !important; margin-top: 1rem; transition: none; }
   .hanok-scene { height: auto; padding: 0 0 3rem; }
   .hanok-sticky { position: static; height: auto; }
   .hanok-svg { position: static; width: min(92vw, 860px); height: auto; margin: 0 auto; display: block; }
@@ -1107,7 +1113,9 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   .hanok-scene { height: 320vh; }
   .scroll-cue span { width: 16px; height: 16px; }
   .scroll-cue em { font-size: 0.74rem; }
-  .scene-caption { padding: 0 1.5rem; }
+  .hanja-dot { color: var(--gold); margin: 0 0.35em; font-size: 0.85em; }
+
+.scene-caption { padding: 0 1.5rem; }
   .venue-photo img { aspect-ratio: 16 / 9; }
   .scroll-hint span { display: none; }        /* just the breathing line — less clutter */
 

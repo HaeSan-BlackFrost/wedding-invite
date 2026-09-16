@@ -395,12 +395,16 @@ if (!reducedMotion) {
 const form = document.getElementById("rsvpForm");
 const attendingDetails = document.getElementById("attendingDetails");
 const plusOneDetails = document.getElementById("plusOneDetails");
+const childrenDetails = document.getElementById("childrenDetails");
 const statusEl = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
 
 form.addEventListener("change", (e) => {
   if (e.target.name === "attending") {
     attendingDetails.hidden = e.target.value !== "accepts";
+  }
+  if (e.target.name === "children") {
+    childrenDetails.hidden = e.target.value !== "yes";
   }
   if (e.target.name === "plusOne") {
     plusOneDetails.hidden = e.target.value !== "yes";
@@ -420,6 +424,7 @@ function validate(data) {
   const errors = [];
   if (!data.fullName.trim()) errors.push("your full name");
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push("a valid email address");
+  if (!data.side) errors.push("which side you are from");
   if (!data.attending) errors.push("whether you are attending");
   if (data.attending === "accepts") {
     if (data.events.length === 0) errors.push("which parts of the day you'll join");
@@ -427,6 +432,11 @@ function validate(data) {
     if (data.plusOne === "yes") {
       if (!data.plusOneName.trim()) errors.push("your plus one's full name");
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.plusOneEmail)) errors.push("your plus one's email");
+    }
+    if (!data.children) errors.push("whether children are joining");
+    if (data.children === "yes") {
+      if (!(parseInt(data.childrenCount, 10) > 0)) errors.push("how many children are coming");
+      if (!data.childrenNames.trim()) errors.push("your children's names");
     }
     if (!data.driving) errors.push("whether you'll be driving");
   }
@@ -439,11 +449,15 @@ form.addEventListener("submit", async (e) => {
   const data = {
     fullName: fd.get("fullName") || "",
     email: fd.get("email") || "",
+    side: fd.get("side") || "",
     attending: fd.get("attending") || "",
     events: fd.getAll("events"),
     plusOne: fd.get("plusOne") || "",
     plusOneName: fd.get("plusOneName") || "",
     plusOneEmail: fd.get("plusOneEmail") || "",
+    children: fd.get("children") || "",
+    childrenCount: fd.get("childrenCount") || "",
+    childrenNames: fd.get("childrenNames") || "",
     driving: fd.get("driving") || "",
     dietary: fd.get("dietary") || "",
     message: fd.get("message") || "",
@@ -452,6 +466,7 @@ form.addEventListener("submit", async (e) => {
   if (data.attending === "declines") {
     data.events = [];
     data.plusOne = data.plusOneName = data.plusOneEmail = data.driving = data.dietary = "";
+    data.children = data.childrenCount = data.childrenNames = "";
   }
 
   const errors = validate(data);
