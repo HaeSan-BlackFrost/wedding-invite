@@ -6,6 +6,11 @@
    show a "not connected" notice instead of silently vanishing. */
 const RSVP_ENDPOINT = "";
 
+/* ── Two invite variants, one site ──
+   The default link carries no plus-one question. Guests granted a plus one
+   receive the same address with ?plusone, which reveals the question. */
+const PLUS_ONE_ENABLED = new URLSearchParams(location.search).has("plusone");
+
 /* ── Always open at the top of the journey ──
    The page is a linear story: gate → doors → garden → invitation. Browser
    scroll restoration (pull-to-refresh, in-app webviews reopening the tab)
@@ -395,6 +400,8 @@ if (!reducedMotion) {
 const form = document.getElementById("rsvpForm");
 const attendingDetails = document.getElementById("attendingDetails");
 const plusOneDetails = document.getElementById("plusOneDetails");
+const plusOneBlock = document.getElementById("plusOneBlock");
+if (PLUS_ONE_ENABLED && plusOneBlock) plusOneBlock.hidden = false;
 const childrenDetails = document.getElementById("childrenDetails");
 const statusEl = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
@@ -428,10 +435,12 @@ function validate(data) {
   if (!data.attending) errors.push("whether you are attending");
   if (data.attending === "accepts") {
     if (data.events.length === 0) errors.push("which parts of the day you'll join");
-    if (!data.plusOne) errors.push("whether a plus one is joining");
-    if (data.plusOne === "yes") {
-      if (!data.plusOneName.trim()) errors.push("your plus one's full name");
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.plusOneEmail)) errors.push("your plus one's email");
+    if (PLUS_ONE_ENABLED) {
+      if (!data.plusOne) errors.push("whether a plus one is joining");
+      if (data.plusOne === "yes") {
+        if (!data.plusOneName.trim()) errors.push("your plus one's full name");
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.plusOneEmail)) errors.push("your plus one's email");
+      }
     }
     if (!data.children) errors.push("whether children are joining");
     if (data.children === "yes") {
@@ -452,7 +461,7 @@ form.addEventListener("submit", async (e) => {
     side: fd.get("side") || "",
     attending: fd.get("attending") || "",
     events: fd.getAll("events"),
-    plusOne: fd.get("plusOne") || "",
+    plusOne: PLUS_ONE_ENABLED ? (fd.get("plusOne") || "") : "not offered",
     plusOneName: fd.get("plusOneName") || "",
     plusOneEmail: fd.get("plusOneEmail") || "",
     children: fd.get("children") || "",
