@@ -4,7 +4,7 @@
    Paste your Google Apps Script "Web app" URL here once deployed
    (see README.md — takes ~3 minutes). Until then, submissions
    show a "not connected" notice instead of silently vanishing. */
-const RSVP_ENDPOINT = "";
+const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzf8PShympP_On1z-kndWyF_ONdiN3DUXXtzJh4WC7IuzDdxQv-VP5LIRB0UrhsDVIF/exec";
 
 /* ── Two invite variants, one site ──
    The default link carries no plus-one question. Guests granted a plus one
