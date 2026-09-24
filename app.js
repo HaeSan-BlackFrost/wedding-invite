@@ -168,11 +168,24 @@ if (!location.hash) {
   /* celebration: fling a handful of petals from (x, y) */
   window.__burstPetals = function (x, y) {
     // the journey fades this canvas to near zero by the time the RSVP form is
-    // reached — lift it for the burst, then hand the value back
+    // reached — lift it for the burst, then hand the value back only after
+    // the last petal has fallen (a fixed timer cut the celebration mid-air)
     const prev = canvas.style.opacity;
-    canvas.style.transition = "opacity 0.3s";
+    canvas.style.transition = "opacity 0.6s";
     canvas.style.opacity = "1";
-    setTimeout(() => { canvas.style.opacity = prev; canvas.style.transition = ""; }, 4200);
+    window.__snowBurstActive = true;
+    const started = performance.now();
+    const settle = () => {
+      const petalsLeft = flakes && flakes.some((f) => f.vx !== undefined);
+      if (petalsLeft && performance.now() - started < 15000) {
+        setTimeout(settle, 400);
+        return;
+      }
+      canvas.style.opacity = prev;
+      window.__snowBurstActive = false;
+      setTimeout(() => { canvas.style.transition = ""; }, 700);
+    };
+    setTimeout(settle, 1500);
     for (let i = 0; i < 26; i++) {
       const angle = Math.PI * (1 + Math.random());       // upward half-circle
       const speed = 90 + Math.random() * 200;
@@ -350,7 +363,10 @@ function renderScene() {
 
   // 4 · stepping into the light → memory lane
   // snow belongs outdoors: fade it as the camera enters the gateway
-  if (snowEl) put("snowO", String(r3(1 - 0.95 * ease((p - 0.42) / 0.28))), (v) => { snowEl.style.opacity = v; });
+  if (snowEl && !window.__snowBurstActive) {
+    const snowO = String(r3(1 - 0.95 * ease((p - 0.42) / 0.28)));
+    if (snowEl.style.opacity !== snowO) snowEl.style.opacity = snowO;
+  }
   if (petals) put("petalO", String(r3(clamp01((p - 0.44) / 0.16) * (1 - ease((p - 0.72) / 0.2)))),
     (v) => { petals.setAttribute("opacity", v); });
   put("washO", String(r3(ease((p - 0.72) / 0.2))), (v) => { hanokWash.style.opacity = v; });
