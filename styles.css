@@ -24,7 +24,7 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 
 body {
   background:
@@ -979,14 +979,15 @@ input.invalid, textarea.invalid { border-color: var(--vermilion); }
   position: relative;
 }
 .footer-ridge {
+  /* absolute positioning already spans the footer's full width; the old
+     calc(100% + 3rem) overshot the viewport and let the page pan sideways */
   display: block;
-  width: calc(100% + 3rem);
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
   height: 60px;
   fill: #241F19;
   transform: translateY(-99%);
-  position: absolute;
-  top: 0; left: 1.5rem;
-  margin: 0 -1.5rem;
 }
 .footer-monogram {
   font-size: 1.7rem;
