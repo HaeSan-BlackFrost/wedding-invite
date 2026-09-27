@@ -13,6 +13,7 @@ const HEADERS = [
   "Email",
   "Side",
   "Attending",
+  "Pax",
   "Events",
   "Plus One",
   "Plus One Name",
@@ -45,12 +46,18 @@ function doPost(e) {
     }
 
     const p = e.parameter;
+    // party headcount: the guest, the plus one if coming, and the children.
+    // Total pax for the wedding = SUM of this column.
+    const pax = p.attending === "accepts"
+      ? 1 + (p.plusOne === "yes" ? 1 : 0) + (parseInt(p.childrenCount, 10) || 0)
+      : 0;
     sheet.appendRow([
       p.submittedAt || new Date().toISOString(),
       p.fullName || "",
       p.email || "",
       p.side || "",
       p.attending || "",
+      pax,
       p.events || "",
       p.plusOne || "",
       p.plusOneName || "",
