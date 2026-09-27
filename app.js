@@ -460,7 +460,10 @@ function validate(data) {
     }
     if (!data.children) errors.push("whether children are joining");
     if (data.children === "yes") {
-      if (!(parseInt(data.childrenCount, 10) > 0)) errors.push("how many children are coming");
+      const total = parseInt(data.childrenCount, 10);
+      const under13 = parseInt(data.childrenUnder13, 10);
+      if (!(total > 0)) errors.push("how many children are coming in total");
+      else if (!(under13 >= 0 && under13 <= total)) errors.push("how many of them are aged 12 and below");
       if (!data.childrenNames.trim()) errors.push("your children's names");
     }
     if (!data.driving) errors.push("whether you'll be driving");
@@ -482,6 +485,7 @@ form.addEventListener("submit", async (e) => {
     plusOneEmail: fd.get("plusOneEmail") || "",
     children: fd.get("children") || "",
     childrenCount: fd.get("childrenCount") || "",
+    childrenUnder13: fd.get("childrenUnder13") || "",
     childrenNames: fd.get("childrenNames") || "",
     driving: fd.get("driving") || "",
     dietary: fd.get("dietary") || "",
@@ -491,7 +495,7 @@ form.addEventListener("submit", async (e) => {
   if (data.attending === "declines") {
     data.events = [];
     data.plusOne = data.plusOneName = data.plusOneEmail = data.driving = data.dietary = "";
-    data.children = data.childrenCount = data.childrenNames = "";
+    data.children = data.childrenCount = data.childrenUnder13 = data.childrenNames = "";
   }
 
   const errors = validate(data);

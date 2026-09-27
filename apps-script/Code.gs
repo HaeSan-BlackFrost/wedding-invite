@@ -19,6 +19,7 @@ const HEADERS = [
   "Plus One Email",
   "Children",
   "Children Count",
+  "Children 12 & Below",
   "Children Names",
   "Driving",
   "Dietary",
@@ -38,6 +39,9 @@ function doPost(e) {
       sheet.appendRow(HEADERS);
       sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight("bold");
       sheet.setFrozenRows(1);
+    } else if (sheet.getLastColumn() < HEADERS.length) {
+      // the column set grew in a later version: rewrite the header row
+      sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]).setFontWeight("bold");
     }
 
     const p = e.parameter;
@@ -53,6 +57,7 @@ function doPost(e) {
       p.plusOneEmail || "",
       p.children || "",
       p.childrenCount || "",
+      p.childrenUnder13 || "",
       p.childrenNames || "",
       p.driving || "",
       p.dietary || "",
