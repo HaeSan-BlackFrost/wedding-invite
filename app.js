@@ -6,10 +6,16 @@
    show a "not connected" notice instead of silently vanishing. */
 const RSVP_ENDPOINT = "https://script.google.com/macros/s/AKfycbzf8PShympP_On1z-kndWyF_ONdiN3DUXXtzJh4WC7IuzDdxQv-VP5LIRB0UrhsDVIF/exec";
 
-/* ── Two invite variants, one site ──
-   The default link carries no plus-one question. Guests granted a plus one
-   receive the same address with ?plusone, which reveals the question. */
-const PLUS_ONE_ENABLED = new URLSearchParams(location.search).has("plusone");
+/* ── Three invite variants, one site ──
+   The link's number decides which questions show:
+     ?1 (or no number)  ·  no plus one, no children questions
+     ?2                 ·  plus one, no children questions
+     ?3                 ·  plus one and all children questions
+   ?plusone is the old second link and behaves like ?3. */
+const _q = new URLSearchParams(location.search);
+const INVITE_VARIANT = (_q.has("3") || _q.has("plusone")) ? 3 : _q.has("2") ? 2 : 1;
+const PLUS_ONE_ENABLED = INVITE_VARIANT >= 2;
+const KIDS_ENABLED = INVITE_VARIANT === 3;
 
 /* ── Always open at the top of the journey ──
    The page is a linear story: gate → doors → garden → invitation. Browser
@@ -418,6 +424,8 @@ const attendingDetails = document.getElementById("attendingDetails");
 const plusOneDetails = document.getElementById("plusOneDetails");
 const plusOneBlock = document.getElementById("plusOneBlock");
 if (PLUS_ONE_ENABLED && plusOneBlock) plusOneBlock.hidden = false;
+const childrenBlock = document.getElementById("childrenBlock");
+if (KIDS_ENABLED && childrenBlock) childrenBlock.hidden = false;
 const childrenDetails = document.getElementById("childrenDetails");
 const statusEl = document.getElementById("formStatus");
 const submitBtn = document.getElementById("submitBtn");
@@ -458,8 +466,8 @@ function validate(data) {
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.plusOneEmail)) errors.push("your plus one's email");
       }
     }
-    if (!data.children) errors.push("whether children are joining");
-    if (data.children === "yes") {
+    if (KIDS_ENABLED && !data.children) errors.push("whether children are joining");
+    if (KIDS_ENABLED && data.children === "yes") {
       const total = parseInt(data.childrenCount, 10);
       const under13 = parseInt(data.childrenUnder13, 10);
       if (!(total > 0)) errors.push("how many children are coming in total");
@@ -483,7 +491,7 @@ form.addEventListener("submit", async (e) => {
     plusOne: PLUS_ONE_ENABLED ? (fd.get("plusOne") || "") : "not offered",
     plusOneName: fd.get("plusOneName") || "",
     plusOneEmail: fd.get("plusOneEmail") || "",
-    children: fd.get("children") || "",
+    children: KIDS_ENABLED ? (fd.get("children") || "") : "not offered",
     childrenCount: fd.get("childrenCount") || "",
     childrenUnder13: fd.get("childrenUnder13") || "",
     childrenNames: fd.get("childrenNames") || "",
