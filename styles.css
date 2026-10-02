@@ -505,7 +505,7 @@ body::before {
 .scene-caption.visible { opacity: 1; transform: translateY(-50%); }
 
 /* ═══════════ SECTIONS ═══════════ */
-.section { padding: 6.5rem 1.5rem; position: relative; content-visibility: auto; contain-intrinsic-size: auto 900px; }
+.section { padding: 6.5rem 1.5rem; position: relative; }
 .section.alt {
   background: linear-gradient(180deg, var(--paper-2), rgba(244, 237, 224, 0.35));
   border-top: 1px solid var(--hairline);
