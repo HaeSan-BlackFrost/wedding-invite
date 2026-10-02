@@ -236,24 +236,6 @@ const revealObserver = new IntersectionObserver(
 );
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-/* ── Venue photo swap: show the real photo once it loads, keep the ink-wash otherwise ── */
-(function initVenuePhoto() {
-  const wrap = document.getElementById("venuePhoto");
-  const art = document.querySelector(".venue-art");
-  const img = wrap && wrap.querySelector("img");
-  if (!img) return;
-  const swap = () => {
-    if (!img.naturalWidth) return;
-    if (art) art.style.display = "none";
-    wrap.hidden = false;
-  };
-  if (img.complete) swap();
-  else {
-    img.addEventListener("load", swap, { once: true });
-    img.addEventListener("error", () => { wrap.hidden = true; }, { once: true });
-  }
-})();
-
 /* ── Hanok journey: approach → doors open → step into the light ── */
 const scene = document.getElementById("hanokScene");
 const hanokSvg = document.getElementById("hanokSvg");
