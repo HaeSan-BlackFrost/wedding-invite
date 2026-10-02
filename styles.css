@@ -140,6 +140,14 @@ body::before {
   color: var(--vermilion);
 }
 
+.hero-invite {
+  margin-top: 0.1rem;
+  font-size: 1.08rem;
+  font-style: italic;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+}
+
 .hero-hanja {
   margin-top: 0.7rem;
   font-size: 0.9rem;
@@ -296,7 +304,8 @@ body::before {
   /* in-app browsers (Telegram) sit their own bar on top of the viewport;
      tighten the hero instead of hiding the hanja line and countdown */
   .opening-hero { top: 6svh; }
-  .hero-eyebrow { margin-bottom: 0.5rem; font-size: 0.72rem; }
+  .hero-eyebrow { margin-bottom: 0.4rem; font-size: 0.72rem; }
+  .hero-invite { font-size: 0.95rem; }
   .hero-hanja { margin-top: 0.4rem; font-size: 0.8rem; }
   .hero-countdown { margin-top: 0.4rem; font-size: 0.78rem; }
   .hero-names { font-size: clamp(1.7rem, 4.2vw, 2.5rem); }
