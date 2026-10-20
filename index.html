@@ -17,12 +17,17 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Noto+Serif+KR:wght@400;600&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=21">
+<link rel="stylesheet" href="styles.css?v=22">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%23B8432F'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23F0D49B' font-family='serif'>囍</text></svg>">
 </head>
 <body>
 
 <!-- ambient snowfall (canvas, site-wide) -->
+<div class="lang-toggle" id="langToggle" role="group" aria-label="Language">
+  <button type="button" class="lang-opt active" data-lang="en">EN</button>
+  <button type="button" class="lang-opt" data-lang="ko">KR</button>
+</div>
+
 <canvas id="snow" aria-hidden="true"></canvas>
 
 
@@ -747,16 +752,16 @@
     </svg>
 
     <div class="opening-hero" id="openingHero">
-      <p class="hero-eyebrow">Together with their families</p>
-      <p class="hero-invite">you are warmly invited to the wedding of</p>
-      <p class="hero-hanja" lang="ko">저희 결혼식에 초대합니다 <span class="dot">·</span> <span lang="zh">恭請光臨</span></p>
+      <p class="hero-eyebrow" data-i18n="heroEyebrow">Together with their families</p>
+      <p class="hero-invite" data-i18n="heroInvite">you are warmly invited to the wedding of</p>
+      <p class="hero-hanja" lang="ko" data-i18n="heroHanja">저희 결혼식에 초대합니다 <span class="dot">·</span> <span lang="zh">恭請光臨</span></p>
       <p class="hero-countdown" id="countdown" aria-live="off"></p>
     </div>
     <h1 class="sr-names">Tan Hae San &amp; Kristal Wong — 20 February 2027, Raffles Sentosa, Singapore</h1>
-    <a class="hero-cta opening-cta" id="openingCta" href="#rsvp"><span>Kindly RSVP</span></a>
+    <a class="hero-cta opening-cta" id="openingCta" href="#rsvp"><span data-i18n="ctaRsvp">Kindly RSVP</span></a>
 
     <div class="scroll-cue" id="scrollCue" aria-hidden="true">
-      <em>scroll</em>
+      <em data-i18n="cueScroll">scroll</em>
       <span></span>
       <span></span>
     </div>
@@ -773,8 +778,8 @@
 <!-- ═══════════ OUR STORY — photo timeline ═══════════ -->
 <section class="section" id="story">
   <div class="section-inner">
-    <p class="section-eyebrow">Our Story</p>
-    <h2 class="section-title">Our story so far</h2>
+    <p class="section-eyebrow" data-i18n="storyEyebrow">Our Story</p>
+    <h2 class="section-title" data-i18n="storyTitle">Our story so far</h2>
     <div class="eave-divider" aria-hidden="true">
       <svg viewBox="0 0 120 20"><path d="M 5 6 Q 60 20 115 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
@@ -788,9 +793,9 @@
           </div>
         </figure>
         <div class="chapter-text">
-          <p class="chapter-date">University · 2018</p>
-          <h3>The first hello</h3>
-          <p>We met at university in 2018. Friends first but getting out of the friend zone is real!</p>
+          <p class="chapter-date" data-i18n="ch1d">University · 2018</p>
+          <h3 data-i18n="ch1t">The first hello</h3>
+          <p data-i18n="ch1b">We met at university in 2018. Friends first but getting out of the friend zone is real!</p>
         </div>
       </li>
 
@@ -802,9 +807,9 @@
           </div>
         </figure>
         <div class="chapter-text">
-          <p class="chapter-date">December 2020</p>
-          <h3>Falling in love</h3>
-          <p>After two years of “just friends”, we finally stopped pretending. Best decision ever.</p>
+          <p class="chapter-date" data-i18n="ch2d">December 2020</p>
+          <h3 data-i18n="ch2t">Falling in love</h3>
+          <p data-i18n="ch2b">After two years of “just friends”, we finally stopped pretending. Best decision ever.</p>
         </div>
       </li>
 
@@ -817,8 +822,8 @@
         </figure>
         <div class="chapter-text">
           <p class="chapter-date">2020 – 2025</p>
-          <h3>The years between</h3>
-          <p>Six years of dating and growing with each other.</p>
+          <h3 data-i18n="ch3t">The years between</h3>
+          <p data-i18n="ch3b">Six years of dating and growing with each other.</p>
         </div>
       </li>
 
@@ -830,9 +835,9 @@
           </div>
         </figure>
         <div class="chapter-text">
-          <p class="chapter-date">November 2025</p>
-          <h3>She said yes</h3>
-          <p>One freezing autumn in Korea and one very easy yes.</p><!-- ✏️ -->
+          <p class="chapter-date" data-i18n="ch4d">November 2025</p>
+          <h3 data-i18n="ch4t">She said yes</h3>
+          <p data-i18n="ch4b">One freezing autumn in Korea and one very easy yes.</p><!-- ✏️ -->
         </div>
       </li>
 
@@ -845,8 +850,8 @@
         </figure>
         <div class="chapter-text">
           <p class="chapter-date">Raffles Sentosa · 20.02.2027</p>
-          <h3>Our next chapter</h3>
-          <p>Please join us in our happy day!</p><!-- ✏️ -->
+          <h3 data-i18n="ch5t">Our next chapter</h3>
+          <p data-i18n="ch5b">Please join us in our happy day!</p><!-- ✏️ -->
         </div>
       </li>
     </ol>
@@ -858,8 +863,8 @@
 <!-- ═══════════ SCHEDULE ═══════════ -->
 <section class="section alt reveal" id="schedule">
   <div class="section-inner narrow">
-    <p class="section-eyebrow">The Day</p>
-    <h2 class="section-title">Order of celebrations</h2>
+    <p class="section-eyebrow" data-i18n="schedEyebrow">The Day</p>
+    <h2 class="section-title" data-i18n="schedTitle">Order of celebrations</h2>
     <div class="eave-divider" aria-hidden="true">
       <svg viewBox="0 0 120 20"><path d="M 5 6 Q 60 20 115 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
@@ -867,29 +872,29 @@
       <li class="timeline-item reveal">
         <div class="timeline-time">5:00 <span>PM</span></div>
         <div class="timeline-body">
-          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 10h11q1 6-5.5 6T5 10Z"/><path d="M16 11q3 -0.5 2.6 2q-0.4 2 -3 1.4"/><path d="M9 7q1 -1.5 0 -3M13 7q1 -1.5 0 -3" opacity=".6"/></g></svg>Tea Ceremony <span class="hanja" lang="zh">敬茶</span><span class="hanja-dot">·</span><span class="hanja" lang="ko">다례</span></h3>
-          <p>Honouring our elders with the traditional serving of tea.</p>
+          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 10h11q1 6-5.5 6T5 10Z"/><path d="M16 11q3 -0.5 2.6 2q-0.4 2 -3 1.4"/><path d="M9 7q1 -1.5 0 -3M13 7q1 -1.5 0 -3" opacity=".6"/></g></svg><span data-i18n="evTea">Tea Ceremony</span> <span class="hanja" lang="zh">敬茶</span><span class="hanja-dot">·</span><span class="hanja" lang="ko" data-i18n="tagTea">다례</span></h3>
+          <p data-i18n="descTea">Honouring our elders with the traditional serving of tea.</p>
         </div>
       </li>
       <li class="timeline-item reveal">
         <div class="timeline-time">6:00 <span>PM</span></div>
         <div class="timeline-body">
-          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9.5" cy="13" r="5"/><circle cx="14.5" cy="13" r="5"/><path d="M12 5l1.5 2h-3Z" stroke-linejoin="round"/></g></svg>Solemnization <span class="hanja" lang="zh">證婚</span><span class="hanja-dot">·</span><span class="hanja" lang="ko">혼인 서약</span></h3>
-          <p>The exchange of vows by the pool, against the Sentosa sea.</p>
+          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9.5" cy="13" r="5"/><circle cx="14.5" cy="13" r="5"/><path d="M12 5l1.5 2h-3Z" stroke-linejoin="round"/></g></svg><span data-i18n="evSol">Solemnization</span> <span class="hanja" lang="zh">證婚</span><span class="hanja-dot">·</span><span class="hanja" lang="ko" data-i18n="tagSol">혼인 서약</span></h3>
+          <p data-i18n="descSol">The exchange of vows by the pool, against the Sentosa sea.</p>
         </div>
       </li>
       <li class="timeline-item reveal">
         <div class="timeline-time">6:15 <span>PM</span></div>
         <div class="timeline-body">
-          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5h14l-7 8Z" stroke-linejoin="round"/><path d="M12 13v6M8.5 21h7M8 8h8" opacity=".6"/></g></svg>Cocktail Reception <span class="hanja" lang="zh">酒會</span><span class="hanja-dot">·</span><span class="hanja" lang="ko">환영회</span></h3>
-          <p>Drinks and mingling before the banquet begins.</p>
+          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5 5h14l-7 8Z" stroke-linejoin="round"/><path d="M12 13v6M8.5 21h7M8 8h8" opacity=".6"/></g></svg><span data-i18n="evCt">Cocktail Reception</span> <span class="hanja" lang="zh">酒會</span><span class="hanja-dot">·</span><span class="hanja" lang="ko" data-i18n="tagCt">환영회</span></h3>
+          <p data-i18n="descCt">Drinks and mingling before the banquet begins.</p>
         </div>
       </li>
       <li class="timeline-item reveal">
         <div class="timeline-time">7:00 <span>PM</span></div>
         <div class="timeline-body">
-          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="12" rx="6" ry="7.5"/><path d="M9 5.5h6M9 18.5h6M12 19v2.5"/></g></svg>Evening Banquet <span class="hanja" lang="zh">晚宴</span><span class="hanja-dot">·</span><span class="hanja" lang="ko">피로연</span></h3>
-          <p>Dinner, toasts, and celebration late into the evening. Kindly be seated by 6:50 PM.</p>
+          <h3><svg class="event-icon" viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><ellipse cx="12" cy="12" rx="6" ry="7.5"/><path d="M9 5.5h6M9 18.5h6M12 19v2.5"/></g></svg><span data-i18n="evBq">Evening Banquet</span> <span class="hanja" lang="zh">晚宴</span><span class="hanja-dot">·</span><span class="hanja" lang="ko" data-i18n="tagBq">피로연</span></h3>
+          <p data-i18n="descBq">Dinner, toasts, and celebration late into the evening. Kindly be seated by 6:50 PM.</p>
         </div>
       </li>
     </ol>
@@ -899,8 +904,8 @@
 <!-- ═══════════ VENUE ═══════════ -->
 <section class="section reveal" id="venue">
   <div class="section-inner">
-    <p class="section-eyebrow">The Venue</p>
-    <h2 class="section-title">Raffles Sentosa, Singapore</h2>
+    <p class="section-eyebrow" data-i18n="venueEyebrow">The Venue</p>
+    <h2 class="section-title" data-i18n="venueTitle">Raffles Sentosa, Singapore</h2>
     <div class="eave-divider" aria-hidden="true">
       <svg viewBox="0 0 120 20"><path d="M 5 6 Q 60 20 115 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
@@ -913,21 +918,21 @@
         loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
     </div>
     <div class="venue-actions">
-      <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Raffles+Sentosa+Singapore" target="_blank" rel="noopener">Open in Google Maps</a>
-      <a class="btn ghost" href="wedding.ics" download>Add to Calendar</a>
+      <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Raffles+Sentosa+Singapore" target="_blank" rel="noopener" data-i18n="btnMaps">Open in Google Maps</a>
+      <a class="btn ghost" href="wedding.ics" download data-i18n="btnCal">Add to Calendar</a>
     </div>
     <div class="venue-notes">
       <div class="venue-note">
-        <h4>Dress code</h4>
-        <p>Formal attire.</p>
+        <h4 data-i18n="noteDressH">Dress code</h4>
+        <p data-i18n="noteDressB">Formal attire.</p>
       </div>
       <div class="venue-note">
-        <h4>Driving in</h4>
-        <p>Parking is available at the resort — do let us know in your RSVP if you plan to drive, so we can arrange enough spaces.</p>
+        <h4 data-i18n="noteDriveH">Driving in</h4>
+        <p data-i18n="noteDriveB">Parking is available at the resort — do let us know in your RSVP if you plan to drive, so we can arrange enough spaces.</p>
       </div>
       <div class="venue-note">
-        <h4>Getting there</h4>
-        <p>Raffles Sentosa is reachable via the Sentosa Gateway. Taxis and private hire can drop off at the resort entrance.</p>
+        <h4 data-i18n="noteGetH">Getting there</h4>
+        <p data-i18n="noteGetB">Raffles Sentosa is reachable via the Sentosa Gateway. Taxis and private hire can drop off at the resort entrance.</p>
       </div>
     </div>
   </div>
@@ -938,26 +943,26 @@
 <!-- ═══════════ FAQ ═══════════ -->
 <section class="section reveal" id="faq">
   <div class="section-inner narrow">
-    <p class="section-eyebrow">Good to know</p>
-    <h2 class="section-title">Questions, answered</h2>
+    <p class="section-eyebrow" data-i18n="faqEyebrow">Good to know</p>
+    <h2 class="section-title" data-i18n="faqTitle">Questions, answered</h2>
     <div class="eave-divider" aria-hidden="true">
       <svg viewBox="0 0 120 20"><path d="M 5 6 Q 60 20 115 6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </div>
     <details class="faq-item reveal">
-      <summary>Do I need to attend all three events?</summary>
-      <p>Not at all — the RSVP lets you tell us exactly which parts of the day you'll join. The tea ceremony is an intimate family affair; the solemnization and banquet are for all our guests.</p>
+      <summary data-i18n="q1">Do I need to attend all three events?</summary>
+      <p data-i18n="a1">Not at all — the RSVP lets you tell us exactly which parts of the day you'll join. The tea ceremony is an intimate family affair; the solemnization and banquet are for all our guests.</p>
     </details>
     <details class="faq-item reveal">
-      <summary>Is there parking at the venue?</summary>
-      <p>Yes — parking is available at Raffles Sentosa. Please indicate in your RSVP if you'll be driving so we can plan spaces.</p>
+      <summary data-i18n="q2">Is there parking at the venue?</summary>
+      <p data-i18n="a2">Yes — parking is available at Raffles Sentosa. Please indicate in your RSVP if you'll be driving so we can plan spaces.</p>
     </details>
     <details class="faq-item reveal">
-      <summary>What time should I arrive?</summary>
-      <p>Registration opens in the Garden Room from 4:30 PM for the tea ceremony and solemnization, and the cocktail reception begins at 6:15 PM ahead of the banquet — kindly be seated in the banquet hall by 6:50 PM for the couple's entrance.</p>
+      <summary data-i18n="q3">What time should I arrive?</summary>
+      <p data-i18n="q3a">Registration opens in the Garden Room from 4:30 PM for the tea ceremony and solemnization, and the cocktail reception begins at 6:15 PM ahead of the banquet — kindly be seated in the banquet hall by 6:50 PM for the couple's entrance.</p>
     </details>
     <details class="faq-item reveal">
-      <summary>When should I RSVP by?</summary>
-      <p>Kindly respond by <strong>20 December 2026</strong> so we can finalise seating and catering.</p><!-- ✏️ TBC -->
+      <summary data-i18n="q4">When should I RSVP by?</summary>
+      <p data-i18n="q4a">Kindly respond by <strong>20 December 2026</strong> so we can finalise seating and catering.</p><!-- ✏️ TBC -->
     </details>
   </div>
 </section>
@@ -967,61 +972,61 @@
   <div class="section-inner narrow">
     <div class="seal small" aria-hidden="true">囍</div>
     <p class="section-eyebrow">RSVP</p>
-    <h2 class="section-title">Will you join us?</h2>
-    <p class="rsvp-deadline">Kindly respond by 20 December 2026</p><!-- ✏️ TBC -->
+    <h2 class="section-title" data-i18n="rsvpTitle">Will you join us?</h2>
+    <p class="rsvp-deadline" data-i18n="rsvpDeadline">Kindly respond by 20 December 2026</p><!-- ✏️ TBC -->
 
     <form id="rsvpForm" novalidate>
       <div class="field">
-        <label for="fullName">Full name <span class="req">*</span></label>
-        <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="Your full name">
+        <label for="fullName" data-i18n="lName">Full name <span class="req">*</span></label>
+        <input type="text" id="fullName" name="fullName" required autocomplete="name" placeholder="Your full name" data-i18n-ph="phName">
       </div>
       <div class="field">
-        <label for="email">Email address <span class="req">*</span></label>
+        <label for="email" data-i18n="lEmail">Email address <span class="req">*</span></label>
         <input type="email" id="email" name="email" required autocomplete="email" placeholder="you@example.com">
       </div>
 
       <fieldset class="field choice-group">
-        <legend>Which side are you from? <span class="req">*</span></legend>
+        <legend data-i18n="lSide">Which side are you from? <span class="req">*</span></legend>
         <div class="choice-row">
-          <label class="choice"><input type="radio" name="side" value="groom"><span>Groom · Hae San</span></label>
-          <label class="choice"><input type="radio" name="side" value="bride"><span>Bride · Kristal</span></label>
+          <label class="choice"><input type="radio" name="side" value="groom"><span data-i18n="oGroom">Groom · Hae San</span></label>
+          <label class="choice"><input type="radio" name="side" value="bride"><span data-i18n="oBride">Bride · Kristal</span></label>
         </div>
       </fieldset>
 
       <fieldset class="field choice-group">
-        <legend>Will you be attending? <span class="req">*</span></legend>
+        <legend data-i18n="lAttend">Will you be attending? <span class="req">*</span></legend>
         <div class="choice-row">
-          <label class="choice"><input type="radio" name="attending" value="accepts" required><span>Joyfully accepts</span></label>
-          <label class="choice"><input type="radio" name="attending" value="declines"><span>Regretfully declines</span></label>
+          <label class="choice"><input type="radio" name="attending" value="accepts" required><span data-i18n="oYes">Joyfully accepts</span></label>
+          <label class="choice"><input type="radio" name="attending" value="declines"><span data-i18n="oNo">Regretfully declines</span></label>
         </div>
       </fieldset>
 
       <div id="attendingDetails" hidden>
         <fieldset class="field choice-group">
-          <legend>Which parts of the day will you join? <span class="req">*</span></legend>
+          <legend data-i18n="lEvents">Which parts of the day will you join? <span class="req">*</span></legend>
           <div class="choice-col">
-            <label class="choice"><input type="checkbox" name="events" value="tea-ceremony"><span>Tea Ceremony · 5:00 PM</span></label>
-            <label class="choice"><input type="checkbox" name="events" value="solemnization"><span>Solemnization · 6:00 PM</span></label>
-            <label class="choice"><input type="checkbox" name="events" value="evening-banquet"><span>Evening Banquet · 7:00 PM</span></label>
+            <label class="choice"><input type="checkbox" name="events" value="tea-ceremony"><span data-i18n="oEvTea">Tea Ceremony · 5:00 PM</span></label>
+            <label class="choice"><input type="checkbox" name="events" value="solemnization"><span data-i18n="oEvSol">Solemnization · 6:00 PM</span></label>
+            <label class="choice"><input type="checkbox" name="events" value="evening-banquet"><span data-i18n="oEvBq">Evening Banquet · 7:00 PM</span></label>
           </div>
         </fieldset>
 
         <div id="plusOneBlock" hidden>
         <fieldset class="field choice-group">
-          <legend>Will a plus one be joining you? <span class="req">*</span></legend>
+          <legend data-i18n="lPlusOne">Will a plus one be joining you? <span class="req">*</span></legend>
           <div class="choice-row">
-            <label class="choice"><input type="radio" name="plusOne" value="yes"><span>Yes</span></label>
-            <label class="choice"><input type="radio" name="plusOne" value="no"><span>No</span></label>
+            <label class="choice"><input type="radio" name="plusOne" value="yes"><span data-i18n="oYesPlain">Yes</span></label>
+            <label class="choice"><input type="radio" name="plusOne" value="no"><span data-i18n="oNoPlain">No</span></label>
           </div>
         </fieldset>
 
         <div id="plusOneDetails" class="nested-fields" hidden>
           <div class="field">
-            <label for="plusOneName">Plus one — full name <span class="req">*</span></label>
-            <input type="text" id="plusOneName" name="plusOneName" placeholder="Their full name">
+            <label for="plusOneName" data-i18n="lPoName">Plus one — full name <span class="req">*</span></label>
+            <input type="text" id="plusOneName" name="plusOneName" placeholder="Their full name" data-i18n-ph="phPoName">
           </div>
           <div class="field">
-            <label for="plusOneEmail">Plus one — email address <span class="req">*</span></label>
+            <label for="plusOneEmail" data-i18n="lPoEmail">Plus one — email address <span class="req">*</span></label>
             <input type="email" id="plusOneEmail" name="plusOneEmail" placeholder="their@example.com">
           </div>
         </div>
@@ -1029,51 +1034,51 @@
 
         <div id="childrenBlock" hidden>
         <fieldset class="field choice-group">
-          <legend>Bringing children along? <span class="req">*</span></legend>
+          <legend data-i18n="lKids">Bringing children along? <span class="req">*</span></legend>
           <div class="choice-row">
-            <label class="choice"><input type="radio" name="children" value="yes"><span>Yes</span></label>
-            <label class="choice"><input type="radio" name="children" value="no"><span>No</span></label>
+            <label class="choice"><input type="radio" name="children" value="yes"><span data-i18n="oYesPlain">Yes</span></label>
+            <label class="choice"><input type="radio" name="children" value="no"><span data-i18n="oNoPlain">No</span></label>
           </div>
         </fieldset>
 
         <div id="childrenDetails" class="nested-fields" hidden>
           <div class="field">
-            <label for="childrenCount">How many children in total? <span class="req">*</span></label>
+            <label for="childrenCount" data-i18n="lKidsTotal">How many children in total? <span class="req">*</span></label>
             <input type="number" id="childrenCount" name="childrenCount" min="1" max="10" inputmode="numeric" placeholder="1">
           </div>
           <div class="field">
-            <label for="childrenUnder13">How many are aged 12 and below? <span class="req">*</span></label>
+            <label for="childrenUnder13" data-i18n="lKids13">How many are aged 12 and below? <span class="req">*</span></label>
             <input type="number" id="childrenUnder13" name="childrenUnder13" min="0" max="10" inputmode="numeric" placeholder="0">
-            <p class="field-hint">Kid-friendly meals will be provided for kids 12 and below.</p>
+            <p class="field-hint" data-i18n="hKids13">Kid-friendly meals will be provided for kids 12 and below.</p>
           </div>
           <div class="field">
-            <label for="childrenNames">Their names <span class="req">*</span></label>
-            <input type="text" id="childrenNames" name="childrenNames" placeholder="e.g. Chloe, Marcus">
+            <label for="childrenNames" data-i18n="lKidNames">Their names <span class="req">*</span></label>
+            <input type="text" id="childrenNames" name="childrenNames" placeholder="e.g. Chloe, Marcus" data-i18n-ph="phKidNames">
           </div>
         </div>
         </div>
 
         <fieldset class="field choice-group">
-          <legend>Will you be driving to Sentosa? <span class="req">*</span></legend>
+          <legend data-i18n="lDrive">Will you be driving to Sentosa? <span class="req">*</span></legend>
           <div class="choice-row">
-            <label class="choice"><input type="radio" name="driving" value="yes"><span>Yes, I'll drive</span></label>
-            <label class="choice"><input type="radio" name="driving" value="no"><span>No</span></label>
+            <label class="choice"><input type="radio" name="driving" value="yes"><span data-i18n="oDriveYes">Yes, I'll drive</span></label>
+            <label class="choice"><input type="radio" name="driving" value="no"><span data-i18n="oNoPlain">No</span></label>
           </div>
-          <p class="field-hint">This helps us arrange enough parking at the resort.</p>
+          <p class="field-hint" data-i18n="hDrive">This helps us arrange enough parking at the resort.</p>
         </fieldset>
 
         <div class="field">
-          <label for="dietary">Dietary requirements <span class="optional">(optional)</span></label>
-          <input type="text" id="dietary" name="dietary" placeholder="Vegetarian, halal, allergies…">
+          <label for="dietary" data-i18n="lDiet">Dietary requirements <span class="optional">(optional)</span></label>
+          <input type="text" id="dietary" name="dietary" placeholder="Vegetarian, halal, allergies…" data-i18n-ph="phDiet">
         </div>
       </div>
 
       <div class="field">
-        <label for="message">A note for the couple <span class="optional">(optional)</span></label>
-        <textarea id="message" name="message" rows="3" placeholder="Words of blessing…"></textarea>
+        <label for="message" data-i18n="lMsg">A note for the couple <span class="optional">(optional)</span></label>
+        <textarea id="message" name="message" rows="3" placeholder="Words of blessing…" data-i18n-ph="phMsg"></textarea>
       </div>
 
-      <button type="submit" class="btn primary" id="submitBtn">Send RSVP</button>
+      <button type="submit" class="btn primary" id="submitBtn" data-i18n="btnSend">Send RSVP</button>
       <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
     </form>
   </div>
@@ -1089,6 +1094,6 @@
   <p class="footer-line" lang="zh">百年好合 · <span lang="ko">검은 머리 파뿌리 될 때까지</span></p>
 </footer>
 
-<script src="app.js?v=21"></script>
+<script src="app.js?v=22"></script>
 </body>
 </html>

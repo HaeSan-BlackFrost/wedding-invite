@@ -17,6 +17,123 @@ const INVITE_VARIANT = (_q.has("3") || _q.has("plusone")) ? 3 : _q.has("2") ? 2 
 const PLUS_ONE_ENABLED = INVITE_VARIANT >= 2;
 const KIDS_ENABLED = INVITE_VARIANT === 3;
 
+/* ── Language toggle: English ↔ Korean ── */
+const KO = {
+  heroEyebrow: "양가 가족과 함께",
+  heroInvite: "저희 두 사람, 결혼합니다",
+  heroHanja: '소중한 분을 초대합니다 <span class="dot">·</span> <span lang="zh">恭請光臨</span>',
+  ctaRsvp: "참석 회신하기",
+  cueScroll: "스크롤",
+  storyEyebrow: "우리의 이야기",
+  storyTitle: "우리가 걸어온 길",
+  ch1d: "대학 시절 · 2018", ch1t: "첫 만남",
+  ch1b: "2018년, 대학에서 처음 만났습니다. 친구로 시작했지만, 친구에서 연인 되기 정말 쉽지 않았어요!",
+  ch2d: "2020년 12월", ch2t: "사랑에 빠지다",
+  ch2b: "2년간 “그냥 친구”로 지내다, 더 이상 아닌 척하지 않기로 했습니다. 인생 최고의 결정!",
+  ch3t: "함께한 시간들", ch3b: "6년을 함께 사랑하고, 함께 성장했습니다.",
+  ch4d: "2025년 11월", ch4t: "프러포즈",
+  ch4b: "어느 추운 한국의 가을, 아주 쉬웠던 “네” 한마디.",
+  ch5t: "우리의 다음 장", ch5b: "저희의 가장 행복한 날, 함께해 주세요!",
+  schedEyebrow: "예식 당일", schedTitle: "당일 순서",
+  evTea: "다례식", tagTea: "Tea Ceremony",
+  evSol: "혼인 서약식", tagSol: "Solemnization",
+  evCt: "환영 리셉션", tagCt: "Cocktail Reception",
+  evBq: "저녁 연회", tagBq: "Evening Banquet",
+  descTea: "어른들께 전통 다례로 감사의 마음을 전합니다.",
+  descSol: "센토사 바다를 배경으로, 수영장 옆에서 혼인 서약을 나눕니다.",
+  descCt: "연회에 앞서 가벼운 음료와 환담의 시간을 가집니다.",
+  descBq: "만찬과 축배, 밤늦게까지 이어지는 축하의 자리. 오후 6시 50분까지 착석 부탁드립니다.",
+  venueEyebrow: "오시는 길", venueTitle: "래플스 센토사, 싱가포르",
+  btnMaps: "구글 지도에서 열기", btnCal: "캘린더에 추가",
+  noteDressH: "복장 안내", noteDressB: "정장 차림을 부탁드립니다.",
+  noteDriveH: "차량 이용", noteDriveB: "리조트 내 주차가 가능합니다. 차량을 이용하실 경우 RSVP에 알려주시면 주차 공간을 준비하겠습니다.",
+  noteGetH: "오시는 방법", noteGetB: "래플스 센토사는 센토사 게이트웨이를 통해 오실 수 있습니다. 택시와 차량 호출 모두 리조트 입구에서 하차하실 수 있습니다.",
+  faqEyebrow: "안내 사항", faqTitle: "자주 묻는 질문",
+  q1: "세 가지 순서에 모두 참석해야 하나요?",
+  a1: "아닙니다. RSVP에서 참석하실 순서를 선택하실 수 있습니다. 다례식은 가족 중심의 자리이며, 혼인 서약식과 저녁 연회는 모든 하객을 위한 자리입니다.",
+  q2: "주차가 가능한가요?",
+  a2: "네, 래플스 센토사에 주차가 가능합니다. 차량 이용 여부를 RSVP에 알려주시면 공간을 준비하겠습니다.",
+  q3: "몇 시까지 도착하면 되나요?",
+  q3a: "다례식과 혼인 서약식은 오후 4시 30분부터 가든룸에서 등록이 시작되며, 연회 전 오후 6시 15분부터 환영 리셉션이 열립니다. 신랑신부 입장을 위해 오후 6시 50분까지 연회장에 착석 부탁드립니다.",
+  q4: "언제까지 회신하면 되나요?",
+  q4a: "좌석과 식사 준비를 위해 <strong>2026년 12월 20일</strong>까지 회신 부탁드립니다.",
+  rsvpTitle: "함께해 주시겠어요?",
+  rsvpDeadline: "2026년 12월 20일까지 회신 부탁드립니다",
+  lName: '성함 <span class="req">*</span>', phName: "성함을 입력해 주세요",
+  lEmail: '이메일 주소 <span class="req">*</span>',
+  lSide: '어느 분의 하객이신가요? <span class="req">*</span>',
+  oGroom: "신랑 · 해산", oBride: "신부 · 크리스탈",
+  lAttend: '참석 여부 <span class="req">*</span>',
+  oYes: "기쁘게 참석합니다", oNo: "아쉽지만 참석이 어렵습니다",
+  lEvents: '참석하실 순서를 선택해 주세요 <span class="req">*</span>',
+  oEvTea: "다례식 · 오후 5시", oEvSol: "혼인 서약식 · 오후 6시", oEvBq: "저녁 연회 · 오후 7시",
+  lPlusOne: '동반인과 함께 오시나요? <span class="req">*</span>',
+  oYesPlain: "네", oNoPlain: "아니요",
+  lPoName: '동반인 성함 <span class="req">*</span>', phPoName: "동반인의 성함",
+  lPoEmail: '동반인 이메일 주소 <span class="req">*</span>',
+  lKids: '자녀와 함께 오시나요? <span class="req">*</span>',
+  lKidsTotal: '자녀는 모두 몇 명인가요? <span class="req">*</span>',
+  lKids13: '그중 12세 이하는 몇 명인가요? <span class="req">*</span>',
+  hKids13: "12세 이하 어린이에게는 어린이 메뉴가 제공됩니다.",
+  lKidNames: '자녀 이름 <span class="req">*</span>', phKidNames: "예: 지우, 하준",
+  lDrive: '센토사까지 차량을 이용하시나요? <span class="req">*</span>',
+  oDriveYes: "네, 운전해서 갑니다",
+  hDrive: "리조트 주차 공간 준비에 도움이 됩니다.",
+  lDiet: '식단 요청 <span class="optional">(선택)</span>', phDiet: "채식, 할랄, 알레르기 등",
+  lMsg: '신랑신부에게 전하는 말 <span class="optional">(선택)</span>', phMsg: "축하의 한마디…",
+  btnSend: "참석 여부 보내기",
+  jsSending: "보내는 중…",
+  jsNotConnected: "RSVP 접수가 아직 연결되지 않았습니다. 잠시 후 다시 시도해 주세요.",
+  jsError: "문제가 발생했습니다. 다시 한번 시도해 주세요.",
+  jsYesH: "함께해 주셔서 감사합니다",
+  jsYesP: "RSVP가 접수되었습니다. 2027년 2월 20일, 래플스 센토사에서 뵙겠습니다.",
+  jsNoH: "마음만으로도 감사합니다",
+  jsNoP: "알려주셔서 감사합니다. 마음은 그날 함께하겠습니다.",
+  e_name: "성함을 입력해 주세요.",
+  e_email: "올바른 이메일 주소를 입력해 주세요.",
+  e_side: "어느 분의 하객이신지 선택해 주세요.",
+  e_attending: "참석 여부를 선택해 주세요.",
+  e_events: "참석하실 순서를 선택해 주세요.",
+  e_plusone: "동반인 동행 여부를 선택해 주세요.",
+  e_poname: "동반인 성함을 입력해 주세요.",
+  e_poemail: "동반인의 올바른 이메일 주소를 입력해 주세요.",
+  e_children: "자녀 동행 여부를 선택해 주세요.",
+  e_kidstotal: "자녀가 모두 몇 명인지 알려주세요.",
+  e_kids13: "12세 이하 자녀가 몇 명인지 알려주세요.",
+  e_kidnames: "자녀의 이름을 입력해 주세요.",
+  e_driving: "차량 이용 여부를 선택해 주세요.",
+};
+let LANG = "en";
+try { if (localStorage.getItem("lang") === "ko") LANG = "ko"; } catch (e) {}
+const EN_CACHE = {};
+function T(key, en) { return LANG === "ko" && KO[key] ? KO[key] : en; }
+function applyLang(l) {
+  LANG = l;
+  try { localStorage.setItem("lang", l); } catch (e) {}
+  document.documentElement.lang = l === "ko" ? "ko" : "en";
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    const k = el.dataset.i18n;
+    if (!(k in EN_CACHE)) EN_CACHE[k] = el.innerHTML;
+    if (KO[k]) el.innerHTML = l === "ko" ? KO[k] : EN_CACHE[k];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach((el) => {
+    const k = el.dataset.i18nPh;
+    if (!(k in EN_CACHE)) EN_CACHE[k] = el.placeholder;
+    if (KO[k]) el.placeholder = l === "ko" ? KO[k] : EN_CACHE[k];
+  });
+  document.querySelectorAll("#langToggle .lang-opt").forEach((b) => {
+    b.classList.toggle("active", b.dataset.lang === (l === "ko" ? "ko" : "en"));
+  });
+  if (window.__renderCountdown) window.__renderCountdown();
+}
+(function initLang() {
+  document.querySelectorAll("#langToggle .lang-opt").forEach((b) => {
+    b.addEventListener("click", () => applyLang(b.dataset.lang));
+  });
+  if (LANG === "ko") applyLang("ko");
+})();
+
+
 /* ── Always open at the top of the journey ──
    The page is a linear story: gate → doors → garden → invitation. Browser
    scroll restoration (pull-to-refresh, in-app webviews reopening the tab)
@@ -211,16 +328,19 @@ if (!location.hash) {
 })();
 
 /* ── Countdown ── */
-(function initCountdown() {
+function renderCountdown() {
   const el = document.getElementById("countdown");
   if (!el) return;
   const target = new Date("2027-02-20T00:00:00+08:00");
   const days = Math.ceil((target - Date.now()) / 86400000);
-  if (days > 1) el.textContent = "— " + days + " days from now —";
-  else if (days === 1) el.textContent = "— tomorrow —";
-  else if (days === 0) el.textContent = "— today 囍 —";
+  const ko = LANG === "ko";
+  if (days > 1) el.textContent = ko ? "— 결혼식까지 " + days + "일 —" : "— " + days + " days from now —";
+  else if (days === 1) el.textContent = ko ? "— 내일입니다 —" : "— tomorrow —";
+  else if (days === 0) el.textContent = ko ? "— 오늘입니다 囍 —" : "— today 囍 —";
   else el.textContent = "";
-})();
+}
+window.__renderCountdown = renderCountdown;
+renderCountdown();
 
 /* ── Reveal on scroll ── */
 const revealObserver = new IntersectionObserver(
@@ -435,28 +555,28 @@ function setStatus(msg, kind) {
 
 function validate(data) {
   const errors = [];
-  if (!data.fullName.trim()) errors.push("your full name");
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push("a valid email address");
-  if (!data.side) errors.push("which side you are from");
-  if (!data.attending) errors.push("whether you are attending");
+  if (!data.fullName.trim()) errors.push(T("e_name", "your full name"));
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) errors.push(T("e_email", "a valid email address"));
+  if (!data.side) errors.push(T("e_side", "which side you are from"));
+  if (!data.attending) errors.push(T("e_attending", "whether you are attending"));
   if (data.attending === "accepts") {
-    if (data.events.length === 0) errors.push("which parts of the day you'll join");
+    if (data.events.length === 0) errors.push(T("e_events", "which parts of the day you'll join"));
     if (PLUS_ONE_ENABLED) {
-      if (!data.plusOne) errors.push("whether a plus one is joining");
+      if (!data.plusOne) errors.push(T("e_plusone", "whether a plus one is joining"));
       if (data.plusOne === "yes") {
-        if (!data.plusOneName.trim()) errors.push("your plus one's full name");
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.plusOneEmail)) errors.push("your plus one's email");
+        if (!data.plusOneName.trim()) errors.push(T("e_poname", "your plus one's full name"));
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.plusOneEmail)) errors.push(T("e_poemail", "your plus one's email"));
       }
     }
-    if (KIDS_ENABLED && !data.children) errors.push("whether children are joining");
+    if (KIDS_ENABLED && !data.children) errors.push(T("e_children", "whether children are joining"));
     if (KIDS_ENABLED && data.children === "yes") {
       const total = parseInt(data.childrenCount, 10);
       const under13 = parseInt(data.childrenUnder13, 10);
-      if (!(total > 0)) errors.push("how many children are coming in total");
-      else if (!(under13 >= 0 && under13 <= total)) errors.push("how many of them are aged 12 and below");
-      if (!data.childrenNames.trim()) errors.push("your children's names");
+      if (!(total > 0)) errors.push(T("e_kidstotal", "how many children are coming in total"));
+      else if (!(under13 >= 0 && under13 <= total)) errors.push(T("e_kids13", "how many of them are aged 12 and below"));
+      if (!data.childrenNames.trim()) errors.push(T("e_kidnames", "your children's names"));
     }
-    if (!data.driving) errors.push("whether you'll be driving");
+    if (!data.driving) errors.push(T("e_driving", "whether you'll be driving"));
   }
   return errors;
 }
@@ -490,18 +610,18 @@ form.addEventListener("submit", async (e) => {
 
   const errors = validate(data);
   if (errors.length) {
-    setStatus("Please share " + errors[0] + ".", "err");
+    setStatus(LANG === "ko" ? errors[0] : "Please share " + errors[0] + ".", "err");
     return;
   }
 
   if (!RSVP_ENDPOINT) {
-    setStatus("The RSVP box isn't connected yet — please check back shortly.", "err");
+    setStatus(T("jsNotConnected", "The RSVP box isn't connected yet — please check back shortly."), "err");
     console.warn("RSVP_ENDPOINT is not configured in app.js");
     return;
   }
 
   submitBtn.disabled = true;
-  setStatus("Sending…");
+  setStatus(T("jsSending", "Sending…"));
 
   try {
     const body = new URLSearchParams();
@@ -512,7 +632,7 @@ form.addEventListener("submit", async (e) => {
     showSuccess(data);
   } catch (err) {
     submitBtn.disabled = false;
-    setStatus("Something went wrong — please try again, or write to us directly.", "err");
+    setStatus(T("jsError", "Something went wrong — please try again, or write to us directly."), "err");
   }
 });
 
@@ -525,12 +645,8 @@ function showSuccess(data) {
   form.outerHTML = `
     <div class="form-success">
       <div class="seal small">囍</div>
-      <h3>${accepted ? "We can't wait to celebrate with you" : "You will be missed"}</h3>
-      <p>${
-        accepted
-          ? "Your RSVP has been received. A map to Raffles Sentosa is just above — see you on 20 February 2027."
-          : "Thank you for letting us know. You'll be in our thoughts on the day."
-      }</p>
+      <h3>${accepted ? T("jsYesH", "We can't wait to celebrate with you") : T("jsNoH", "You will be missed")}</h3>
+      <p>${accepted ? T("jsYesP", "Your RSVP has been received. A map to Raffles Sentosa is just above — see you on 20 February 2027.") : T("jsNoP", "Thank you for letting us know. You'll be in our thoughts on the day.")}</p>
       ${
         accepted
           ? '<p><a href="https://www.google.com/maps/search/?api=1&query=Raffles+Sentosa+Singapore" target="_blank" rel="noopener">Open the venue map →</a></p>'

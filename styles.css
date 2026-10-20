@@ -55,6 +55,37 @@ body::before {
     radial-gradient(ellipse 70% 40% at 82% 4%, rgba(217, 185, 121, 0.16), transparent 65%);
 }
 
+/* ── language toggle ── */
+.lang-toggle {
+  position: fixed;
+  top: calc(0.9rem + env(safe-area-inset-top));
+  right: 0.9rem;
+  z-index: 40;
+  display: flex;
+  gap: 2px;
+  padding: 3px;
+  background: rgba(255, 253, 248, 0.85);
+  border: 1px solid var(--gold-dim);
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(43, 38, 32, 0.12);
+}
+.lang-opt {
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--serif);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 0.3rem 0.65rem;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.lang-opt.active {
+  background: var(--gold);
+  color: #FFFDF8;
+}
+
 /* ── snow canvas ── */
 #snow {
   position: fixed;
