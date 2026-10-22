@@ -600,6 +600,7 @@ form.addEventListener("submit", async (e) => {
     driving: fd.get("driving") || "",
     dietary: fd.get("dietary") || "",
     message: fd.get("message") || "",
+    lang: LANG,
     submittedAt: new Date().toISOString(),
   };
   if (data.attending === "declines") {
