@@ -8,6 +8,8 @@
 
 const SHEET_NAME = "RSVPs";
 const SITE = "https://haesan-blackfrost.github.io/wedding-invite/";
+// private read key: only requests carrying this token can list the RSVP rows
+const LIST_TOKEN = "wd2027-3d521c4097a92382549db65c";
 
 const HEADERS = [
   "Submitted At",
@@ -310,9 +312,53 @@ function sendOneMonthReminders() {
   Logger.log("Reminders sent: " + sent);
 }
 
-/** Optional: quick sanity check — visit the web app URL in a browser. */
-function doGet() {
+/** Health check, plus a token-protected JSON listing for cross-checks. */
+function doGet(e) {
+  if (e && e.parameter && e.parameter.list === LIST_TOKEN) {
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    const rows = sheet && sheet.getLastRow() > 1
+      ? sheet.getRange(2, 1, sheet.getLastRow() - 1, HEADERS.length).getValues()
+      : [];
+    return ContentService.createTextOutput(
+      JSON.stringify({ headers: HEADERS, rows: rows })
+    ).setMimeType(ContentService.MimeType.JSON);
+  }
   return ContentService.createTextOutput("RSVP endpoint is live 囍");
+}
+
+/**
+ * Run once from the editor: builds a Summary tab with live counters
+ * (per-event pax, totals, kids meals, cars, side split). Safe to re-run;
+ * it rebuilds the tab.
+ */
+function setupSummary() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let s = ss.getSheetByName("Summary");
+  if (!s) s = ss.insertSheet("Summary", 0);
+  s.clear();
+  const rows = [
+    ["Wedding RSVP Summary", ""],
+    ["", ""],
+    ["Parties accepted", '=COUNTIF(RSVPs!E2:E,"accepts")'],
+    ["Parties declined", '=COUNTIF(RSVPs!E2:E,"declines")'],
+    ["Total pax", "=SUM(RSVPs!F2:F)"],
+    ["Adults", "=SUM(RSVPs!F2:F)-SUM(RSVPs!L2:L)"],
+    ["Children (all ages)", "=SUM(RSVPs!L2:L)"],
+    ["Kids meals (12 & below)", "=SUM(RSVPs!M2:M)"],
+    ["", ""],
+    ["Tea Ceremony pax", '=SUMIF(RSVPs!G2:G,"*tea-ceremony*",RSVPs!F2:F)'],
+    ["Solemnization pax", '=SUMIF(RSVPs!G2:G,"*solemnization*",RSVPs!F2:F)'],
+    ["Evening Banquet pax", '=SUMIF(RSVPs!G2:G,"*evening-banquet*",RSVPs!F2:F)'],
+    ["", ""],
+    ["Cars (driving)", '=COUNTIF(RSVPs!O2:O,"yes")'],
+    ["Groom side parties", '=COUNTIF(RSVPs!D2:D,"groom")'],
+    ["Bride side parties", '=COUNTIF(RSVPs!D2:D,"bride")'],
+  ];
+  s.getRange(1, 1, rows.length, 2).setValues(rows);
+  s.getRange(1, 1).setFontWeight("bold").setFontSize(14);
+  s.getRange(3, 1, rows.length - 2, 1).setFontWeight("bold");
+  s.setColumnWidth(1, 230);
+  Logger.log("Summary tab ready.");
 }
 
 /**
